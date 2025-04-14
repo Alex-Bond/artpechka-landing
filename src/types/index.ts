@@ -1,4 +1,3 @@
-
 export interface PortfolioItemType {
   id: string;
   title: string;
@@ -6,7 +5,8 @@ export interface PortfolioItemType {
   services: string[];
   category: string;
   thumbnail: string;
-  trailerImages: string[];
+  videoType: string;
+  trailerImages?: string[];
 }
 
 export interface SocialLink {

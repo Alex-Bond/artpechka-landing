@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { PortfolioItemType } from '@/types';
 import PortfolioItem from './PortfolioItem';
@@ -12,6 +11,7 @@ const portfolioData: PortfolioItemType[] = [
     description: 'A documentary showcasing urban architecture and city life across different metropolises.',
     services: ['Cinematography', 'Editing', 'Color Grading'],
     category: 'Documentary',
+    videoType: 'Documentary',
     thumbnail: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81',
     trailerImages: [
       'https://images.unsplash.com/photo-1605810230434-7631ac76ec81',
@@ -25,11 +25,8 @@ const portfolioData: PortfolioItemType[] = [
     description: 'A visually striking music video featuring neon aesthetics and dynamic editing.',
     services: ['Direction', 'Editing', 'Visual Effects'],
     category: 'Music Video',
-    thumbnail: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158',
-    trailerImages: [
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158',
-      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6'
-    ]
+    videoType: 'Music Video',
+    thumbnail: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158'
   },
   {
     id: '3',
@@ -37,6 +34,7 @@ const portfolioData: PortfolioItemType[] = [
     description: 'A commercial spot for a tech product launch with clean, minimal aesthetics.',
     services: ['Editing', 'Motion Graphics', 'Sound Design'],
     category: 'Commercial',
+    videoType: 'Commercial',
     thumbnail: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
     trailerImages: [
       'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
@@ -50,6 +48,7 @@ const portfolioData: PortfolioItemType[] = [
     description: 'An adventure documentary following climbers attempting to summit a challenging peak.',
     services: ['Cinematography', 'Editing', 'Color Grading'],
     category: 'Documentary',
+    videoType: 'Documentary',
     thumbnail: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
     trailerImages: [
       'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
@@ -62,6 +61,7 @@ const portfolioData: PortfolioItemType[] = [
     description: 'An atmospheric music video with dreamy visuals and experimental editing techniques.',
     services: ['Direction', 'Editing', 'Visual Effects'],
     category: 'Music Video',
+    videoType: 'Music Video',
     thumbnail: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6',
     trailerImages: [
       'https://images.unsplash.com/photo-1461749280684-dccba630e2f6',
@@ -75,6 +75,7 @@ const portfolioData: PortfolioItemType[] = [
     description: 'A high-end commercial for a luxury fashion brand with sophisticated visuals.',
     services: ['Editing', 'Color Grading', 'Post-Production'],
     category: 'Commercial',
+    videoType: 'Commercial',
     thumbnail: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
     trailerImages: [
       'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',

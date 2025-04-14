@@ -1,6 +1,8 @@
+
 import React, { useEffect, useRef, useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Maximize2, Minimize2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { Dialog, DialogContent } from './ui/dialog'
 
 interface GalleryProps {
   images: string[];
@@ -10,6 +12,7 @@ interface GalleryProps {
 
 const Gallery = ({ images, alt, rotate = false }: GalleryProps) => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const hasMultipleImages = images.length > 1;
@@ -17,9 +20,9 @@ const Gallery = ({ images, alt, rotate = false }: GalleryProps) => {
   useEffect(() => {
     if (hasMultipleImages) {
       if (rotate) {
-      intervalRef.current = setInterval(() => {
-        setCurrentImage((prev) => (prev + 1) % images.length);
-      }, 2000); // Change image every 2 seconds
+        intervalRef.current = setInterval(() => {
+          setCurrentImage((prev) => (prev + 1) % images.length);
+        }, 2000);
       } else {
         if (intervalRef.current) {
           clearInterval(intervalRef.current)
@@ -52,16 +55,19 @@ const Gallery = ({ images, alt, rotate = false }: GalleryProps) => {
     setCurrentImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
-  return (
-    <div
-      className="relative aspect-video overflow-hidden"
-    >
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
+  };
+
+  const GalleryContent = () => (
+    <div className="relative aspect-video overflow-hidden">
       <img
         src={images[currentImage]}
         alt={alt}
         className={cn(
           "w-full h-full object-cover transition-all duration-700",
           rotate ? 'scale-110' : 'scale-100',
+          isFullscreen ? 'max-h-[80vh]' : ''
         )}
         style={{
           transform: `translateX(0)`,
@@ -93,7 +99,28 @@ const Gallery = ({ images, alt, rotate = false }: GalleryProps) => {
           </div>
         </>
       )}
+
+      <button
+        onClick={toggleFullscreen}
+        className="absolute bottom-2 right-2 bg-cinema-background/50 hover:bg-cinema-muted p-1.5 rounded-full text-cinema-text opacity-0 group-hover:opacity-100 transition-opacity"
+      >
+        {isFullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
+      </button>
     </div>
+  );
+
+  return (
+    <>
+      <div className="group relative">
+        <GalleryContent />
+      </div>
+
+      <Dialog open={isFullscreen} onOpenChange={setIsFullscreen}>
+        <DialogContent className="max-w-7xl w-full p-0 overflow-hidden bg-cinema-background/95">
+          <GalleryContent />
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 

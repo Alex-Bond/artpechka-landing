@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -11,14 +11,38 @@ interface GalleryProps {
 const Gallery = ({ images, alt }: GalleryProps) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const hasMultipleImages = images.length > 1;
 
+  useEffect(() => {
+    if (isHovered && hasMultipleImages) {
+      intervalRef.current = setInterval(() => {
+        setCurrentImage((prev) => (prev + 1) % images.length);
+      }, 2000); // Change image every 2 seconds
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [isHovered, hasMultipleImages, images.length]);
+
   const nextImage = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
     setCurrentImage((prev) => (prev + 1) % images.length);
   };
 
   const prevImage = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
     setCurrentImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
@@ -26,7 +50,13 @@ const Gallery = ({ images, alt }: GalleryProps) => {
     <div 
       className="relative aspect-video overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
+        }
+      }}
     >
       <img 
         src={images[currentImage]} 

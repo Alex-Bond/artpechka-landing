@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { PortfolioItemType } from '@/types';
 import { Badge } from '@/components/ui/badge';
@@ -50,8 +51,8 @@ const PortfolioItem = ({ item }: PortfolioItemProps) => {
         {/* Trailer Button */}
         {item.trailerUrl && (
           <Button
-            variant="outline"
-            className="w-full mt-4"
+            variant="default"
+            className="w-full mt-4 bg-[#ea384c] hover:bg-[#c0303e]"
             onClick={() => setIsTrailerOpen(true)}
           >
             <Play className="w-4 h-4" /> View Trailer

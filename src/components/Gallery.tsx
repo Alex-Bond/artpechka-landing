@@ -59,14 +59,16 @@ const Gallery = ({ images, alt, rotate = false }: GalleryProps) => {
   };
 
   const GalleryContent = () => (
-    <div className="relative aspect-video overflow-hidden">
+    <div className={cn(
+      "relative overflow-hidden",
+      isFullscreen ? 'h-[95vh]' : 'aspect-video'
+    )}>
       <img
         src={images[currentImage]}
         alt={alt}
         className={cn(
-          "w-full h-full object-cover transition-all duration-700",
-          rotate && !isFullscreen ? 'scale-110' : 'scale-100',
-          isFullscreen ? 'max-h-[80vh]' : ''
+          "w-full h-full object-contain transition-all duration-700",
+          rotate && !isFullscreen ? 'scale-110' : 'scale-100'
         )}
         style={{
           transform: `translateX(0)`,
@@ -127,7 +129,7 @@ const Gallery = ({ images, alt, rotate = false }: GalleryProps) => {
       </div>
 
       <Dialog open={isFullscreen} onOpenChange={setIsFullscreen}>
-        <DialogContent className="max-w-7xl w-full p-0 overflow-hidden bg-cinema-background/95">
+        <DialogContent className="max-w-[98vw] w-full h-[98vh] p-0 overflow-hidden bg-cinema-background/95">
           <DialogTitle className="sr-only">{alt}</DialogTitle>
           <GalleryContent />
         </DialogContent>

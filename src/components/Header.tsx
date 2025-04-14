@@ -24,6 +24,15 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setMobileMenuOpen(false);
+    }
+  };
+
   return (
     <header 
       className={cn(
@@ -34,7 +43,11 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <a href="#home" className="text-2xl font-heading font-bold text-gradient">
+        <a 
+          href="#home" 
+          className="text-2xl font-heading font-bold text-gradient"
+          onClick={(e) => handleNavClick(e, '#home')}
+        >
           CINEMATIC
         </a>
 
@@ -44,6 +57,7 @@ const Header = () => {
             <a 
               key={item.label}
               href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
               className="text-cinema-text/80 hover:text-cinema-accent transition-colors font-medium"
             >
               {item.label}
@@ -71,8 +85,8 @@ const Header = () => {
               <a 
                 key={item.label}
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className="text-cinema-text/80 hover:text-cinema-accent transition-colors font-medium py-2"
-                onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
               </a>

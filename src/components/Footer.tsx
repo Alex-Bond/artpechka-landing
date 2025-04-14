@@ -10,6 +10,14 @@ const Footer = () => {
     });
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-cinema-background border-t border-cinema-muted/30 py-6">
       <div className="container mx-auto">
@@ -25,16 +33,32 @@ const Footer = () => {
 
           <div className="flex items-center gap-8">
             <nav className="hidden md:flex items-center space-x-6">
-              <a href="#home" className="text-cinema-text/60 hover:text-cinema-accent text-sm transition-colors">
+              <a 
+                href="#home" 
+                onClick={(e) => handleNavClick(e, '#home')}
+                className="text-cinema-text/60 hover:text-cinema-accent text-sm transition-colors"
+              >
                 Home
               </a>
-              <a href="#about" className="text-cinema-text/60 hover:text-cinema-accent text-sm transition-colors">
+              <a 
+                href="#about" 
+                onClick={(e) => handleNavClick(e, '#about')}
+                className="text-cinema-text/60 hover:text-cinema-accent text-sm transition-colors"
+              >
                 About
               </a>
-              <a href="#portfolio" className="text-cinema-text/60 hover:text-cinema-accent text-sm transition-colors">
+              <a 
+                href="#portfolio" 
+                onClick={(e) => handleNavClick(e, '#portfolio')}
+                className="text-cinema-text/60 hover:text-cinema-accent text-sm transition-colors"
+              >
                 Portfolio
               </a>
-              <a href="#contact" className="text-cinema-text/60 hover:text-cinema-accent text-sm transition-colors">
+              <a 
+                href="#contact" 
+                onClick={(e) => handleNavClick(e, '#contact')}
+                className="text-cinema-text/60 hover:text-cinema-accent text-sm transition-colors"
+              >
                 Contact
               </a>
             </nav>

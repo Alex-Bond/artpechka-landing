@@ -3,7 +3,7 @@ import { PortfolioItemType } from '@/types'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Play } from 'lucide-react'
-import Gallery from './Gallery'
+import Gallery from './gallery'
 import TrailerModal from './TrailerModal'
 
 interface PortfolioItemProps {

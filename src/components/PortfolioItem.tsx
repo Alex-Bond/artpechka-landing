@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { PortfolioItemType } from '@/types';
 import { Badge } from '@/components/ui/badge';
@@ -17,10 +16,10 @@ const PortfolioItem = ({ item }: PortfolioItemProps) => {
 
   return (
     <div className="group relative bg-cinema-muted rounded-lg overflow-hidden flex flex-col h-full hover-scale">
-      {/* Video Type Badge */}
+      {/* Video Type Badge - White background with black text */}
       <Badge 
-        variant="secondary" 
-        className="absolute top-3 left-3 z-10 bg-cinema-background/80 backdrop-blur-sm"
+        variant="outline" 
+        className="absolute top-3 left-3 z-10 bg-white/80 text-black"
       >
         {item.videoType}
       </Badge>

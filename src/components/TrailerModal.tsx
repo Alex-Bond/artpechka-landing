@@ -18,13 +18,13 @@ const TrailerModal = ({ isOpen, onClose, title, videoUrl }: TrailerModalProps) =
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-3xl max-h-[90vh] p-0 overflow-hidden bg-cinema-background border-cinema-muted">
+      <DialogContent className="sm:max-w-3xl max-h-[90vh] p-0 overflow-hidden bg-red-600 border-red-700">
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex justify-between items-center p-4 border-b border-cinema-muted">
-            <DialogTitle className="text-lg font-medium">{title}</DialogTitle>
+          <div className="flex justify-between items-center p-4 border-b border-red-700">
+            <DialogTitle className="text-lg font-medium text-white">{title}</DialogTitle>
             <DialogClose asChild>
-              <button className="text-cinema-text/60 hover:text-cinema-accent transition-colors">
+              <button className="text-white/60 hover:text-white transition-colors">
                 <X size={20} />
               </button>
             </DialogClose>

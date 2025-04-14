@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PortfolioItemType } from '@/types';
 import PortfolioItem from './PortfolioItem';
 import { cn } from '@/lib/utils';
+import { Button } from './ui/button';
 
 // Sample portfolio data
 const portfolioData: PortfolioItemType[] = [
@@ -88,10 +89,29 @@ const portfolioData: PortfolioItemType[] = [
 const Portfolio = () => {
   const categories = ['All', ...new Set(portfolioData.map(item => item.category))];
   const [activeCategory, setActiveCategory] = useState('All');
+  const [showAll, setShowAll] = useState(false);
+  const [wasShowAllClickedInAll, setWasShowAllClickedInAll] = useState(false);
+
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    if (!wasShowAllClickedInAll) {
+      setShowAll(false);
+    }
+  };
+
+  const handleViewAll = () => {
+    setShowAll(true);
+    if (activeCategory === 'All') {
+      setWasShowAllClickedInAll(true);
+    }
+  };
 
   const filteredItems = activeCategory === 'All' 
     ? portfolioData 
     : portfolioData.filter(item => item.category === activeCategory);
+
+  const displayedItems = showAll ? filteredItems : filteredItems.slice(0, 6);
+  const hasMoreItems = filteredItems.length > 6;
 
   return (
     <section id="portfolio" className="section-padding bg-cinema-background">
@@ -104,12 +124,11 @@ const Portfolio = () => {
           </p>
         </div>
 
-        {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {categories.map(category => (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => handleCategoryChange(category)}
               className={cn(
                 "px-4 py-2 rounded-full text-sm transition-colors",
                 activeCategory === category
@@ -122,12 +141,23 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* Portfolio Grid */}
-        <div className="portfolio-grid">
-          {filteredItems.map(item => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {displayedItems.map(item => (
             <PortfolioItem key={item.id} item={item} />
           ))}
         </div>
+
+        {hasMoreItems && !showAll && (
+          <div className="text-center mt-8">
+            <Button
+              variant="outline"
+              onClick={handleViewAll}
+              className="hover:bg-cinema-accent hover:text-white"
+            >
+              View All
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -11,6 +11,7 @@ interface GalleryProps {
 const Gallery = ({ images, alt }: GalleryProps) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const hasMultipleImages = images.length > 1;
@@ -18,8 +19,9 @@ const Gallery = ({ images, alt }: GalleryProps) => {
   useEffect(() => {
     if (isHovered && hasMultipleImages) {
       intervalRef.current = setInterval(() => {
+        setSlideDirection('right');
         setCurrentImage((prev) => (prev + 1) % images.length);
-      }, 2000); // Change image every 2 seconds
+      }, 2000);
     }
 
     return () => {
@@ -35,6 +37,7 @@ const Gallery = ({ images, alt }: GalleryProps) => {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
+    setSlideDirection('right');
     setCurrentImage((prev) => (prev + 1) % images.length);
   };
 
@@ -43,6 +46,7 @@ const Gallery = ({ images, alt }: GalleryProps) => {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
+    setSlideDirection('left');
     setCurrentImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
@@ -61,13 +65,10 @@ const Gallery = ({ images, alt }: GalleryProps) => {
       <img 
         src={images[currentImage]} 
         alt={alt} 
-        className={cn(
-          "w-full h-full object-cover transition-all duration-700",
-          isHovered ? "scale-110" : "scale-100"
-        )}
+        className="w-full h-full object-cover transition-transform duration-700"
         style={{
-          transform: `scale(${isHovered ? '1.1' : '1'}) translateX(0)`,
-          transition: 'transform 700ms ease-in-out'
+          transform: `translateX(0)`,
+          animation: `${slideDirection === 'right' ? 'slideLeft' : 'slideRight'} 700ms ease-in-out`
         }}
       />
       <div className={cn(

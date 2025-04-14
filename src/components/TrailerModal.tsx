@@ -18,20 +18,16 @@ const TrailerModal = ({ isOpen, onClose, title, videoUrl }: TrailerModalProps) =
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-3xl max-h-[90vh] p-0 overflow-hidden bg-red-600 border-red-700">
+      <DialogContent className="max-w-[98vw] w-full h-[98vh] p-0 overflow-hidden bg-cinema-background/95">
+        <DialogTitle className="sr-only">{title}</DialogTitle>
         <div className="flex flex-col h-full">
-          {/* Header */}
-          <div className="flex justify-between items-center p-4 border-b border-red-700">
-            <DialogTitle className="text-lg font-medium text-white">{title}</DialogTitle>
-            <DialogClose asChild>
-              <button className="text-white/60 hover:text-white transition-colors">
-                <X size={20} />
-              </button>
+          <div className="absolute top-2 right-2 z-10">
+            <DialogClose className="text-white/60 hover:text-white transition-colors bg-cinema-background/50 hover:bg-cinema-muted p-1.5 rounded-full">
+              <X size={18} />
             </DialogClose>
           </div>
           
-          {/* Video Content */}
-          <div className="relative w-full aspect-video">
+          <div className="relative w-full h-[95vh]">
             <iframe
               src={`https://player.vimeo.com/video/${videoId}?h=00000000&autoplay=0&title=0&byline=0&portrait=0`}
               allow="autoplay; fullscreen; picture-in-picture"

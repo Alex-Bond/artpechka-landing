@@ -62,9 +62,13 @@ const Gallery = ({ images, alt }: GalleryProps) => {
         src={images[currentImage]} 
         alt={alt} 
         className={cn(
-          "w-full h-full object-cover transition-transform duration-700",
+          "w-full h-full object-cover transition-all duration-700",
           isHovered ? "scale-110" : "scale-100"
         )}
+        style={{
+          transform: `scale(${isHovered ? '1.1' : '1'}) translateX(0)`,
+          transition: 'transform 700ms ease-in-out'
+        }}
       />
       <div className={cn(
         "absolute inset-0 bg-gradient-to-t from-cinema-background/90 to-transparent opacity-80 transition-opacity duration-300",

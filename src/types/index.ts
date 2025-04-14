@@ -7,6 +7,7 @@ export interface PortfolioItemType {
   thumbnail: string;
   videoType: string;
   trailerImages?: string[];
+  trailerUrl?: string;
 }
 
 export interface SocialLink {

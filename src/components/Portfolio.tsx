@@ -17,7 +17,8 @@ const portfolioData: PortfolioItemType[] = [
       'https://images.unsplash.com/photo-1605810230434-7631ac76ec81',
       'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
       'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b'
-    ]
+    ],
+    trailerUrl: 'https://vimeo.com/83350916'
   },
   {
     id: '2',

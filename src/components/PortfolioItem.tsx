@@ -1,14 +1,18 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { PortfolioItemType } from '@/types';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Play } from 'lucide-react';
 import Gallery from './Gallery';
+import TrailerModal from './TrailerModal';
 
 interface PortfolioItemProps {
   item: PortfolioItemType;
 }
 
 const PortfolioItem = ({ item }: PortfolioItemProps) => {
+  const [isTrailerOpen, setIsTrailerOpen] = useState(false);
   const images = item.trailerImages || [item.thumbnail];
 
   return (
@@ -43,7 +47,28 @@ const PortfolioItem = ({ item }: PortfolioItemProps) => {
             ))}
           </div>
         </div>
+
+        {/* Trailer Button */}
+        {item.trailerUrl && (
+          <Button
+            variant="outline"
+            className="w-full mt-4"
+            onClick={() => setIsTrailerOpen(true)}
+          >
+            <Play className="w-4 h-4" /> View Trailer
+          </Button>
+        )}
       </div>
+
+      {/* Trailer Modal */}
+      {item.trailerUrl && (
+        <TrailerModal
+          isOpen={isTrailerOpen}
+          onClose={() => setIsTrailerOpen(false)}
+          title={item.title}
+          videoUrl={item.trailerUrl}
+        />
+      )}
     </div>
   );
 };

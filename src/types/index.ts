@@ -6,7 +6,7 @@ export interface PortfolioItemType {
   category: string;
   thumbnail: string;
   videoType: string;
-  trailerImages?: string[];
+  images?: string[];
   trailerUrl?: string;
 }
 

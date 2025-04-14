@@ -14,7 +14,7 @@ const portfolioData: PortfolioItemType[] = [
     category: 'Documentary',
     videoType: 'Documentary',
     thumbnail: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81',
-    trailerImages: [
+    images: [
       'https://images.unsplash.com/photo-1605810230434-7631ac76ec81',
       'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
       'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b'
@@ -38,7 +38,7 @@ const portfolioData: PortfolioItemType[] = [
     category: 'Commercial',
     videoType: 'Commercial',
     thumbnail: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
-    trailerImages: [
+    images: [
       'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
       'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
       'https://images.unsplash.com/photo-1605810230434-7631ac76ec81'
@@ -52,7 +52,7 @@ const portfolioData: PortfolioItemType[] = [
     category: 'Documentary',
     videoType: 'Documentary',
     thumbnail: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
-    trailerImages: [
+    images: [
       'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
       'https://images.unsplash.com/photo-1498050108023-c5249f4df085'
     ]
@@ -65,7 +65,7 @@ const portfolioData: PortfolioItemType[] = [
     category: 'Music Video',
     videoType: 'Music Video',
     thumbnail: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6',
-    trailerImages: [
+    images: [
       'https://images.unsplash.com/photo-1461749280684-dccba630e2f6',
       'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158',
       'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d'
@@ -79,7 +79,7 @@ const portfolioData: PortfolioItemType[] = [
     category: 'Commercial',
     videoType: 'Commercial',
     thumbnail: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
-    trailerImages: [
+    images: [
       'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
       'https://images.unsplash.com/photo-1498050108023-c5249f4df085'
     ]
@@ -92,7 +92,7 @@ const portfolioData: PortfolioItemType[] = [
     category: 'Documentary',
     videoType: 'Documentary',
     thumbnail: 'https://images.unsplash.com/photo-1472396961693-142e6e269027',
-    trailerImages: [
+    images: [
       'https://images.unsplash.com/photo-1472396961693-142e6e269027',
       'https://images.unsplash.com/photo-1433086966358-54859d0ed716'
     ]
@@ -105,7 +105,7 @@ const portfolioData: PortfolioItemType[] = [
     category: 'Documentary',
     videoType: 'Documentary',
     thumbnail: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
-    trailerImages: [
+    images: [
       'https://images.unsplash.com/photo-1433086966358-54859d0ed716',
       'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb'
     ]
@@ -118,7 +118,7 @@ const portfolioData: PortfolioItemType[] = [
     category: 'Documentary',
     videoType: 'Documentary',
     thumbnail: 'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb',
-    trailerImages: [
+    images: [
       'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb',
       'https://images.unsplash.com/photo-1500673922987-e212871fec22'
     ]
@@ -131,7 +131,7 @@ const portfolioData: PortfolioItemType[] = [
     category: 'Documentary',
     videoType: 'Documentary',
     thumbnail: 'https://images.unsplash.com/photo-1500673922987-e212871fec22',
-    trailerImages: [
+    images: [
       'https://images.unsplash.com/photo-1500673922987-e212871fec22',
       'https://images.unsplash.com/photo-1506744038136-46273834b3fb'
     ]
@@ -144,7 +144,7 @@ const portfolioData: PortfolioItemType[] = [
     category: 'Documentary',
     videoType: 'Documentary',
     thumbnail: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
-    trailerImages: [
+    images: [
       'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
       'https://images.unsplash.com/photo-1472396961693-142e6e269027'
     ]
@@ -171,8 +171,8 @@ const Portfolio = () => {
     }
   };
 
-  const filteredItems = activeCategory === 'All' 
-    ? portfolioData 
+  const filteredItems = activeCategory === 'All'
+    ? portfolioData
     : portfolioData.filter(item => item.category === activeCategory);
 
   const displayedItems = showAll ? filteredItems : filteredItems.slice(0, 6);
@@ -215,9 +215,8 @@ const Portfolio = () => {
         {hasMoreItems && !showAll && (
           <div className="text-center mt-8">
             <Button
-              variant="outline"
               onClick={handleViewAll}
-              className="hover:bg-cinema-accent hover:text-white"
+              className="bg-cinema-accent hover:bg-cinema-accent hover:bg-[#c0303e] hover:text-white"
             >
               View All
             </Button>

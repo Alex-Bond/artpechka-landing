@@ -8,11 +8,11 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center bg-cinema-background pt-20">
       {/* Background Gradient Effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-cinema-accent/10 to-cinema-highlight/10 opacity-40"></div>
-      
+
       {/* Subtle Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-5" 
-        style={{ 
+      <div
+        className="absolute inset-0 opacity-5"
+        style={{
           backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
           backgroundSize: '50px 50px'
         }}
@@ -31,7 +31,7 @@ const Hero = () => {
             <Button className="bg-cinema-accent hover:bg-cinema-accent/90 text-white px-6 py-6">
               View My Work
             </Button>
-            <Button variant="outline" className="border-cinema-accent/50 text-cinema-text hover:bg-cinema-accent/10 px-6 py-6">
+            <Button variant="secondary" className="border-cinema-accent/50 px-6 py-6">
               <Play size={16} className="mr-2" />
               Showreel
             </Button>

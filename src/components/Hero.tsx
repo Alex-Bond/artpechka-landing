@@ -1,9 +1,15 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 
 const Hero = () => {
+  const handleScroll = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center bg-cinema-background pt-20">
       {/* Background Gradient Effect */}
@@ -28,7 +34,10 @@ const Hero = () => {
             With over 8 years of experience in visual storytelling, I blend technical precision with creative vision to craft compelling narratives that captivate audiences.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{animationDelay: '0.3s'}}>
-            <Button className="bg-cinema-accent hover:bg-cinema-accent/90 text-white px-6 py-6">
+            <Button 
+              className="bg-cinema-accent hover:bg-cinema-accent/90 text-white px-6 py-6"
+              onClick={() => handleScroll('#portfolio')}
+            >
               View My Work
             </Button>
             <Button variant="secondary" className="border-cinema-accent/50 px-6 py-6">

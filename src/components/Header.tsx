@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
@@ -63,7 +62,10 @@ const Header = () => {
               {item.label}
             </a>
           ))}
-          <Button className="bg-cinema-accent hover:bg-cinema-accent/90 text-white">
+          <Button 
+            className="bg-cinema-accent hover:bg-cinema-accent/90 text-white"
+            onClick={(e) => handleNavClick(e as any, '#contact')}
+          >
             Get in Touch
           </Button>
         </nav>

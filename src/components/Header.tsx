@@ -33,27 +33,27 @@ const Header = () => {
   };
 
   return (
-    <header 
+    <header
       className={cn(
         'fixed top-0 left-0 w-full z-50 transition-all duration-300',
-        isScrolled 
-          ? 'bg-cinema-background/90 backdrop-blur-md py-3 shadow-md' 
+        isScrolled
+          ? 'bg-cinema-background/90 backdrop-blur-md py-3 shadow-md'
           : 'bg-transparent py-5'
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <a 
-          href="#home" 
+        <a
+          href="#home"
           className="text-2xl font-heading font-bold text-gradient"
           onClick={(e) => handleNavClick(e, '#home')}
         >
-          CINEMATIC
+          ARTY PICHAK
         </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map(item => (
-            <a 
+            <a
               key={item.label}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
@@ -62,7 +62,7 @@ const Header = () => {
               {item.label}
             </a>
           ))}
-          <Button 
+          <Button
             className="bg-cinema-accent hover:bg-cinema-accent/90 text-white"
             onClick={(e) => handleNavClick(e as any, '#contact')}
           >
@@ -71,7 +71,7 @@ const Header = () => {
         </nav>
 
         {/* Mobile Menu Button */}
-        <button 
+        <button
           className="md:hidden text-cinema-text"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
@@ -84,7 +84,7 @@ const Header = () => {
         <div className="md:hidden absolute top-full left-0 w-full bg-cinema-muted py-4 animate-fade-in">
           <nav className="container mx-auto flex flex-col space-y-4">
             {navItems.map(item => (
-              <a 
+              <a
                 key={item.label}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
@@ -93,7 +93,7 @@ const Header = () => {
                 {item.label}
               </a>
             ))}
-            <Button 
+            <Button
               className="bg-cinema-accent hover:bg-cinema-accent/90 text-white mt-2"
               onClick={() => setMobileMenuOpen(false)}
             >

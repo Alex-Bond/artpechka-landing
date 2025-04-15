@@ -25,7 +25,7 @@ const PortfolioItem = ({ item }: PortfolioItemProps) => {
         variant='outline'
         className="absolute top-3 left-3 z-10 bg-white/80 text-black"
       >
-        {item.videoType}
+        {item.workType}
       </Badge>
 
       {/* Gallery */}

@@ -5,7 +5,7 @@ export interface PortfolioItemType {
   services: string[];
   category: string;
   thumbnail: string;
-  videoType: string;
+  workType: string;
   images?: string[];
   trailerUrl?: string;
 }
@@ -14,4 +14,12 @@ export interface SocialLink {
   platform: string;
   url: string;
   icon: React.ElementType;
+}
+
+export interface ContactFormValues {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  recaptchaToken?: string;
 }

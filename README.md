@@ -71,3 +71,18 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## Setting up Contact Form Email Functionality
+
+The contact form uses Resend for email delivery through Vercel Edge Functions and includes Google reCAPTCHA protection. To set this up:
+
+1. Create a [Resend account](https://resend.com/) and obtain an API key
+2. Create a [Google reCAPTCHA](https://www.google.com/recaptcha/admin) invisible key pair (v2 Invisible)
+3. Add the following environment variables to your Vercel project:
+   - `RESEND_API_KEY`: Your Resend API key
+   - `CONTACT_NOTIFICATION_EMAIL_FROM`: The email address to send from (must be verified in Resend)
+   - `CONTACT_NOTIFICATION_EMAIL_TO`: The email address where you want to receive contact form submissions
+   - `RECAPTCHA_SECRET_KEY`: Your reCAPTCHA secret key
+   - `VITE_RECAPTCHA_SITE_KEY`: Your reCAPTCHA site key (will be exposed to the browser)
+
+After adding these environment variables, your contact form will be fully functional with spam protection.

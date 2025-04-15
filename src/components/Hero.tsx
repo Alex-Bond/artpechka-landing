@@ -34,16 +34,16 @@ const Hero = () => {
             With over 8 years of experience in visual storytelling, I blend technical precision with creative vision to craft compelling narratives that captivate audiences.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{animationDelay: '0.3s'}}>
-            <Button 
+            <Button
               className="bg-cinema-accent hover:bg-cinema-accent/90 text-white px-6 py-6"
               onClick={() => handleScroll('#portfolio')}
             >
               View My Work
             </Button>
-            <Button variant="secondary" className="border-cinema-accent/50 px-6 py-6">
-              <Play size={16} className="mr-2" />
-              Showreel
-            </Button>
+            {/*<Button variant="secondary" className="border-cinema-accent/50 px-6 py-6">*/}
+            {/*  <Play size={16} className="mr-2" />*/}
+            {/*  Showreel*/}
+            {/*</Button>*/}
           </div>
         </div>
       </div>

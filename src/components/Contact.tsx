@@ -93,8 +93,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-medium mb-1">Email</h4>
-                  <a href="mailto:contact@cinematiceditor.com" className="text-cinema-text/70 hover:text-cinema-accent transition-colors">
-                    contact@cinematiceditor.com
+                  <a href="mailto:hi@artpechka.com?subject=Inquiry%20from%20the%20website&body=Hi%20Arty!%0A%0AI%20have%20a%20project%20for%20you%20-%20" className="text-cinema-text/70 hover:text-cinema-accent transition-colors">
+                    hi@artpechka.com
                   </a>
                 </div>
               </div>
@@ -104,9 +104,9 @@ const Contact = () => {
                   <Phone size={24} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">Phone</h4>
-                  <a href="tel:+12345678901" className="text-cinema-text/70 hover:text-cinema-accent transition-colors">
-                    +1 (234) 567-8901
+                  <h4 className="font-medium mb-1">Phone · Telegram · WhatsApp</h4>
+                  <a href="tel:+380931422390" className="text-cinema-text/70 hover:text-cinema-accent transition-colors">
+                    +380 (93) 142-2390
                   </a>
                 </div>
               </div>
@@ -118,7 +118,7 @@ const Contact = () => {
                 <div>
                   <h4 className="font-medium mb-1">Location</h4>
                   <p className="text-cinema-text/70">
-                    Los Angeles, California
+                    Kyiv, Ukraine
                   </p>
                 </div>
               </div>

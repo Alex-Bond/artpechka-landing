@@ -5,38 +5,41 @@ export const portfolioData: PortfolioItemType[] = [
   {
     id: '1',
     title: 'E-matras TV',
-    description: 'A documentary showcasing urban architecture and city life across different metropolises.',
-    services: ['Cinematography', 'Editing', 'Color Grading'],
-    category: 'Documentary',
-    workType: 'Documentary',
-    thumbnail: 'public/images/m-tv.jpg',
+    description: 'Series of short promotional videos for the E-matras chain of stores.',
+    services: ['Motion design', 'Editing', 'Color Grading'],
+    category: 'Commercial',
+    workType: 'Commercial',
+    thumbnail: '/public/images/m-tv.jpg',
     images: [
-      'public/images/m-tv.jpg',
+      '/public/images/m-tv.jpg',
+    ],
+    trailerUrl: 'https://youtu.be/9OU03O6rYSU'
+  },
+  {
+    id: '2',
+    title: 'E-matras money',
+    description: 'Series of short promotional videos for the E-matras chain of stores.',
+    services: ['Motion design', 'Editing', 'Color Grading'],
+    category: 'Commercial',
+    workType: 'Commercial',
+    thumbnail: '/public/images/m-money.jpg',
+    images: [
+      '/public/images/m-money.jpg',
     ],
     trailerUrl: 'https://youtu.be/U8QHqMCmbBY'
   },
   {
-    id: '2',
-    title: 'Neon Dreams',
-    description: 'A visually striking music video featuring neon aesthetics and dynamic editing.',
-    services: ['Direction', 'Editing', 'Visual Effects'],
-    category: 'Music Video',
-    workType: 'Music Video',
-    thumbnail: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158'
-  },
-  {
     id: '3',
-    title: 'Product Launch: TechX',
-    description: 'A commercial spot for a tech product launch with clean, minimal aesthetics.',
-    services: ['Editing', 'Motion Graphics', 'Sound Design'],
+    title: 'E-matras money',
+    description: 'Series of short promotional videos for the E-matras chain of stores.',
+    services: ['Motion design', 'Editing', 'Color Grading'],
     category: 'Commercial',
     workType: 'Commercial',
-    thumbnail: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
+    thumbnail: '/public/images/m-music.jpg',
     images: [
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
-      'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
-      'https://images.unsplash.com/photo-1605810230434-7631ac76ec81'
-    ]
+      '/public/images/m-music.jpg',
+    ],
+    trailerUrl: 'https://youtu.be/HCdKy-REDzQ'
   },
   {
     id: '4',

@@ -8,6 +8,7 @@ export interface PortfolioItemType {
   workType: string;
   images?: string[];
   trailerUrl?: string;
+  trailerLabel?: string;
 }
 
 export interface SocialLink {

@@ -13,7 +13,8 @@ export const portfolioData: PortfolioItemType[] = [
     images: [
       '/images/m-tv.jpg',
     ],
-    trailerUrl: 'https://youtu.be/9OU03O6rYSU'
+    trailerUrl: 'https://youtu.be/9OU03O6rYSU',
+    trailerLabel: 'Watch video'
   },
   {
     id: '2',
@@ -26,7 +27,8 @@ export const portfolioData: PortfolioItemType[] = [
     images: [
       '/images/m-money.jpg',
     ],
-    trailerUrl: 'https://youtu.be/U8QHqMCmbBY'
+    trailerUrl: 'https://youtu.be/U8QHqMCmbBY',
+    trailerLabel: 'Watch video'
   },
   {
     id: '3',
@@ -39,7 +41,8 @@ export const portfolioData: PortfolioItemType[] = [
     images: [
       '/images/m-music.jpg',
     ],
-    trailerUrl: 'https://youtu.be/HCdKy-REDzQ'
+    trailerUrl: 'https://youtu.be/HCdKy-REDzQ',
+    trailerLabel: 'Watch video'
   },
   {
     id: '4',

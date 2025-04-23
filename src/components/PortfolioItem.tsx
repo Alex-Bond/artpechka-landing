@@ -58,7 +58,7 @@ const PortfolioItem = ({ item }: PortfolioItemProps) => {
             className="w-full mt-4 bg-[#ea384c] hover:bg-[#c0303e]"
             onClick={() => setIsTrailerOpen(true)}
           >
-            <Play className="w-4 h-4" /> View Trailer
+            <Play className="w-4 h-4" /> {item.trailerLabel || 'Watch Trailer'}
           </Button>
         )}
       </div>

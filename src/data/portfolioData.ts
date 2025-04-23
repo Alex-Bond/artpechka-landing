@@ -30,7 +30,7 @@ export const portfolioData: PortfolioItemType[] = [
   },
   {
     id: '3',
-    title: 'E-matras money',
+    title: 'E-matras music',
     description: 'Series of short promotional videos for the E-matras chain of stores.',
     services: ['Motion design', 'Editing', 'Color Grading'],
     category: 'Commercial',

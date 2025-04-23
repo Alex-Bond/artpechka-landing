@@ -9,9 +9,9 @@ export const portfolioData: PortfolioItemType[] = [
     services: ['Motion design', 'Editing', 'Color Grading'],
     category: 'Commercial',
     workType: 'Commercial',
-    thumbnail: '/public/images/m-tv.jpg',
+    thumbnail: '/images/m-tv.jpg',
     images: [
-      '/public/images/m-tv.jpg',
+      '/images/m-tv.jpg',
     ],
     trailerUrl: 'https://youtu.be/9OU03O6rYSU'
   },
@@ -22,9 +22,9 @@ export const portfolioData: PortfolioItemType[] = [
     services: ['Motion design', 'Editing', 'Color Grading'],
     category: 'Commercial',
     workType: 'Commercial',
-    thumbnail: '/public/images/m-money.jpg',
+    thumbnail: '/images/m-money.jpg',
     images: [
-      '/public/images/m-money.jpg',
+      '/images/m-money.jpg',
     ],
     trailerUrl: 'https://youtu.be/U8QHqMCmbBY'
   },
@@ -35,9 +35,9 @@ export const portfolioData: PortfolioItemType[] = [
     services: ['Motion design', 'Editing', 'Color Grading'],
     category: 'Commercial',
     workType: 'Commercial',
-    thumbnail: '/public/images/m-music.jpg',
+    thumbnail: '/images/m-music.jpg',
     images: [
-      '/public/images/m-music.jpg',
+      '/images/m-music.jpg',
     ],
     trailerUrl: 'https://youtu.be/HCdKy-REDzQ'
   },

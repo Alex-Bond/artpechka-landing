@@ -37,7 +37,7 @@ export const GalleryContent = () => {
 
       <GalleryNavigation />
 
-      {!isFullscreen &&
+      {!isFullscreen && images.length > 1 &&
         <button
           onClick={toggleFullscreen}
           className={cn(

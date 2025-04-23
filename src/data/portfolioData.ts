@@ -4,18 +4,16 @@ import { PortfolioItemType } from '@/types';
 export const portfolioData: PortfolioItemType[] = [
   {
     id: '1',
-    title: 'Urban Landscapes',
+    title: 'E-matras TV',
     description: 'A documentary showcasing urban architecture and city life across different metropolises.',
     services: ['Cinematography', 'Editing', 'Color Grading'],
     category: 'Documentary',
     workType: 'Documentary',
-    thumbnail: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81',
+    thumbnail: 'public/images/m-tv.jpg',
     images: [
-      'https://images.unsplash.com/photo-1605810230434-7631ac76ec81',
-      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
-      'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b'
+      'public/images/m-tv.jpg',
     ],
-    trailerUrl: 'https://vimeo.com/83350916'
+    trailerUrl: 'https://youtu.be/U8QHqMCmbBY'
   },
   {
     id: '2',

@@ -51,14 +51,14 @@ export const portfolioData: PortfolioItemType[] = [
     services: ['Motion design', 'Editing', 'Compositing'],
     category: 'Commercial',
     workType: 'Commercial',
-    thumbnail: '/public/images/pol_gnr5.jpg',
+    thumbnail: '/images/pol_gnr5.jpg',
     images: [
-      '/public/images/pol_gnr1.jpg',
-      '/public/images/pol_gnr2.jpg',
-      '/public/images/pol_gnr3.jpg',
-      '/public/images/pol_gnr4.jpg',
-      '/public/images/pol_gnr5.jpg',
-      '/public/images/pol_gnr6.jpg'
+      '/images/pol_gnr1.jpg',
+      '/images/pol_gnr2.jpg',
+      '/images/pol_gnr3.jpg',
+      '/images/pol_gnr4.jpg',
+      '/images/pol_gnr5.jpg',
+      '/images/pol_gnr6.jpg'
     ],
     trailerUrl: 'https://youtu.be/nUKUN305YlU'
   },
@@ -69,11 +69,11 @@ export const portfolioData: PortfolioItemType[] = [
     services: ['Motion design', 'Editing', 'Compositing'],
     category: 'Commercial',
     workType: 'Commercial',
-    thumbnail: '/public/images/pol_boy1.jpg',
+    thumbnail: '/images/pol_boy1.jpg',
     images: [
-      '/public/images/pol_boy1.jpg',
-      '/public/images/pol_boy2.jpg',
-      '/public/images/pol_boy3.jpg'
+      '/images/pol_boy1.jpg',
+      '/images/pol_boy2.jpg',
+      '/images/pol_boy3.jpg'
     ],
     trailerUrl: 'https://youtu.be/LdG1JiRc7Ms'
   },
@@ -84,12 +84,12 @@ export const portfolioData: PortfolioItemType[] = [
     services: ['Motion design', 'Editing', 'Compositing'],
     category: 'Commercial',
     workType: 'Commercial',
-    thumbnail: '/public/images/pol_fat3.jpg',
+    thumbnail: '/images/pol_fat3.jpg',
     images: [
-      '/public/images/pol_fat1.jpg',
-      '/public/images/pol_fat2.jpg',
-      '/public/images/pol_fat3.jpg',
-      '/public/images/pol_fat4.jpg'
+      '/images/pol_fat1.jpg',
+      '/images/pol_fat2.jpg',
+      '/images/pol_fat3.jpg',
+      '/images/pol_fat4.jpg'
     ],
     trailerUrl: 'https://youtu.be/DcqhqzQTbAk'
   },
@@ -100,12 +100,12 @@ export const portfolioData: PortfolioItemType[] = [
     services: ['Motion design', 'Editing', 'Compositing'],
     category: 'Commercial',
     workType: 'Commercial',
-    thumbnail: '/public/images/pol_grf4.jpg',
+    thumbnail: '/images/pol_grf4.jpg',
     images: [
-      '/public/images/pol_grf1.jpg',
-      '/public/images/pol_grf2.jpg',
-      '/public/images/pol_grf3.jpg',
-      '/public/images/pol_grf4.jpg'
+      '/images/pol_grf1.jpg',
+      '/images/pol_grf2.jpg',
+      '/images/pol_grf3.jpg',
+      '/images/pol_grf4.jpg'
     ],
     trailerUrl: 'https://youtu.be/tyxxkwHUyoY'
   },

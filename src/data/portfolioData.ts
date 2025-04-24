@@ -46,19 +46,71 @@ export const portfolioData: PortfolioItemType[] = [
   },
   {
     id: '4',
-    title: 'Mountain Expedition',
-    description: 'An adventure documentary following climbers attempting to summit a challenging peak.',
-    services: ['Cinematography', 'Editing', 'Color Grading'],
-    category: 'Documentary',
-    workType: 'Documentary',
-    thumbnail: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
+    title: 'Police: we are the Police',
+    description: 'A series of promotional videos for Politsiya Okhorony, which illustrate their various security services using examples of situations that happen to a family.',
+    services: ['Motion design', 'Editing', 'Compositing'],
+    category: 'Commercial',
+    workType: 'Commercial',
+    thumbnail: '/public/images/pol_gnr5.jpg',
     images: [
-      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085'
-    ]
+      '/public/images/pol_gnr1.jpg',
+      '/public/images/pol_gnr2.jpg',
+      '/public/images/pol_gnr3.jpg',
+      '/public/images/pol_gnr4.jpg',
+      '/public/images/pol_gnr5.jpg',
+      '/public/images/pol_gnr6.jpg'
+    ],
+    trailerUrl: 'https://youtu.be/nUKUN305YlU'
   },
   {
     id: '5',
+    title: 'Police: Boy',
+    description: 'A series of promotional videos for Politsiya Okhorony, which illustrate their various security services using examples of situations that happen to a family.',
+    services: ['Motion design', 'Editing', 'Compositing'],
+    category: 'Commercial',
+    workType: 'Commercial',
+    thumbnail: '/public/images/pol_boy1.jpg',
+    images: [
+      '/public/images/pol_boy1.jpg',
+      '/public/images/pol_boy2.jpg',
+      '/public/images/pol_boy3.jpg'
+    ],
+    trailerUrl: 'https://youtu.be/LdG1JiRc7Ms'
+  },
+  {
+    id: '7',
+    title: 'Police: Dad',
+    description: 'A series of promotional videos for Politsiya Okhorony, which illustrate their various security services using examples of situations that happen to a family.',
+    services: ['Motion design', 'Editing', 'Compositing'],
+    category: 'Commercial',
+    workType: 'Commercial',
+    thumbnail: '/public/images/pol_fat3.jpg',
+    images: [
+      '/public/images/pol_fat1.jpg',
+      '/public/images/pol_fat2.jpg',
+      '/public/images/pol_fat3.jpg',
+      '/public/images/pol_fat4.jpg'
+    ],
+    trailerUrl: 'https://youtu.be/DcqhqzQTbAk'
+  },
+  {
+    id: '8',
+    title: 'Police: Grandpa',
+    description: 'A series of promotional videos for Politsiya Okhorony, which illustrate their various security services using examples of situations that happen to a family.',
+    services: ['Motion design', 'Editing', 'Compositing'],
+    category: 'Commercial',
+    workType: 'Commercial',
+    thumbnail: '/public/images/pol_grf4.jpg',
+    images: [
+      '/public/images/pol_grf1.jpg',
+      '/public/images/pol_grf2.jpg',
+      '/public/images/pol_grf3.jpg',
+      '/public/images/pol_grf4.jpg'
+    ],
+    trailerUrl: 'https://youtu.be/tyxxkwHUyoY'
+  },
+  {
+    id: '55',
     title: 'Ethereal Sounds',
     description: 'An atmospheric music video with dreamy visuals and experimental editing techniques.',
     services: ['Direction', 'Editing', 'Visual Effects'],
@@ -72,7 +124,7 @@ export const portfolioData: PortfolioItemType[] = [
     ]
   },
   {
-    id: '6',
+    id: '66',
     title: 'Luxury Brand Campaign',
     description: 'A high-end commercial for a luxury fashion brand with sophisticated visuals.',
     services: ['Editing', 'Color Grading', 'Post-Production'],
@@ -85,7 +137,7 @@ export const portfolioData: PortfolioItemType[] = [
     ]
   },
   {
-    id: '7',
+    id: '77',
     title: 'Wild Encounters',
     description: 'An intimate look at wildlife conservation efforts across Africa\'s most remote regions.',
     services: ['Cinematography', 'Editing', 'Sound Design'],
@@ -98,7 +150,7 @@ export const portfolioData: PortfolioItemType[] = [
     ]
   },
   {
-    id: '8',
+    id: '88',
     title: 'Sacred Waters',
     description: 'Exploring the cultural significance of rivers and waterfalls in indigenous communities.',
     services: ['Direction', 'Cinematography', 'Post-Production'],
@@ -111,7 +163,7 @@ export const portfolioData: PortfolioItemType[] = [
     ]
   },
   {
-    id: '9',
+    id: '99',
     title: 'Mountain Spirits',
     description: 'A journey through the world\'s most remote mountain monasteries and their ancient traditions.',
     services: ['Cinematography', 'Editing', 'Color Grading'],
@@ -124,7 +176,7 @@ export const portfolioData: PortfolioItemType[] = [
     ]
   },
   {
-    id: '10',
+    id: '100',
     title: 'Night Forest',
     description: 'Documenting the mysterious nocturnal life in the world\'s oldest rainforests.',
     services: ['Direction', 'Cinematography', 'Sound Design'],
@@ -137,7 +189,7 @@ export const portfolioData: PortfolioItemType[] = [
     ]
   },
   {
-    id: '11',
+    id: '101',
     title: 'Living Waters',
     description: 'An exploration of Earth\'s most pristine rivers and the communities that protect them.',
     services: ['Cinematography', 'Editing', 'Post-Production'],

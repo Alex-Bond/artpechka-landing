@@ -157,7 +157,7 @@ export const portfolioData: PortfolioItemType[] = [
     id: '11',
     title: 'Mazda CX90 review',
     description: 'Car video review for the YT channel "МОХЕН ТОХЕН"',
-    services: ['Editing', 'Filming', 'Color Grading', 'Compositing'],
+    services: ['Editing', 'Filming', 'Color Grading', 'Compositing','Sound mixing'],
     category: 'Car reviews',
     workType: 'Car reviews',
     thumbnail: '/images/cx3.jpg',
@@ -169,7 +169,31 @@ export const portfolioData: PortfolioItemType[] = [
       '/images/cx905.jpg',
     ],
     trailerUrl: 'https://youtu.be/qP0eceAy6-4',
-    trailerLabel: 'Watch video'
+    trailerLabel: 'Watch trailer'
+  },
+  {
+    id: '11',
+    title: 'Porsche Cayenne review',
+    description: 'Car video review for the YT channel "МОХЕН ТОХЕН"',
+    services: ['Editing', 'Filming', 'Color Grading', 'Compositing','Sound mixing'],
+    category: 'Car reviews',
+    workType: 'Car reviews',
+    thumbnail: '/images/pors2.jpg',
+    images: [
+      '/images/pors1.jpg',
+      '/images/pors2.jpg',
+      '/images/pors3.jpg',
+      '/images/pors4.jpg',
+      '/images/pors5.jpg',
+      '/images/pors6.jpg',
+      '/images/pors7.jpg',
+      '/images/pors8.jpg',
+      '/images/pors9.jpg',
+      '/images/pors10.jpg',
+      '/images/pors11.jpg',
+    ],
+    trailerUrl: 'https://youtu.be/G4935fv1Cxw',
+    trailerLabel: 'Watch trailer'
   },
  /* {
     id: '55',

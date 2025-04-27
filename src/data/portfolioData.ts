@@ -154,6 +154,24 @@ export const portfolioData: PortfolioItemType[] = [
     trailerLabel: 'Watch trailer'
   },
   {
+    id: '11',
+    title: 'Mazda CX90 review',
+    description: 'Car video review for the YT channel "МОХЕН ТОХЕН"',
+    services: ['Editing', 'Filming', 'Color Grading', 'Compositing'],
+    category: 'Car reviews',
+    workType: 'Car reviews',
+    thumbnail: '/images/cx3.jpg',
+    images: [
+      '/images/cx901.jpg',
+      '/images/cx902.jpg',
+      '/images/cx903.jpg',
+      '/images/cx904.jpg',
+      '/images/cx905.jpg',
+    ],
+    trailerUrl: 'https://youtu.be/qP0eceAy6-4',
+    trailerLabel: 'Watch video'
+  },
+ /* {
     id: '55',
     title: 'Ethereal Sounds',
     description: 'An atmospheric music video with dreamy visuals and experimental editing techniques.',
@@ -206,7 +224,7 @@ export const portfolioData: PortfolioItemType[] = [
       'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb'
     ]
   },
-/*  {
+  {
     id: '99',
     title: 'Mountain Spirits',
     description: 'A journey through the world\'s most remote mountain monasteries and their ancient traditions.',

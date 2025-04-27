@@ -206,7 +206,7 @@ export const portfolioData: PortfolioItemType[] = [
       'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb'
     ]
   },
-  {
+/*  {
     id: '99',
     title: 'Mountain Spirits',
     description: 'A journey through the world\'s most remote mountain monasteries and their ancient traditions.',
@@ -244,5 +244,5 @@ export const portfolioData: PortfolioItemType[] = [
       'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
       'https://images.unsplash.com/photo-1472396961693-142e6e269027'
     ]
-  }
+  }*/
 ];

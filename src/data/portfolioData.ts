@@ -146,7 +146,6 @@ export const portfolioData: PortfolioItemType[] = [
       '/images/Shron4.jpg',
       '/images/Shron5.jpg',
       '/images/Shron6.jpg',
-      '/images/Shron7.jpg',
       '/images/Shron8.jpg',
       '/images/Shron9.jpg',
       '/images/Shron10.jpg'

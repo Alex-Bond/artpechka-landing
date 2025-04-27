@@ -60,7 +60,8 @@ export const portfolioData: PortfolioItemType[] = [
       '/images/pol_gnr5.jpg',
       '/images/pol_gnr6.jpg'
     ],
-    trailerUrl: 'https://youtu.be/nUKUN305YlU'
+    trailerUrl: 'https://youtu.be/nUKUN305YlU',
+    trailerLabel: 'Watch video'
   },
   {
     id: '5',
@@ -75,7 +76,8 @@ export const portfolioData: PortfolioItemType[] = [
       '/images/pol_boy2.jpg',
       '/images/pol_boy3.jpg'
     ],
-    trailerUrl: 'https://youtu.be/LdG1JiRc7Ms'
+    trailerUrl: 'https://youtu.be/LdG1JiRc7Ms',
+    trailerLabel: 'Watch video'
   },
   {
     id: '7',
@@ -91,11 +93,12 @@ export const portfolioData: PortfolioItemType[] = [
       '/images/pol_fat3.jpg',
       '/images/pol_fat4.jpg'
     ],
-    trailerUrl: 'https://youtu.be/DcqhqzQTbAk'
+    trailerUrl: 'https://youtu.be/DcqhqzQTbAk',
+    trailerLabel: 'Watch video'
   },
   {
     id: '8',
-    title: 'Police: Grandpa',
+    title: 'Police: Grandpa2222',
     description: 'A series of promotional videos for Politsiya Okhorony, which illustrate their various security services using examples of situations that happen to a family.',
     services: ['Motion design', 'Editing', 'Compositing'],
     category: 'Commercial',
@@ -107,7 +110,49 @@ export const portfolioData: PortfolioItemType[] = [
       '/images/pol_grf3.jpg',
       '/images/pol_grf4.jpg'
     ],
-    trailerUrl: 'https://youtu.be/tyxxkwHUyoY'
+    trailerUrl: 'https://youtu.be/tyxxkwHUyoY',
+    trailerLabel: 'Watch video'
+  },
+  {
+    id: '9',
+    title: 'My friend Alpaca​​​​​​​',
+    description: 'The family is preparing to celebrate Christmas, but things did not go according to plan. Dad clumsily installed a Christmas tree and this led to a quarrel between parents. The daughter understands that as long as the parents quarrel, the holiday will not take place. Her best friend comes to her aid - an Alpaca toy, which creates a whole plan to restore the festive mood.',
+    services: ['Editing'],
+    category: 'Short',
+    workType: 'Short',
+    thumbnail: '/images/Alpaca3.jpg',
+    images: [
+      '/images/Alpaca1.jpg',
+      '/images/Alpaca2.jpg',
+      '/images/Alpaca3.jpg',
+      '/images/Alpaca4.jpg',
+      '/images/Alpaca5.jpg'
+    ],
+    trailerUrl: 'https://youtu.be/1kVRCtACdak?si=b5KoWJBhVWgS2Ths',
+    trailerLabel: 'Watch video'
+  },
+  {
+    id: '10',
+    title: 'Shron​​​​​​​',
+    description: 'The plot is partially based on the real events of 1946 involving Yaroslav "Robert" Melnyk, an OUN leader from the Stanislaviv region. According to the plot, the story is set in Ukraine in 1946. Ukrainian insurgents and the commander"s pregnant wife are hiding in a bunker/hideout. They are being hunted by an NKVD unit. However, things are not so simple – someone here is hiding a great secret.',
+    services: ['Editing', 'Tutoring'],
+    category: 'Short',
+    workType: 'Short',
+    thumbnail: '/images/Shron8.jpg',
+    images: [
+      '/images/Shron1.jpg',
+      '/images/Shron2.jpg',
+      '/images/Shron3.jpg',
+      '/images/Shron4.jpg',
+      '/images/Shron5.jpg',
+      '/images/Shron6.jpg',
+      '/images/Shron7.jpg',
+      '/images/Shron8.jpg',
+      '/images/Shron9.jpg',
+      '/images/Shron10.jpg'
+    ],
+    trailerUrl: 'https://youtu.be/sUnLJD9W1U0',
+    trailerLabel: 'Watch trailer'
   },
   {
     id: '55',

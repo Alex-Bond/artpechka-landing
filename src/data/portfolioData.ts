@@ -273,6 +273,24 @@ export const portfolioData: PortfolioItemType[] = [
   trailerUrl: 'https://vimeo.com/499844678',
   trailerLabel: 'Watch video'
 },
+{
+  id: '16',
+  title: 'Why Russia Started the War',
+    description: 'A video explaining the motives and gains behind Russiaʼs aggression against Ukraine.',
+  services: ['Editing', 'Motion Grading', 'Sound design'],
+  category: 'Documentary',
+  workType: 'Documentary',
+  thumbnail: '/images/why1.jpg',
+  images: [
+    '/images/why1.jpg',
+    '/images/why2.jpg',
+    '/images/why3.jpg',
+    '/images/why4.jpg',
+    '/images/why5.jpg',
+  ],
+  trailerUrl: 'https://youtu.be/2GkuIlaum4o',
+  trailerLabel: 'Watch video'
+},
  /* {
     id: '55',
     title: 'Ethereal Sounds',

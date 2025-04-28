@@ -212,6 +212,7 @@ export const portfolioData: PortfolioItemType[] = [
     ],
     trailerUrl: 'https://youtu.be/p6c2GX0De2M',
     trailerLabel: 'Watch trailer'
+  },
   /*{
     id: '13',
     title: 'Porsche Taycan 4S Cross Turismo review',
@@ -236,6 +237,7 @@ export const portfolioData: PortfolioItemType[] = [
     trailerUrl: 'https://youtu.be/7qnNMr4f83k',
     trailerLabel: 'Watch trailer'
   },*/
+  {
   id: '14',
   title: 'NZK - Utki (Unreleased)',
   description: 'A music video for the Ukrainian band NZK, in which the band members play the role of robbers.',
@@ -252,7 +254,7 @@ export const portfolioData: PortfolioItemType[] = [
   ],
   trailerUrl: 'https://youtu.be/ACtEhrM_M5U',
   trailerLabel: 'Watch trailer'
-
+},
  /* {
     id: '55',
     title: 'Ethereal Sounds',

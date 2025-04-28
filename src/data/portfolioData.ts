@@ -4,7 +4,7 @@ import { PortfolioItemType } from '@/types';
 export const portfolioData: PortfolioItemType[] = [
   {
     id: '1',
-    title: 'E-matras TV',
+    title: 'E-matras: TV',
     description: 'Series of short promotional videos for the E-matras chain of stores.',
     services: ['Motion design', 'Editing', 'Compositing', 'Sound design', 'Color Grading'],
     category: 'Commercial',
@@ -18,7 +18,7 @@ export const portfolioData: PortfolioItemType[] = [
   },
   {
     id: '2',
-    title: 'E-matras money',
+    title: 'E-matras: money',
     description: 'Series of short promotional videos for the E-matras chain of stores.',
     services: ['Motion design', 'Editing', 'Compositing', 'Sound design', 'Color Grading'],
     category: 'Commercial',
@@ -32,7 +32,7 @@ export const portfolioData: PortfolioItemType[] = [
   },
   {
     id: '3',
-    title: 'E-matras music',
+    title: 'E-matras: music',
     description: 'Series of short promotional videos for the E-matras chain of stores.',
     services: ['Motion design', 'Editing', 'Compositing', 'Sound design', 'Color Grading'],
     category: 'Commercial',
@@ -155,7 +155,7 @@ export const portfolioData: PortfolioItemType[] = [
   },
   {
     id: '11',
-    title: 'Mazda CX90 review',
+    title: 'Mazda CX90',
     description: 'Car video review for the YT channel "МОХЕН ТОХЕН"',
     services: ['Editing', 'Filming', 'Color Grading', 'Compositing','Sound mixing'],
     category: 'Car reviews',
@@ -173,7 +173,7 @@ export const portfolioData: PortfolioItemType[] = [
   },
   {
     id: '12',
-    title: 'Porsche Cayenne review',
+    title: 'Porsche Cayenne',
     description: 'Car video review for the YT channel "МОХЕН ТОХЕН"',
     services: ['Editing', 'Filming', 'Color Grading', 'Compositing','Sound mixing'],
     category: 'Car reviews',
@@ -197,7 +197,7 @@ export const portfolioData: PortfolioItemType[] = [
   },
   {
     id: '13',
-    title: 'Subaru WRX STI review',
+    title: 'Subaru WRX STI',
     description: 'Car video review for the YT channel "МОХЕН ТОХЕН"',
     services: ['Editing', 'Filming', 'Color Grading', 'Compositing','Sound mixing'],
     category: 'Car reviews',
@@ -254,6 +254,24 @@ export const portfolioData: PortfolioItemType[] = [
   ],
   trailerUrl: 'https://youtu.be/ACtEhrM_M5U',
   trailerLabel: 'Watch trailer'
+},
+{
+  id: '15',
+  title: 'Get a Breakfast',
+  description: 'An aesthetic video showcasing the making of an egg sandwich for Katrinleopako',
+  services: ['Editing', 'Color Grading', 'Sound design'],
+  category: 'Food video',
+  workType: 'Food video',
+  thumbnail: '/images/egg1.jpg',
+  images: [
+    '/images/egg1.jpg',
+    '/images/egg2.jpg',
+    '/images/egg3.jpg',
+    '/images/egg4.jpg',
+    '/images/egg5.jpg',
+  ],
+  trailerUrl: 'https://vimeo.com/499844678',
+  trailerLabel: 'Watch video'
 },
  /* {
     id: '55',

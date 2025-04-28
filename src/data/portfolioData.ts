@@ -195,6 +195,64 @@ export const portfolioData: PortfolioItemType[] = [
     trailerUrl: 'https://youtu.be/G4935fv1Cxw',
     trailerLabel: 'Watch trailer'
   },
+  {
+    id: '12',
+    title: 'Subaru WRX STI review',
+    description: 'Car video review for the YT channel "МОХЕН ТОХЕН"',
+    services: ['Editing', 'Filming', 'Color Grading', 'Compositing','Sound mixing'],
+    category: 'Car reviews',
+    workType: 'Car reviews',
+    thumbnail: '/images/suba1.jpg',
+    images: [
+      '/images/suba1.jpg',
+      '/images/suba2.jpg',
+      '/images/suba3.jpg',
+      '/images/suba4.jpg',
+      '/images/suba5.jpg',
+    ],
+    trailerUrl: 'https://youtu.be/p6c2GX0De2M',
+    trailerLabel: 'Watch trailer'
+  /*{
+    id: '13',
+    title: 'Porsche Taycan 4S Cross Turismo review',
+    description: 'Car video review for the YT channel "МОХЕН ТОХЕН"',
+    services: ['Editing', 'Filming', 'Color Grading', 'Compositing','Sound mixing'],
+    category: 'Car reviews',
+    workType: 'Car reviews',
+    thumbnail: '/images/pors2.jpg',
+    images: [
+      '/images/pors1.jpg',
+      '/images/pors2.jpg',
+      '/images/pors3.jpg',
+      '/images/pors4.jpg',
+      '/images/pors5.jpg',
+      '/images/pors6.jpg',
+      '/images/pors7.jpg',
+      '/images/pors8.jpg',
+      '/images/pors9.jpg',
+      '/images/pors10.jpg',
+      '/images/pors11.jpg',
+    ],
+    trailerUrl: 'https://youtu.be/7qnNMr4f83k',
+    trailerLabel: 'Watch trailer'
+  },*/
+  id: '14',
+  title: 'NZK - Utki (Unreleased)',
+  description: 'A music video for the Ukrainian band NZK, in which the band members play the role of robbers.',
+  services: ['Editing', 'Compositing','Motion design'],
+  category: 'Music video',
+  workType: 'Music video',
+  thumbnail: '/images/utki1.jpg',
+  images: [
+    '/images/utki1.jpg',
+    '/images/utki2.jpg',
+    '/images/utki3.jpg',
+    '/images/utki4.jpg',
+    '/images/utki5.jpg',
+  ],
+  trailerUrl: 'https://youtu.be/ACtEhrM_M5U',
+  trailerLabel: 'Watch trailer'
+
  /* {
     id: '55',
     title: 'Ethereal Sounds',

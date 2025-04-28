@@ -4,11 +4,11 @@ import { Camera, Film, Video, Award, Users, Monitor } from 'lucide-react';
 
 const About = () => {
   const skills = [
-    { icon: Film, title: 'Video Editing', description: 'Professional editing with Premiere Pro and Final Cut Pro' },
-    { icon: Camera, title: 'Cinematography', description: 'Expert camera work and lighting techniques' },
+    { icon: Film, title: 'Video Editing', description: 'Professional editing with Premiere Pro and DaVinci Resolve' },
+    { icon: Camera, title: 'Filmmaking', description: 'Combining swift execution with rapid adaptability to unusual filming challenges, I consistently deliver high-quality videomaking results' },
     { icon: Video, title: 'Color Grading', description: 'Advanced color correction and grading in DaVinci Resolve' },
     { icon: Award, title: 'Motion Graphics', description: 'Creative animations and effects with After Effects' },
-    { icon: Users, title: 'Directing', description: 'Guiding actors and crew to achieve the perfect shot' },
+    { icon: Users, title: 'Tutoring', description: 'Mentored more than 2000 students, guiding them from beginner to intermediate level in video editing and filmmaking.' },
     { icon: Monitor, title: 'Post-Production', description: 'Comprehensive post-production workflow management' },
   ];
 
@@ -27,7 +27,7 @@ const About = () => {
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-cinema-background p-4 rounded-md shadow-lg">
-                <div className="text-5xl font-bold text-cinema-accent">8+</div>
+                <div className="text-5xl font-bold text-cinema-accent">13</div>
                 <div className="text-sm text-cinema-text/70">YEARS OF<br />EXPERIENCE</div>
               </div>
             </div>
@@ -43,7 +43,7 @@ const About = () => {
               With a keen eye for detail and a passion for storytelling, I've spent the last years perfecting the art of video editing and cinematography. My approach combines technical expertise with creative vision to deliver content that not only meets but exceeds client expectations.
             </p>
             <p className="text-cinema-text/80 mb-8">
-            Over the past 13 years, I have worked on music videos for Ukrainian bands, commercials, documentary films for Ukrainian television and YouTube, short films, automotive-themed videos, gadget reviews, and wedding projects. My portfolio includes projects in various formats, such as clips, media promos, corporate videos, and YouTube content. As an editor, colorist, and video assistant, I have collaborated with major brands including Panasonic, Tefal, Xiaomi, Sennheiser, Sony, Samsung, Renault, Microsoft/Mojang, Hotline.ua, KLO, ICTV, keddr, WAW, Chemonics International, MFA Ukraine, and others. Since 2017, I have also been teaching video editing to adults and teenagers at the ProCut school.
+            Over the past 13 years, I have worked on music videos for Ukrainian bands, commercials, documentary films for Ukrainian television and YouTube, short films, automotive-themed videos, gadget reviews, and wedding projects. My portfolio includes projects in various formats, such as clips, media promos, corporate videos, and YouTube content. As an editor, colorist, and video assistant, I have collaborated with major brands including Panasonic, Tefal, Xiaomi, Sennheiser, Sony, Samsung, Renault, Microsoft/Mojang, Hotline.ua, KLO, ICTV, keddr, WAW, Chemonics Int, MFA Ukraine, and others. Since 2017, I have also been teaching video editing to adults and teenagers at the ProCut school.
 
             </p>
 

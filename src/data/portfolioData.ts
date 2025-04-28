@@ -291,6 +291,32 @@ export const portfolioData: PortfolioItemType[] = [
   trailerUrl: 'https://youtu.be/2GkuIlaum4o',
   trailerLabel: 'Watch video'
 },
+{
+  id: '17',
+  title: 'Brainwashing recipes',
+    description: 'A docuseries that reveals how ordinary people are transformed into submissive servants willing to obey the dictator"s every command.',
+  services: ['Editing'],
+  category: 'Documentary',
+  workType: 'Documentary',
+  thumbnail: '/images/recept1.jpg',
+  images: [
+      '/images/recept1.jpg',
+      '/images/recept2.jpg',
+      '/images/recept3.jpg',
+      '/images/recept4.jpg',
+      '/images/recept5.jpg',
+      '/images/recept6.jpg',
+      '/images/recept7.jpg',
+      '/images/recept8.jpg',
+      '/images/recept9.jpg',
+      '/images/recept10.jpg',
+      '/images/recept11.jpg',
+      '/images/recept12.jpg
+  ],
+  trailerUrl: 'https://youtu.be/AETAqcL7E5Y',
+  trailerLabel: 'Watch trailer'
+},
+
  /* {
     id: '55',
     title: 'Ethereal Sounds',

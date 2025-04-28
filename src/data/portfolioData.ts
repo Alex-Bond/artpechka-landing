@@ -276,7 +276,7 @@ export const portfolioData: PortfolioItemType[] = [
 {
   id: '16',
   title: 'Why Russia Started the War',
-    description: 'A video explaining the motives and gains behind Russiaʼs aggression against Ukraine.',
+    description: 'A video explaining the motives and gains behind Russia"s aggression against Ukraine.',
   services: ['Editing', 'Motion Grading', 'Sound design'],
   category: 'Documentary',
   workType: 'Documentary',

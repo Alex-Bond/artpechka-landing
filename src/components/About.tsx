@@ -37,13 +37,14 @@ const About = () => {
           <div className="md:w-3/5">
             <h2 className="text-sm font-medium text-cinema-accent mb-2">ABOUT ME</h2>
             <h3 className="text-3xl md:text-4xl font-bold mb-6">
-              Passionate Filmmaker & Video Editor Creating Visual Stories
+            Video Editor & Passionate Filmmaker
             </h3>
             <p className="text-cinema-text/80 mb-6">
               With a keen eye for detail and a passion for storytelling, I've spent the last 8 years perfecting the art of video editing and cinematography. My approach combines technical expertise with creative vision to deliver content that not only meets but exceeds client expectations.
             </p>
             <p className="text-cinema-text/80 mb-8">
-              Whether it's commercial content, short films, documentaries, or music videos, I bring the same level of dedication and craftsmanship to every project. My goal is to collaborate closely with clients to understand their vision and translate it into compelling visual narratives.
+            Over the past 13 years, I have worked on music videos for Ukrainian bands, commercials, documentary films for Ukrainian television and YouTube, short films, automotive-themed videos, gadget reviews, and wedding projects. My portfolio includes projects in various formats, such as clips, media promos, corporate videos, and YouTube content. As an editor, colorist, and video assistant, I have collaborated with major brands including Panasonic, Tefal, Xiaomi, Sennheiser, Sony, Samsung, Renault, Microsoft/Mojang, Hotline.ua, KLO, ICTV, keddr, WAW, and others. Since 2017, I have also been teaching video editing to adults and teenagers at the ProCut school.
+
             </p>
 
             {/* Skills Grid */}

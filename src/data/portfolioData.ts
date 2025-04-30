@@ -277,7 +277,7 @@ export const portfolioData: PortfolioItemType[] = [
   id: '16',
   title: 'Why Russia Started the War',
     description: 'A video explaining the motives and gains behind Russia"s aggression against Ukraine.',
-  services: ['Editing', 'Motion Grading', 'Sound design'],
+  services: ['Editing', 'Motion design', 'Sound design'],
   category: 'Documentary',
   workType: 'Documentary',
   thumbnail: '/images/why1.jpg',
@@ -313,8 +313,26 @@ export const portfolioData: PortfolioItemType[] = [
       '/images/recept11.jpg',
       '/images/recept12.jpg'
     ],
-  trailerUrl: 'https://youtu.be/aUWFf43MNX8',
+  trailerUrl: 'https://youtu.be/7yy1tizd2Mk',
   trailerLabel: 'Watch trailer'
+},
+{
+  id: '18',
+  title: 'Ali Abdaal test',
+    description: 'Test piece in the style of Ali Abdaal.',
+  services: ['Editing', 'Motion design', 'Sound design'],
+  category: 'Vlog',
+  workType: 'Vlog',
+  thumbnail: '/images/ali1.jpg',
+  images: [
+    '/images/ali1.jpg',
+    '/images/ali2.jpg',
+    '/images/ali3.jpg',
+    '/images/ali4.jpg',
+    '/images/ali5.jpg',
+  ],
+  trailerUrl: 'https://youtu.be/2GkuIlaum4o',
+  trailerLabel: 'Watch video'
 },
 
  /* {

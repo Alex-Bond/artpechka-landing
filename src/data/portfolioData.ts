@@ -412,7 +412,8 @@ export const portfolioData: PortfolioItemType[] = [
   images: [
     '/images/hl-bronesmart1.jpg',
     '/images/hl-bronesmart2.jpg',
-    '/images/hl-bronesmart3.jpg'
+    '/images/hl-bronesmart3.jpg',
+    '/images/hl-bronesmart4.jpg'
   ],
   trailerUrl: 'https://www.youtube.com/watch?v=hWbtJzhPf4M',
   trailerLabel: 'Watch video'

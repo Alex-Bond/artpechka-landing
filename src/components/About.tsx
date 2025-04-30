@@ -5,7 +5,7 @@ import { Camera, Film, Video, Award, Users, Monitor } from 'lucide-react';
 const About = () => {
   const skills = [
     { icon: Film, title: 'Video Editing', description: 'Professional editing with Premiere Pro and DaVinci Resolve' },
-    { icon: Camera, title: 'Filmmaking', description: 'Combining swift execution with rapid adaptability to unusual filming challenges, I consistently deliver high-quality videomaking results' },
+    { icon: Camera, title: 'Filmmaking', description: 'Combining swift execution with rapid adaptability to unusual filming challenges, I consistently deliver high-quality results' },
     { icon: Video, title: 'Color Grading', description: 'Advanced color correction and grading in DaVinci Resolve' },
     { icon: Award, title: 'Motion Graphics', description: 'Creative animations and effects with After Effects' },
     { icon: Users, title: 'Tutoring', description: 'Mentored more than 2000 students, guiding them from beginner to intermediate level in video editing and filmmaking.' },
@@ -39,12 +39,8 @@ const About = () => {
             <h3 className="text-3xl md:text-4xl font-bold mb-6">
             Video Editor & Passionate Filmmaker
             </h3>
-            <p className="text-cinema-text/80 mb-6">
-              With a keen eye for detail and a passion for storytelling, I've spent the last years perfecting the art of video editing and cinematography. My approach combines technical expertise with creative vision to deliver content that not only meets but exceeds client expectations.
-            </p>
             <p className="text-cinema-text/80 mb-8">
             Over the past 13 years, I have worked on music videos for Ukrainian bands, commercials, documentary films for Ukrainian television and YouTube, short films, automotive-themed videos, gadget reviews, and wedding projects. My portfolio includes projects in various formats, such as clips, media promos, corporate videos, and YouTube content. As an editor, colorist, and video assistant, I have collaborated with major brands including Panasonic, Tefal, Xiaomi, Sennheiser, Sony, Samsung, Renault, Microsoft/Mojang, Hotline.ua, KLO, ICTV, keddr, WAW, Chemonics Int, MFA Ukraine, and others. Since 2017, I have also been teaching video editing to adults and teenagers at the ProCut school.
-
             </p>
 
             {/* Skills Grid */}

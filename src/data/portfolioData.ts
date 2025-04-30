@@ -98,7 +98,7 @@ export const portfolioData: PortfolioItemType[] = [
   },
   {
     id: '8',
-    title: 'Police: Grandpa2222',
+    title: 'Police: Grandpa',
     description: 'A series of promotional videos for Politsiya Okhorony, which illustrate their various security services using examples of situations that happen to a family.',
     services: ['Motion design', 'Editing', 'Compositing'],
     category: 'Commercial',
@@ -115,7 +115,7 @@ export const portfolioData: PortfolioItemType[] = [
   },
   {
     id: '9',
-    title: 'My friend Alpaca​​​​​​​',
+    title: 'My friend Alpaca',
     description: 'The family is preparing to celebrate Christmas, but things did not go according to plan. Dad clumsily installed a Christmas tree and this led to a quarrel between parents. The daughter understands that as long as the parents quarrel, the holiday will not take place. Her best friend comes to her aid - an Alpaca toy, which creates a whole plan to restore the festive mood.',
     services: ['Editing'],
     category: 'Short',
@@ -133,7 +133,7 @@ export const portfolioData: PortfolioItemType[] = [
   },
   {
     id: '10',
-    title: 'Shron​​​​​​​',
+    title: 'Shron',
     description: 'The plot is partially based on the real events of 1946 involving Yaroslav "Robert" Melnyk, an OUN leader from the Stanislaviv region. According to the plot, the story is set in Ukraine in 1946. Ukrainian insurgents and the commander"s pregnant wife are hiding in a bunker/hideout. They are being hunted by an NKVD unit. However, things are not so simple – someone here is hiding a great secret.',
     services: ['Editing', 'Tutoring'],
     category: 'Short',
@@ -158,8 +158,8 @@ export const portfolioData: PortfolioItemType[] = [
     title: 'Mazda CX90',
     description: 'Car video review for the YT channel "МОХЕН ТОХЕН"',
     services: ['Editing', 'Filming', 'Color Grading', 'Compositing','Sound mixing'],
-    category: 'Car reviews',
-    workType: 'Car reviews',
+    category: 'Car Reviews',
+    workType: 'Car Reviews',
     thumbnail: '/images/cx3.jpg',
     images: [
       '/images/cx901.jpg',
@@ -176,8 +176,8 @@ export const portfolioData: PortfolioItemType[] = [
     title: 'Porsche Cayenne',
     description: 'Car video review for the YT channel "МОХЕН ТОХЕН"',
     services: ['Editing', 'Filming', 'Color Grading', 'Compositing','Sound mixing'],
-    category: 'Car reviews',
-    workType: 'Car reviews',
+    category: 'Car Reviews',
+    workType: 'Car Reviews',
     thumbnail: '/images/pors2.jpg',
     images: [
       '/images/pors1.jpg',
@@ -200,8 +200,8 @@ export const portfolioData: PortfolioItemType[] = [
     title: 'Subaru WRX STI',
     description: 'Car video review for the YT channel "МОХЕН ТОХЕН"',
     services: ['Editing', 'Filming', 'Color Grading', 'Compositing','Sound mixing'],
-    category: 'Car reviews',
-    workType: 'Car reviews',
+    category: 'Car Reviews',
+    workType: 'Car Reviews',
     thumbnail: '/images/suba1.jpg',
     images: [
       '/images/suba1.jpg',
@@ -218,8 +218,8 @@ export const portfolioData: PortfolioItemType[] = [
     title: 'Porsche Taycan 4S Cross Turismo review',
     description: 'Car video review for the YT channel "МОХЕН ТОХЕН"',
     services: ['Editing', 'Filming', 'Color Grading', 'Compositing','Sound mixing'],
-    category: 'Car reviews',
-    workType: 'Car reviews',
+    category: 'Car Reviews',
+    workType: 'Car Reviews',
     thumbnail: '/images/pors2.jpg',
     images: [
       '/images/pors1.jpg',
@@ -242,8 +242,8 @@ export const portfolioData: PortfolioItemType[] = [
   title: 'NZK - Utki (Unreleased)',
   description: 'A music video for the Ukrainian band NZK, in which the band members play the role of robbers.',
   services: ['Editing', 'Compositing','Motion design'],
-  category: 'Music video',
-  workType: 'Music video',
+  category: 'Music',
+  workType: 'Music',
   thumbnail: '/images/utki1.jpg',
   images: [
     '/images/utki1.jpg',
@@ -260,8 +260,8 @@ export const portfolioData: PortfolioItemType[] = [
   title: 'Get a Breakfast',
   description: 'An aesthetic video showcasing the making of an egg sandwich for Katrinleopako',
   services: ['Editing', 'Color Grading', 'Sound design'],
-  category: 'Food video',
-  workType: 'Food video',
+  category: 'Food',
+  workType: 'Food',
   thumbnail: '/images/egg1.jpg',
   images: [
     '/images/egg1.jpg',
@@ -311,9 +311,9 @@ export const portfolioData: PortfolioItemType[] = [
       '/images/recept9.jpg',
       '/images/recept10.jpg',
       '/images/recept11.jpg',
-      '/images/recept12.jpg
-  ],
-  trailerUrl: 'https://youtu.be/AETAqcL7E5Y',
+      '/images/recept12.jpg'
+    ],
+  trailerUrl: 'https://youtu.be/aUWFf43MNX8',
   trailerLabel: 'Watch trailer'
 },
 

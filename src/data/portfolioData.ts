@@ -318,7 +318,7 @@ export const portfolioData: PortfolioItemType[] = [
 },
 {
   id: '18',
-  title: 'Ali Abdaal test',
+  title: 'Ali Abdaal: journaling',
     description: 'Test piece in the style of Ali Abdaal.',
   services: ['Editing', 'Motion design', 'Sound design'],
   category: 'Vlog',

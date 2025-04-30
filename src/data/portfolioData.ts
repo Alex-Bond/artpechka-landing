@@ -331,7 +331,58 @@ export const portfolioData: PortfolioItemType[] = [
     '/images/ali4.jpg',
     '/images/ali5.jpg',
   ],
-  trailerUrl: 'https://youtu.be/2GkuIlaum4o',
+  trailerUrl: 'https://youtu.be/e8fuEu5B2cU',
+  trailerLabel: 'Watch video'
+},
+{
+  id: '19',
+  title: 'Hotline: Legendaru devices of 90s',
+    description: 'Journey through 90s Ukraine via its legendary gadgets. This video highlights the iconic tech the phones, cameras, toys, and devices that defined the decade and evoke powerful memories.',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
+  category: 'Vlog',
+  workType: 'Vlog',
+  thumbnail: '/images/90s1.jpg',
+  images: [
+    '/images/90s1.jpg',
+    '/images/90s2.jpg',
+    '/images/90s3.jpg',
+    '/images/90s4.jpg',
+    '/images/90s5.jpg',
+    '/images/90s6.jpg'
+  ],
+  trailerUrl: 'https://www.youtube.com/watch?v=cfx3DnMIy1U',
+  trailerLabel: 'Watch video'
+},
+{
+  id: '20',
+  title: 'Hotline: Epilators',
+    description: 'Video about the nuances you need to know when choosing an epilator (Video Guide).',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
+  category: 'Vlog',
+  workType: 'Vlog',
+  thumbnail: '/images/hl-epi1.jpg',
+  images: [
+    '/images/hl-epi1.jpg',
+    '/images/hl-epi2.jpg',
+    '/images/hl-epi3.jpg'
+  ],
+  trailerUrl: 'https://www.youtube.com/watch?v=bUW_bqJuDAg',
+  trailerLabel: 'Watch video'
+},
+{
+  id: '21',
+  title: 'Hotline: Multicooker, Pressure Cooker, and Steamer',
+    description: 'Understanding the Difference: Multicooker, Pressure Cooker, and Steamer (Video Guide).',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
+  category: 'Vlog',
+  workType: 'Vlog',
+  thumbnail: '/images/hl-varka1.jpg',
+  images: [
+    '/images/hl-varka1.jpg',
+    '/images/hl-varka2.jpg',
+    '/images/hl-varka3.jpg'
+  ],
+  trailerUrl: 'https://www.youtube.com/watch?v=s_7ik_eD-VE',
   trailerLabel: 'Watch video'
 },
 

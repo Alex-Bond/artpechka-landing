@@ -336,7 +336,7 @@ export const portfolioData: PortfolioItemType[] = [
 },
 {
   id: '19',
-  title: 'Hotline: Legendaru devices of 90s',
+  title: 'Hotline: Legendary devices of 90s',
     description: 'Journey through 90s Ukraine via its legendary gadgets. This video highlights the iconic tech the phones, cameras, toys, and devices that defined the decade and evoke powerful memories.',
   services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
   category: 'Vlog',
@@ -383,6 +383,38 @@ export const portfolioData: PortfolioItemType[] = [
     '/images/hl-varka3.jpg'
   ],
   trailerUrl: 'https://www.youtube.com/watch?v=s_7ik_eD-VE',
+  trailerLabel: 'Watch video'
+},
+{
+  id: '22',
+  title: 'Hotline: What a gravel bike is?',
+    description: 'This video is a guide to gravel bikes, explaining what they are and helping future buyers make the right choice. (Video Guide).',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
+  category: 'Vlog',
+  workType: 'Vlog',
+  thumbnail: '/images/hl-gravel1.jpg',
+  images: [
+    '/images/hl-gravel1.jpg',
+    '/images/hl-gravel2.jpg',
+    '/images/hl-gravel3.jpg'
+  ],
+  trailerUrl: 'https://www.youtube.com/watch?v=Gaaql67lTu4',
+  trailerLabel: 'Watch video'
+},
+{
+  id: '23',
+  title: 'Hotline: Rugged Smartphones',
+    description: 'Rugged Smartphones. In this video, a famous traveler talks about the different features of rugged smartphones and helps with choosing the best model. (Video Guide).',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
+  category: 'Vlog',
+  workType: 'Vlog',
+  thumbnail: '/images/hl-bronesmart1.jpg',
+  images: [
+    '/images/hl-bronesmart1.jpg',
+    '/images/hl-bronesmart2.jpg',
+    '/images/hl-bronesmart3.jpg'
+  ],
+  trailerUrl: 'https://www.youtube.com/watch?v=hWbtJzhPf4M',
   trailerLabel: 'Watch video'
 },
 

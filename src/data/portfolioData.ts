@@ -354,7 +354,7 @@ export const portfolioData: PortfolioItemType[] = [
   trailerLabel: 'Watch video'
 },
 {
-  id: '20',
+  id: '28',
   title: 'Hotline: Epilators',
     description: 'Video about the nuances you need to know when choosing an epilator (Video Guide).',
   services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
@@ -485,6 +485,23 @@ export const portfolioData: PortfolioItemType[] = [
     '/images/ThinkPad_X1Nano4.jpg',
   ],
   trailerUrl: 'https://youtu.be/IjKpQPFiHEc',
+  trailerLabel: 'Watch video'
+},
+{
+  id: '20',
+  title: 'KADDR: Which Lens to Buy',
+    description: 'This video explores the nuances of various lens types and provides guidance on how to choose the right lens for your needs, specifically focusing on the Sony system.',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
+  category: 'Vlog',
+  workType: 'Vlog',
+  thumbnail: '/images/slens.jpg',
+  images: [
+    '/images/slens1.jpg',
+    '/images/slens2.jpg',
+    '/images/slens3.jpg',
+    '/images/slens4.jpg'
+  ],
+  trailerUrl: 'https://youtu.be/LMFc7ySQ9rw',
   trailerLabel: 'Watch video'
 },
  /* {

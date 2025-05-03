@@ -277,7 +277,7 @@ export const portfolioData: PortfolioItemType[] = [
   id: '16',
   title: 'Why Russia Started the War',
     description: 'A video explaining the motives and gains behind Russia"s aggression against Ukraine.',
-  services: ['Editing', 'Motion design', 'Sound design'],
+  services: ['Editing', 'Motion design', 'Sound design','Directing'],
   category: 'Documentary',
   workType: 'Documentary',
   thumbnail: '/images/why1.jpg',
@@ -388,7 +388,7 @@ export const portfolioData: PortfolioItemType[] = [
 {
   id: '22',
   title: 'Hotline: What a gravel bike is?',
-    description: 'This video is a guide to gravel bikes, explaining what they are and helping future buyers make the right choice. (Video Guide).',
+    description: 'This video is a guide to gravel bikes, explaining what they are and helping future buyers make the right choice (Video Guide).',
   services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
   category: 'Vlog',
   workType: 'Vlog',
@@ -404,7 +404,7 @@ export const portfolioData: PortfolioItemType[] = [
 {
   id: '23',
   title: 'Hotline: Rugged Smartphones',
-    description: 'Rugged Smartphones. In this video, a famous traveler talks about the different features of rugged smartphones and helps with choosing the best model. (Video Guide).',
+    description: 'In this video, a famous traveler talks about the different features of rugged smartphones and helps with choosing the best model (Video Guide).',
   services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
   category: 'Vlog',
   workType: 'Vlog',
@@ -418,7 +418,75 @@ export const portfolioData: PortfolioItemType[] = [
   trailerUrl: 'https://www.youtube.com/watch?v=hWbtJzhPf4M',
   trailerLabel: 'Watch video'
 },
-
+{
+  id: '24',
+  title: 'Hotline: Easter Table Recipes',
+    description: 'A 3-part video series where hosts learn to cook dishes for the Easter table using recipes by the winner of the "MasterChef" show (Video Guide).',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
+  category: 'Vlog',
+  workType: 'Vlog',
+  thumbnail: '/images/hl-paska1.jpg',
+  images: [
+    '/images/hl-paska1.jpg',
+    '/images/hl-paska2.jpg',
+    '/images/hl-paska3.jpg',
+    
+  ],
+  trailerUrl: 'https://www.youtube.com/watch?v=Cko0XZ_5JaY',
+  trailerLabel: 'Watch video'
+},
+{
+  id: '25',
+  title: 'Fresh Black: Connected coffee machines',
+    description: 'Video on the Technology of Cloud Management for Coffee Machines.',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading','Directing', 'Filming'],
+  category: 'Product',
+  workType: 'Product',
+  thumbnail: '/images/coffem4.jpg',
+  images: [
+    '/images/coffem1.jpg',
+    '/images/coffem2.jpg',
+    '/images/coffem3.jpg',
+    '/images/coffem4.jpg',
+    '/images/coffem5.jpg'
+  ],
+  trailerUrl: 'https://youtu.be/MRjMjPQ1JgE',
+  trailerLabel: 'Watch video'
+},
+{
+  id: '26',
+  title: 'Zeppelin: CAT 772G Review',
+    description: 'A video highlighting the key features and characteristics of the CAT 772G dump truck.',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading','Directing', 'Filming'],
+  category: 'Product',
+  workType: 'Product',
+  thumbnail: '/images/cat7724.jpg',
+  images: [
+    '/images/cat7721.jpg',
+    '/images/cat7722.jpg',
+    '/images/cat7723.jpg',
+    '/images/cat7724.jpg',
+  ],
+  trailerUrl: 'https://youtu.be/qQaG6SIdVJ0',
+  trailerLabel: 'Watch video'
+},
+{
+  id: '27',
+  title: 'Hotline: ThinkPad_X1Nano Review',
+    description: 'Video Review: Lenovo ThinkPad X1 Nano - Key Features & User Experience..',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading','Directing', 'Filming'],
+  category: 'Product',
+  workType: 'Product',
+  thumbnail: '/images/ThinkPad_X1Nano1.jpg',
+  images: [
+    '/images/ThinkPad_X1Nano1.jpg',
+    '/images/ThinkPad_X1Nano2.jpg',
+    '/images/ThinkPad_X1Nano3.jpg',
+    '/images/ThinkPad_X1Nano4.jpg',
+  ],
+  trailerUrl: 'https://youtu.be/IjKpQPFiHEc',
+  trailerLabel: 'Watch video'
+},
  /* {
     id: '55',
     title: 'Ethereal Sounds',

@@ -352,6 +352,22 @@ export const portfolioData: PortfolioItemType[] = [
   ],
   trailerUrl: 'https://www.youtube.com/watch?v=cfx3DnMIy1U',
   trailerLabel: 'Watch video'
+},{
+  id: '20',
+  title: 'KADDR: Which Lens to Buy',
+    description: 'This video explores the nuances of various lens types and provides guidance on how to choose the right lens for your needs, specifically focusing on the Sony system.',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
+  category: 'Vlog',
+  workType: 'Vlog',
+  thumbnail: '/images/slens.jpg',
+  images: [
+    '/images/slens1.jpg',
+    '/images/slens2.jpg',
+    '/images/slens3.jpg',
+    '/images/slens4.jpg'
+  ],
+  trailerUrl: 'https://youtu.be/LMFc7ySQ9rw',
+  trailerLabel: 'Watch video'
 },
 {
   id: '28',
@@ -473,7 +489,7 @@ export const portfolioData: PortfolioItemType[] = [
 {
   id: '27',
   title: 'Hotline: ThinkPad_X1Nano Review',
-    description: 'Video Review: Lenovo ThinkPad X1 Nano - Key Features & User Experience..',
+    description: 'Video Review: Lenovo ThinkPad X1 Nano - Key Features & User Experience.',
   services: ['Editing', 'Motion design', 'Sound design','Color Grading','Directing', 'Filming'],
   category: 'Product',
   workType: 'Product',
@@ -488,20 +504,27 @@ export const portfolioData: PortfolioItemType[] = [
   trailerLabel: 'Watch video'
 },
 {
-  id: '20',
-  title: 'KADDR: Which Lens to Buy',
-    description: 'This video explores the nuances of various lens types and provides guidance on how to choose the right lens for your needs, specifically focusing on the Sony system.',
-  services: ['Editing', 'Motion design', 'Sound design','Color Grading'],
-  category: 'Vlog',
-  workType: 'Vlog',
-  thumbnail: '/images/slens.jpg',
+  id: '29',
+  title: 'KADDR: Xiaomi 11T Pro Review',
+    description: 'Xiaomi 11T Pro Camera & Video Features Review for KADDR.com and xiaomi.ua.',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading',, 'Filming'],
+  category: 'Product',
+  workType: 'Product',
+  thumbnail: '/images/xiaomi115g1.jpg',
   images: [
-    '/images/slens1.jpg',
-    '/images/slens2.jpg',
-    '/images/slens3.jpg',
-    '/images/slens4.jpg'
+    '/images/xiaomi115g1.jpg',
+    '/images/xiaomi115g2.jpg',
+    '/images/xiaomi115g3.jpg',
+    '/images/xiaomi115g4.jpg',
+    '/images/xiaomi115g5.jpg',
+    '/images/xiaomi115g6.jpg',
+    '/images/xiaomi115g7.jpg',
+    '/images/xiaomi115g8.jpg',
+    '/images/xiaomi115g9.jpg',
+    '/images/xiaomi115g10.jpg',
+
   ],
-  trailerUrl: 'https://youtu.be/LMFc7ySQ9rw',
+  trailerUrl: 'https://youtu.be/IjKpQPFiHEc',
   trailerLabel: 'Watch video'
 },
  /* {

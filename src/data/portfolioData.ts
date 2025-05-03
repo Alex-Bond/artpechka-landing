@@ -527,6 +527,25 @@ export const portfolioData: PortfolioItemType[] = [
   trailerUrl: 'https://youtu.be/IjKpQPFiHEc',
   trailerLabel: 'Watch video'
 },
+{
+  id: '30',
+  title: 'KADDR: Samsung S21 Ultra Review',
+    description: 'Samsung S21 Ultra video review & user experience.',
+  services: ['Editing', 'Motion design', 'Sound design','Color Grading',, 'Filming'],
+  category: 'Product',
+  workType: 'Product',
+  thumbnail: '/images/ss2u1.jpg',
+  images: [
+    '/images/ss2u1.jpg',
+    '/images/ss2u2.jpg',
+    '/images/ss2u3.jpg',
+    '/images/ss2u4.jpg',
+    '/images/ss2u5.jpg'
+
+  ],
+  trailerUrl: 'https://youtu.be/IjKpQPFiHEc',
+  trailerLabel: 'Watch video'
+},
  /* {
     id: '55',
     title: 'Ethereal Sounds',

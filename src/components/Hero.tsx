@@ -26,12 +26,12 @@ const Hero = () => {
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-3xl">
-          <h2 className="text-cinema-accent font-medium mb-4 animate-fade-in">VIDEO EDITOR & FILMMAKER</h2>
+          <h2 className="text-cinema-accent font-medium mb-4 animate-fade-in">EDITOR & FILMMAKER</h2>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 animate-fade-in" style={{animationDelay: '0.1s'}}>
-            Bringing <span className="text-gradient">Stories</span> to Life Through Cinematic Excellence
+            Bringing your <span className="text-gradient">Stories</span> to Life Through 
           </h1>
           <p className="text-lg md:text-xl text-cinema-text/80 mb-8 animate-fade-in" style={{animationDelay: '0.2s'}}>
-            With over 8 years of experience in visual storytelling, I blend technical precision with creative vision to craft compelling narratives that captivate audiences.
+            With over 13 years of experience in visual storytelling, I blend technical precision with creative vision to craft compelling narratives that captivate audiences.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{animationDelay: '0.3s'}}>
             <Button

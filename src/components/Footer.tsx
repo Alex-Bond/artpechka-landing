@@ -24,7 +24,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="text-center md:text-left mb-4 md:mb-0">
             <div className="text-xl font-heading font-bold text-gradient mb-2">
-              ARTY PICHAK
+              ARTEM PICHAK
             </div>
             <p className="text-cinema-text/60 text-sm">
               © {new Date().getFullYear()} All rights reserved.

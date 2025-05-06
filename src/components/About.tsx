@@ -21,7 +21,7 @@ const About = () => {
             <div className="relative">
               <div className="aspect-[3/4] bg-gradient-to-br from-cinema-accent/20 to-cinema-highlight/20 rounded-md overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81" 
+                  src="/images/me.jpg" 
                   alt="Video Editor at Work" 
                   className="w-full h-full object-cover mix-blend-overlay opacity-90"
                 />

@@ -47,7 +47,7 @@ const Header = () => {
           className="text-2xl font-heading font-bold text-gradient"
           onClick={(e) => handleNavClick(e, '#home')}
         >
-          ARTY PICHAK
+          ARTEM PICHAK
         </a>
 
         {/* Desktop Navigation */}

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import Gallery from './gallery';
 import TrailerModal from './TrailerModal';
+import ReactGA from 'react-ga4';
 
 interface PortfolioItemProps {
   item: PortfolioItemType;
@@ -49,11 +50,18 @@ const PortfolioItem = ({ item }: PortfolioItemProps) => {
         {/* Trailer Button */}
         {item.videos?.length > 0 && (
           <div className='flex gap-1'>
-            {item.videos.map(video => (
+            {item.videos.map((video, key) => (
               <Button
                 variant='default'
                 className='w-full mt-4 bg-[#ea384c] hover:bg-[#c0303e]'
-                onClick={() => setOpenVideo(video)}
+                onClick={() => {
+                  ReactGA.event({
+                    category: 'Click',
+                    action: 'Play Video',
+                    label: `${item.title}:${video.label || key + 1}`,
+                  });
+                  setOpenVideo(video);
+                }}
               >
                 <Play className='w-4 h-4' /> {video.label || 'Play Video'}
               </Button>

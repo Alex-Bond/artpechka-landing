@@ -9,12 +9,12 @@ export interface PortfolioItemType {
   images?: string[];
   trailerUrl?: string;
   trailerLabel?: string;
+  videos?: [PortfolioVideoItem] | [PortfolioVideoItem, PortfolioVideoItem] | [PortfolioVideoItem, PortfolioVideoItem, PortfolioVideoItem]
 }
 
-export interface SocialLink {
-  platform: string;
-  url: string;
-  icon: React.ElementType;
+export interface PortfolioVideoItem {
+  url: string,
+  label?: string
 }
 
 export interface ContactFormValues {

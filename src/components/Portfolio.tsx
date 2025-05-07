@@ -49,9 +49,8 @@ const Portfolio = () => {
               key={category}
               onClick={() => {
                 ReactGA.event({
-                  category: 'Click',
-                  action: 'Filter Portfolio',
-                  label: category,
+                  action: 'filter_portfolio',
+                  category: category,
                 });
                 handleCategoryChange(category);
               }}

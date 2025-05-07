@@ -56,9 +56,9 @@ const PortfolioItem = ({ item }: PortfolioItemProps) => {
                 className='w-full mt-4 bg-[#ea384c] hover:bg-[#c0303e]'
                 onClick={() => {
                   ReactGA.event({
-                    category: 'Click',
-                    action: 'Play Video',
-                    label: `${item.title}:${video.label || key + 1}`,
+                    action: 'play_video',
+                    category: item.title,
+                    label: `${video.label || key + 1}`,
                   });
                   setOpenVideo(video);
                 }}

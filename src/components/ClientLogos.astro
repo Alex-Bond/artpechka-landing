@@ -9,7 +9,15 @@ interface Props {
 
 const { limit = 5 } = Astro.props
 
-const LOGO_HEIGHT = 28
+/**
+ * Optical sizing, not uniform sizing. A square mark and a wide wordmark set to
+ * the same pixel height do not read as the same size — the square dominates.
+ * Squarish logos get trimmed slightly so the row balances.
+ */
+const WORDMARK_HEIGHT = 28
+const ICON_HEIGHT = 24
+const heightFor = (aspect: number | null) =>
+  aspect !== null && aspect < 1.6 ? ICON_HEIGHT : WORDMARK_HEIGHT
 
 /**
  * Logos only — a name in text among four logos reads as a missing asset rather
@@ -20,11 +28,16 @@ const LOGO_HEIGHT = 28
 const clients = await getClients()
 
 const logos = clients
-  .map((client) => ({
-    name: client.name,
-    invert: client.invertLogo,
-    logo: logoImage(client.logo?.asset, LOGO_HEIGHT),
-  }))
+  .map((client) => {
+    const dimensions = client.logo?.asset?.metadata?.dimensions
+    const height = heightFor(dimensions?.aspectRatio ?? null)
+    return {
+      name: client.name,
+      invert: client.invertLogo,
+      height,
+      logo: logoImage(client.logo?.asset, height),
+    }
+  })
   .filter((entry) => entry.logo !== null)
   .slice(0, limit)
 ---
@@ -47,9 +60,9 @@ const logos = clients
                 alt={entry.name}
                 loading="eager"
                 decoding="async"
-                style={`height:${LOGO_HEIGHT}px`}
+                style={`height:${entry.height}px`}
                 class:list={[
-                  'w-auto max-w-[7.5rem] object-contain opacity-60 transition-opacity duration-200 hover:opacity-100',
+                  'w-auto max-w-[9rem] object-contain opacity-60 transition-opacity duration-200 hover:opacity-100',
                   entry.invert && 'brightness-0 invert',
                 ]}
               />

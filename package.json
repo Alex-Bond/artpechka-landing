@@ -15,7 +15,8 @@
     "studio:deploy": "bunx sanity deploy",
     "migrate": "bun scripts/migrate-to-sanity.ts",
     "migrate:services": "bun scripts/services-to-references.ts",
-    "seed:clients": "bun scripts/seed-clients.ts"
+    "seed:clients": "bun scripts/seed-clients.ts",
+    "logos:upload": "bun scripts/upload-client-logos.ts"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.2",

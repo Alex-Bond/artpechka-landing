@@ -1,0 +1,62 @@
+---
+import { getClients } from '../lib/content'
+import { logoImage } from '../lib/image'
+
+interface Props {
+  /** How many logos the hero shows. Drag order in the Studio picks which. */
+  limit?: number
+}
+
+const { limit = 5 } = Astro.props
+
+const LOGO_HEIGHT = 28
+
+/**
+ * Logos only — a name in text among four logos reads as a missing asset rather
+ * than a client, so anything without a logo is skipped and the row simply
+ * doesn't render until there are logos to show. Which five appear is the top
+ * five in the Studio's Clients list; reordering there is the whole control.
+ */
+const clients = await getClients()
+
+const logos = clients
+  .map((client) => ({
+    name: client.name,
+    invert: client.invertLogo,
+    logo: logoImage(client.logo?.asset, LOGO_HEIGHT),
+  }))
+  .filter((entry) => entry.logo !== null)
+  .slice(0, limit)
+---
+
+{
+  logos.length > 0 && (
+    <div class="mt-12 border-t border-cinema-text/10 pt-6">
+      <p class="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-cinema-text/40">
+        Selected clients
+      </p>
+      <ul class="flex flex-wrap items-center gap-x-8 gap-y-5 sm:gap-x-10">
+        {
+          logos.map((entry) => (
+            <li class="flex items-center">
+              <img
+                src={entry.logo!.src}
+                srcset={entry.logo!.srcset ?? undefined}
+                width={entry.logo!.width ?? undefined}
+                height={entry.logo!.height ?? undefined}
+                alt={entry.name}
+                loading="eager"
+                decoding="async"
+                style={`height:${LOGO_HEIGHT}px`}
+                class:list={[
+                  'w-auto max-w-[7.5rem] object-contain opacity-60 transition-opacity duration-200 hover:opacity-100',
+                  entry.invert && 'brightness-0 invert',
+                ]}
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  )
+}

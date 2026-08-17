@@ -1,4 +1,5 @@
 ---
+import ClientLogos from './ClientLogos.astro'
 ---
 
 <section
@@ -33,6 +34,8 @@
       <div class="flex flex-col gap-4 sm:flex-row">
         <a href="#portfolio" class="btn-primary">View My Work</a>
       </div>
+
+      <ClientLogos limit={5} />
     </div>
   </div>
 

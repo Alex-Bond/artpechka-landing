@@ -26,7 +26,19 @@ const posterImage = responsiveImage(cover, {
   alt: project.title,
 })
 
-const stills = (project.images ?? [])
+const videos = (project.videos ?? []).map((video, index) => embeddable(video, index))
+
+/**
+ * The cover frame does double duty: card cover, and poster for the video
+ * player. When there is a video it is already the biggest thing on the page,
+ * so it drops out of the Stills strip below — otherwise a project with one
+ * still shows the same frame twice, once as the poster and once as a "still".
+ */
+const stillSource = (project.images ?? []).filter(
+  (image) => image.asset && !(videos.length > 0 && image === cover),
+)
+
+const stills = stillSource
   .map((image) =>
     responsiveImage(image, {
       sizes: '(min-width: 1024px) 50vw, 100vw',
@@ -36,7 +48,6 @@ const stills = (project.images ?? [])
   )
   .filter((image): image is NonNullable<typeof image> => image !== null)
 
-const videos = (project.videos ?? []).map((video, index) => embeddable(video, index))
 const meta = [project.category, project.client, project.year].filter(Boolean)
 
 const title = project.seo?.metaTitle || `${project.title} — Artem Pichak`

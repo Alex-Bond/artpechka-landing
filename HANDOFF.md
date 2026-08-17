@@ -80,6 +80,11 @@ ship no JavaScript at all.
   five in the Studio's Clients list, so reordering there is the whole control — no extra flag.
   Deliberately *not* wired to `project.client`: the row is a curated roster, the project field is
   a per-project fact. Seeded from Artem's About copy with `bun run seed:clients` (additive).
+  **Three logos are live** — Xiaomi, Hotline.ua and Caterpillar (a new client, added with its
+  logo) — prepared as one-colour white SVG and uploaded with
+  `bun run logos:upload -- --dir=<folder>` (`--replace` overwrites). Sizing is optical, not
+  uniform: squarish marks render at 24px and wordmarks at 28px, because identical pixel
+  heights make a square logo dominate a row of wordmarks. Two more logos fill the row of five.
   Note: the research argued against a logo wall (peers name clients in prose; a trademark wall
   implies a direct client relationship the bio doesn't claim) — Alex chose logos in the hero.
 - **`project.client` and `project.year` are empty on all 33 projects.** The old `portfolioData`
@@ -192,4 +197,5 @@ bun run studio:deploy            # free *.sanity.studio URL for Artem
 bun run migrate -- --dry-run     # portfolioData -> Sanity; safe, never overwrites
 bun run migrate:services         # one-off: services strings -> references (idempotent, already run)
 bun run seed:clients             # seed the Clients list from the About copy (additive, already run)
+bun run logos:upload -- --dir=<folder>   # upload prepared white SVG logos (--replace to overwrite)
 ```

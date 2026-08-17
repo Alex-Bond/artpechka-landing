@@ -11,14 +11,9 @@ that needs your accounts.
 
 **Use `bun` for everything.** No `npm`, `npx`, `yarn`, or `node`.
 
-**Do not use a git worktree for this project.** A stale one still exists at
-`.claude/worktrees/website-feedback-55c10f` — it holds nothing unique (verified: its `sanity/`
-is byte-identical and it lacks the asset manifest), but the permission classifier blocked its
-removal, so run this yourself:
-
-```bash
-git worktree remove --force .claude/worktrees/website-feedback-55c10f && git branch -D claude/website-feedback-55c10f
-```
+**Do not use a git worktree for this project.** The stale one has been removed — `git worktree
+list` shows only the main checkout and the `claude/website-feedback-55c10f` branch is gone. An
+empty `.claude/worktrees/` directory may linger; it is gitignored and harmless.
 
 ---
 
@@ -61,8 +56,9 @@ Original review of the old site:
 
 Two React islands only, both `client:visible`:
 `islands/PortfolioGrid.tsx` (+ `ProjectCard.tsx`) and `islands/ContactForm.tsx`.
-Everything else is static Astro with small inline scripts. Home page ships ~88 KB of JS
-(76 KB of it is Formik + Yup + reCAPTCHA in the contact form); project pages ship none.
+Everything else is static Astro with small inline scripts. Measured gzipped: the grid island's
+entry is under 2 KB and the contact form is ~24 KB (Formik + Yup + reCAPTCHA); project pages
+ship no JavaScript at all.
 
 `src/lib/` holds the seams: `content.ts` (GROQ queries + types), `image.ts` (srcset builder),
 `video.ts` (YouTube/Vimeo parsing), `analytics.ts` (`gtag` wrapper).

@@ -13,7 +13,8 @@
     "check": "bunx --bun astro check",
     "studio": "bunx sanity dev",
     "studio:deploy": "bunx sanity deploy",
-    "migrate": "bun scripts/migrate-to-sanity.ts"
+    "migrate": "bun scripts/migrate-to-sanity.ts",
+    "migrate:services": "bun scripts/services-to-references.ts"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.2",

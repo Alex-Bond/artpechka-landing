@@ -137,6 +137,20 @@ async function main() {
 
   log(`Categories (${categoryDocs.length}): ${categoryNames.join(', ')}\n`)
 
+  // -------------------------------------------------------------- services
+  // Services are documents too, so projects reference them rather than
+  // repeating strings. Order follows first appearance in portfolioData.
+  const serviceNames = [...new Set(items.flatMap((i) => i.services || []))]
+  const serviceDocs = serviceNames.map((title, i) => ({
+    _id: `service-${slugify(title)}`,
+    _type: 'service',
+    title,
+    slug: { _type: 'slug', current: slugify(title) },
+    orderRank: orderRank(i),
+  }))
+
+  log(`Services (${serviceDocs.length}): ${serviceNames.join(', ')}\n`)
+
   // -------------------------------------------------------------- projects
   const projectDocs: Record<string, unknown>[] = []
 
@@ -180,7 +194,11 @@ async function main() {
       title: item.title,
       slug: { _type: 'slug', current: slug },
       description: item.description,
-      services: item.services,
+      services: (item.services || []).map((title, j) => ({
+        _key: keyFor(slug, 'svc', j),
+        _type: 'reference',
+        _ref: `service-${slugify(title)}`,
+      })),
       category: { _type: 'reference', _ref: `category-${slugify(item.category)}` },
       images,
       ...(videos.length ? { videos } : {}),
@@ -191,11 +209,11 @@ async function main() {
   }
 
   // ----------------------------------------------------------------- write
-  const all = [...categoryDocs, ...projectDocs]
+  const all = [...categoryDocs, ...serviceDocs, ...projectDocs]
 
   if (DRY_RUN) {
     log(`\nDRY RUN — would write ${all.length} documents`)
-    log(`  ${categoryDocs.length} categories, ${projectDocs.length} projects`)
+    log(`  ${categoryDocs.length} categories, ${serviceDocs.length} services, ${projectDocs.length} projects`)
     log(`  featured: ${projectDocs.filter((p) => p.featured).map((p) => p.title).join(', ')}`)
     log(`\nSample project:\n${JSON.stringify(projectDocs[0], null, 2)}`)
     return
@@ -207,7 +225,9 @@ async function main() {
   }
   await tx.commit()
 
-  log(`\nWrote ${all.length} documents (${categoryDocs.length} categories, ${projectDocs.length} projects)`)
+  log(
+    `\nWrote ${all.length} documents (${categoryDocs.length} categories, ${serviceDocs.length} services, ${projectDocs.length} projects)`,
+  )
   log(`Uploaded assets cached in ${path.relative(ROOT, MANIFEST)} — keep it if you re-run.`)
 }
 

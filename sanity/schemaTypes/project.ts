@@ -1,23 +1,6 @@
 import { defineType, defineField, defineArrayMember } from 'sanity'
 import { orderRankField } from '@sanity/orderable-document-list'
 
-/**
- * The nine craft terms already in use. A closed list rather than free text so
- * "Sound design" and "Sound Design" can't both end up on cards. If this starts
- * growing, promote it to its own document type the way `category` is.
- */
-const SERVICES = [
-  'Editing',
-  'Motion design',
-  'Color Grading',
-  'Sound design',
-  'Filming',
-  'Compositing',
-  'Directing',
-  'Sound mixing',
-  'Tutoring',
-]
-
 export const project = defineType({
   name: 'project',
   title: 'Project',
@@ -74,9 +57,11 @@ export const project = defineType({
       name: 'services',
       type: 'array',
       group: 'content',
-      of: [defineArrayMember({ type: 'string' })],
-      options: { list: SERVICES, layout: 'tags' },
-      validation: (r) => r.required().min(1),
+      of: [defineArrayMember({ type: 'reference', to: [{ type: 'service' }] })],
+      description:
+        'What you did on this project. Manage the list itself under Services — adding one there makes it available on every project.',
+      // Two references to the same service would render a duplicate tag.
+      validation: (r) => r.required().min(1).unique(),
     }),
     defineField({
       name: 'body',

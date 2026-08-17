@@ -69,6 +69,13 @@ Everything else is static Astro with small inline scripts. Home page ships ~88 K
 
 ### Decisions worth knowing
 
+- **Services are documents** (`service`), like categories — drag-to-reorder, and Artem can add or
+  rename one without an engineer. They were a hardcoded list of nine strings in `project.ts`.
+  Projects reference them; `services[]->title` in the GROQ keeps the rest of the site seeing a
+  plain string array, so no component changed. The live dataset was migrated with
+  `bun run migrate:services` — 9 services created, 33 projects patched, verified every reference
+  resolves with no empty arrays. The previous string values sit in the gitignored
+  `scripts/.services-backup.json` if anything needs reverting.
 - **Studio drag order is the only thing that orders the grid.** The `featured` flag no longer
   hoists projects to the front — Alex chose strict Studio order everywhere (home grid, category
   filters, `/work`), so what Artem drags is what ships. `featured` now only picks which project's
@@ -172,5 +179,6 @@ bun run preview                  # serve the built output
 bun run check                    # astro check (types)
 bun run studio                   # standalone Studio, localhost:3333
 bun run studio:deploy            # free *.sanity.studio URL for Artem
-bun run migrate -- --dry-run     # migration script still works; safe, never overwrites
+bun run migrate -- --dry-run     # portfolioData -> Sanity; safe, never overwrites
+bun run migrate:services         # one-off: services strings -> references (idempotent, already run)
 ```

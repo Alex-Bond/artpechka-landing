@@ -59,9 +59,12 @@ const IMAGE_FRAGMENT = `{
 }`
 
 const PROJECT_FRAGMENT = `{
-  _id, title, "slug": slug.current, client, year, description, services, featured,
+  _id, title, "slug": slug.current, client, year, description, featured,
   publishedToSearch, body, credits,
   "category": category->title,
+  // Services are documents now; dereference to titles so the rest of the site
+  // keeps seeing a plain string array. coalesce guards a deleted service.
+  "services": coalesce(services[]->title, []),
   images[]${IMAGE_FRAGMENT},
   videos[]{ url, label },
   seo { metaTitle, metaDescription, shareImage { asset->{ _id, url, metadata { dimensions, lqip } } } }
@@ -69,9 +72,16 @@ const PROJECT_FRAGMENT = `{
 
 /** Every project, in the order Artem dragged them into in the Studio. */
 export async function getProjects(): Promise<Project[]> {
-  return sanityClient.fetch(
+  const projects: Project[] = await sanityClient.fetch(
     `*[_type == "project" && defined(slug.current)] | order(orderRank) ${PROJECT_FRAGMENT}`,
   )
+
+  // A service deleted while still referenced dereferences to null, which would
+  // render as an empty tag.
+  return projects.map((project) => ({
+    ...project,
+    services: (project.services ?? []).filter(Boolean),
+  }))
 }
 
 /** Filter buttons, in Studio order. Only categories that have projects. */

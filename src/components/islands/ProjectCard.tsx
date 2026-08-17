@@ -51,24 +51,32 @@ export function ProjectCard({ project }: { project: CardProject }) {
       onMouseLeave={() => setRotating(false)}
     >
       <div className="relative aspect-video overflow-hidden bg-cinema-background">
-        {current && (
-          <img
-            src={current.src}
-            srcSet={current.srcset}
-            sizes={current.sizes}
-            width={current.width}
-            height={current.height}
-            alt={current.alt || project.title}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-contain transition-transform duration-700 md:group-hover:scale-105"
-            style={{ backgroundImage: `url(${current.lqip})`, backgroundSize: 'cover' }}
+        {/*
+          The image and its tint scale together as one layer. Transforming the
+          image alone made it a separate compositor layer, and on a fractional
+          box height the clip rect rounded out while the tint rounded in —
+          leaving one bright, untinted row of the still along the bottom.
+        */}
+        <div className="absolute inset-0 transition-transform duration-700 md:group-hover:scale-105">
+          {current && (
+            <img
+              src={current.src}
+              srcSet={current.srcset}
+              sizes={current.sizes}
+              width={current.width}
+              height={current.height}
+              alt={current.alt || project.title}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-contain"
+              style={{ backgroundImage: `url(${current.lqip})`, backgroundSize: 'cover' }}
+            />
+          )}
+          <div
+            className="pointer-events-none absolute -inset-px bg-gradient-to-t from-cinema-background/90 to-transparent opacity-70 transition-opacity duration-300 md:group-hover:opacity-90"
+            aria-hidden="true"
           />
-        )}
-        <div
-          className="pointer-events-none absolute -inset-px bg-gradient-to-t from-cinema-background/90 to-transparent opacity-70 transition-opacity duration-300 md:group-hover:opacity-90"
-          aria-hidden="true"
-        />
+        </div>
 
         {(project.category || meta) && (
           <span className="absolute left-3 top-3 z-20 rounded-full bg-white/85 px-2 py-0.5 text-xs font-medium text-black">

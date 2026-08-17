@@ -22,26 +22,34 @@ const meta = [project.client, project.year].filter(Boolean).join(' · ')
   class="group relative flex h-full flex-col overflow-hidden rounded-lg bg-cinema-muted hover-scale"
 >
   <div class="relative aspect-video overflow-hidden bg-cinema-background">
-    {
-      cover && (
-        <img
-          src={cover.src}
-          srcset={cover.srcset}
-          sizes={cover.sizes}
-          width={cover.width}
-          height={cover.height}
-          alt={cover.alt}
-          loading={loading}
-          decoding="async"
-          class="h-full w-full object-contain transition-transform duration-700 md:group-hover:scale-105"
-          style={`background-image:url(${cover.lqip});background-size:cover`}
-        />
-      )
-    }
-    <div
-      class="pointer-events-none absolute -inset-px bg-gradient-to-t from-cinema-background/90 to-transparent opacity-70"
-      aria-hidden="true"
-    >
+    {/*
+      Image and tint share one transformed layer — scaling the image on its own
+      put it in a separate compositor layer, and on a fractional box height the
+      clip rounded out while the tint rounded in, leaving a bright untinted row
+      along the bottom edge.
+    */}
+    <div class="absolute inset-0 transition-transform duration-700 md:group-hover:scale-105">
+      {
+        cover && (
+          <img
+            src={cover.src}
+            srcset={cover.srcset}
+            sizes={cover.sizes}
+            width={cover.width}
+            height={cover.height}
+            alt={cover.alt}
+            loading={loading}
+            decoding="async"
+            class="h-full w-full object-contain"
+            style={`background-image:url(${cover.lqip});background-size:cover`}
+          />
+        )
+      }
+      <div
+        class="pointer-events-none absolute -inset-px bg-gradient-to-t from-cinema-background/90 to-transparent opacity-70"
+        aria-hidden="true"
+      >
+      </div>
     </div>
     {
       (meta || project.category) && (

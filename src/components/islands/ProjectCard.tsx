@@ -66,7 +66,7 @@ export function ProjectCard({ project }: { project: CardProject }) {
           />
         )}
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-cinema-background/90 to-transparent opacity-70 transition-opacity duration-300 md:group-hover:opacity-90"
+          className="pointer-events-none absolute -inset-px bg-gradient-to-t from-cinema-background/90 to-transparent opacity-70 transition-opacity duration-300 md:group-hover:opacity-90"
           aria-hidden="true"
         />
 

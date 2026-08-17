@@ -1,5 +1,5 @@
-import imageUrlBuilder from '@sanity/image-url'
-import type { ProjectImage, SanityImageAsset } from './content'
+import { createImageUrlBuilder } from '@sanity/image-url'
+import type { LogoAsset, ProjectImage, SanityImageAsset } from './content'
 
 /**
  * Public values — the dataset is public and these end up in every image URL.
@@ -9,7 +9,7 @@ export const SANITY_PROJECT_ID = 'ntn8xrgb'
 export const SANITY_DATASET = 'production'
 export const SANITY_CDN = 'https://cdn.sanity.io'
 
-const builder = imageUrlBuilder({ projectId: SANITY_PROJECT_ID, dataset: SANITY_DATASET })
+const builder = createImageUrlBuilder({ projectId: SANITY_PROJECT_ID, dataset: SANITY_DATASET })
 
 export interface ResponsiveImage {
   src: string
@@ -66,4 +66,42 @@ export function shareImageUrl(
 ): string | null {
   if (!asset) return null
   return builder.image(asset._id).width(width).height(height).fit('crop').auto('format').url()
+}
+
+export interface LogoImage {
+  src: string
+  srcset: string | null
+  width: number | null
+  height: number | null
+}
+
+/**
+ * Client logos, rendered at a fixed optical height.
+ *
+ * SVG bypasses the transform pipeline entirely — Sanity does not rasterise it,
+ * so asking for a width returns the same file with a pointless query string,
+ * and the vector scales for free. Raster logos get a 1x/2x pair at the display
+ * height instead of the width-based srcset the stills use.
+ */
+export function logoImage(
+  asset: LogoAsset | null | undefined,
+  displayHeight = 40,
+): LogoImage | null {
+  if (!asset) return null
+
+  const { width = null, height = null } = asset.metadata?.dimensions ?? {}
+
+  if (asset.mimeType === 'image/svg+xml') {
+    return { src: asset.url, srcset: null, width, height }
+  }
+
+  const at = (scale: number) =>
+    builder.image(asset._id).height(displayHeight * scale).auto('format').quality(90).url()
+
+  return {
+    src: at(1),
+    srcset: `${at(1)} 1x, ${at(2)} 2x`,
+    width,
+    height,
+  }
 }

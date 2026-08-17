@@ -2,9 +2,9 @@ import type { StructureResolver } from 'sanity/structure'
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 
 /**
- * All three lists are drag-to-reorder. Project order decides the grid order on
- * the site, category order decides the order of the filter buttons, and service
- * order decides the order of the tags on a card.
+ * Every list is drag-to-reorder. Project order decides the grid order on the
+ * site, category order the filter buttons, service order the tags on a card,
+ * and client order the logo strip on the home page.
  */
 export const structure: StructureResolver = (S, context) =>
   S.list()
@@ -25,6 +25,12 @@ export const structure: StructureResolver = (S, context) =>
       orderableDocumentListDeskItem({
         type: 'service',
         title: 'Services',
+        S,
+        context,
+      }),
+      orderableDocumentListDeskItem({
+        type: 'client',
+        title: 'Clients',
         S,
         context,
       }),

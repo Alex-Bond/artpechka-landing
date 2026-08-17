@@ -72,6 +72,19 @@ ship no JavaScript at all.
   `bun run migrate:services` — 9 services created, 33 projects patched, verified every reference
   resolves with no empty arrays. The previous string values sit in the gitignored
   `scripts/.services-backup.json` if anything needs reverting.
+- **Clients are documents** (`client`) driving a logo strip between the hero and About
+  (`src/components/Clients.astro`). Name, optional logo, an "invert" switch for dark logos,
+  optional website, drag order. **A client with no logo renders as its name**, so the strip is
+  never half-empty while Artem gathers assets — all 15 seeded clients show as text today.
+  Deliberately *not* wired to `project.client`: the strip is a curated roster, the project field
+  is a per-project fact, and coupling them would make every tagged client appear on the home page.
+  Seeded from Artem's own About copy with `bun run seed:clients` (additive, safe to re-run).
+  Note: the research argued against a logo wall (peers name clients in prose; a trademark wall
+  implies a direct client relationship the bio doesn't claim) — Alex chose logos anyway.
+- **`project.client` and `project.year` are empty on all 33 projects.** The old `portfolioData`
+  never had those fields, so nothing populated them and the card meta line silently falls back to
+  the category. If `client` is ever wanted as a reference rather than free text, now is the free
+  moment — there is no data to migrate.
 - **Studio drag order is the only thing that orders the grid.** The `featured` flag no longer
   hoists projects to the front — Alex chose strict Studio order everywhere (home grid, category
   filters, `/work`), so what Artem drags is what ships. `featured` now only picks which project's
@@ -177,4 +190,5 @@ bun run studio                   # standalone Studio, localhost:3333
 bun run studio:deploy            # free *.sanity.studio URL for Artem
 bun run migrate -- --dry-run     # portfolioData -> Sanity; safe, never overwrites
 bun run migrate:services         # one-off: services strings -> references (idempotent, already run)
+bun run seed:clients             # seed the Clients list from the About copy (additive, already run)
 ```

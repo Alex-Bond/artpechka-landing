@@ -53,6 +53,21 @@ export interface Category {
   slug: string
 }
 
+export interface LogoAsset {
+  _id: string
+  url: string
+  mimeType: string
+  metadata: { dimensions: { width: number; height: number; aspectRatio: number } }
+}
+
+export interface Client {
+  _id: string
+  name: string
+  website: string | null
+  invertLogo: boolean
+  logo: { asset: LogoAsset | null } | null
+}
+
 const IMAGE_FRAGMENT = `{
   alt,
   asset->{ _id, url, metadata { dimensions, lqip } }
@@ -89,6 +104,20 @@ export async function getCategories(): Promise<Category[]> {
   return sanityClient.fetch(
     `*[_type == "category" && count(*[_type == "project" && references(^._id)]) > 0]
       | order(orderRank) { _id, title, "slug": slug.current }`,
+  )
+}
+
+/**
+ * The client strip on the home page, in Studio order. A client with no logo
+ * still comes back — the component renders the name as text instead, so the
+ * strip never shows a gap while Artem is still collecting assets.
+ */
+export async function getClients(): Promise<Client[]> {
+  return sanityClient.fetch(
+    `*[_type == "client"] | order(orderRank) {
+      _id, name, website, "invertLogo": coalesce(invertLogo, false),
+      logo { asset->{ _id, url, mimeType, metadata { dimensions } } }
+    }`,
   )
 }
 

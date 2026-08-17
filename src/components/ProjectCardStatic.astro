@@ -1,0 +1,82 @@
+---
+import type { Project } from '../lib/content'
+import { coverImage } from '../lib/content'
+import { responsiveImage } from '../lib/image'
+
+interface Props {
+  project: Project
+  loading?: 'eager' | 'lazy'
+}
+
+const { project, loading = 'lazy' } = Astro.props
+
+const cover = responsiveImage(coverImage(project), {
+  sizes: '(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 92vw',
+  widths: [480, 768, 1024],
+  alt: project.title,
+})
+const meta = [project.client, project.year].filter(Boolean).join(' · ')
+---
+
+<article
+  class="group relative flex h-full flex-col overflow-hidden rounded-lg bg-cinema-muted hover-scale"
+>
+  <div class="relative aspect-video overflow-hidden bg-cinema-background">
+    {
+      cover && (
+        <img
+          src={cover.src}
+          srcset={cover.srcset}
+          sizes={cover.sizes}
+          width={cover.width}
+          height={cover.height}
+          alt={cover.alt}
+          loading={loading}
+          decoding="async"
+          class="h-full w-full object-contain transition-transform duration-700 md:group-hover:scale-105"
+          style={`background-image:url(${cover.lqip});background-size:cover`}
+        />
+      )
+    }
+    <div
+      class="pointer-events-none absolute inset-0 bg-gradient-to-t from-cinema-background/90 to-transparent opacity-70"
+      aria-hidden="true"
+    >
+    </div>
+    {
+      (meta || project.category) && (
+        <span class="absolute left-3 top-3 rounded-full bg-white/85 px-2 py-0.5 text-xs font-medium text-black">
+          {meta || project.category}
+        </span>
+      )
+    }
+    {
+      project.videos && project.videos.length > 0 && (
+        <span class="absolute bottom-2 right-2 flex items-center gap-1 rounded-full bg-cinema-background/90 px-2 py-0.5 text-xs">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <polygon points="5 3 19 12 5 21 5 3" />
+          </svg>
+          {project.videos.length > 1 ? `${project.videos.length} videos` : 'Video'}
+        </span>
+      )
+    }
+  </div>
+
+  <div class="flex flex-grow flex-col p-6">
+    <h3 class="mb-2 text-xl font-bold">
+      <a href={`/work/${project.slug}`} class="after:absolute after:inset-0">{project.title}</a>
+    </h3>
+    <p class="mb-4 flex-grow text-sm text-cinema-text/70">{project.description}</p>
+    {
+      project.services?.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {project.services.map((service) => (
+            <span class="rounded-full bg-cinema-background px-2 py-1 text-xs text-cinema-text/70">
+              {service}
+            </span>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</article>

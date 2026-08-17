@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import Hero from '../components/Hero.astro'
+import About from '../components/About.astro'
+import Contact from '../components/Contact.astro'
+import PortfolioGrid from '../components/islands/PortfolioGrid'
+import type { CardProject } from '../components/islands/ProjectCard'
+import { getProjects, getCategories, coverImage } from '../lib/content'
+import { responsiveImage, shareImageUrl } from '../lib/image'
+
+const [projects, categories] = await Promise.all([getProjects(), getCategories()])
+
+const CARD_SIZES = '(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 92vw'
+const CARD_WIDTHS = [480, 768, 1024]
+
+/**
+ * Only the first few stills go into the card — they exist to feed the hover
+ * rotation, and the full set lives on the project page. Five keeps the island's
+ * props payload sane across 33 projects.
+ */
+const cards: CardProject[] = projects.map((project) => ({
+  title: project.title,
+  slug: project.slug,
+  description: project.description,
+  category: project.category,
+  client: project.client,
+  year: project.year,
+  services: project.services ?? [],
+  videoCount: project.videos?.length ?? 0,
+  images: (project.images ?? [])
+    .slice(0, 5)
+    .map((image) =>
+      responsiveImage(image, {
+        sizes: CARD_SIZES,
+        widths: CARD_WIDTHS,
+        alt: project.title,
+      }),
+    )
+    .filter((image): image is NonNullable<typeof image> => image !== null),
+}))
+
+const title = 'Artem Pichak — Video Editor, Colorist & Filmmaker in Kyiv'
+const description =
+  'Video editor, colorist and filmmaker with 13 years of experience. Commercials, documentaries, music videos and reviews for Panasonic, Sony, Samsung, Xiaomi, Microsoft/Mojang and ICTV.'
+
+const ogSource = projects.find((project) => project.featured) ?? projects[0]
+const ogImage = shareImageUrl(coverImage(ogSource)?.asset ?? null)
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Artem Pichak',
+  jobTitle: 'Video Editor, Colorist & Filmmaker',
+  url: Astro.site?.href,
+  email: 'mailto:hi@artpechka.com',
+  telephone: '+380931422390',
+  address: { '@type': 'PostalAddress', addressLocality: 'Kyiv', addressCountry: 'UA' },
+  sameAs: ['https://t.me/artpechka'],
+  knowsAbout: [
+    'Video editing',
+    'Color grading',
+    'Filmmaking',
+    'Motion design',
+    'Post-production',
+  ],
+}
+---
+
+<Layout title={title} description={description} image={ogImage} imageAlt={ogSource?.title}>
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify(personJsonLd)}
+    is:inline
+  />
+
+  <Header />
+  <main id="main">
+    <Hero />
+    <About />
+
+    <section id="portfolio" class="section-padding bg-cinema-background">
+      <div class="container mx-auto">
+        <div class="mb-12 text-center">
+          <h2 class="mb-2 text-sm font-medium text-cinema-accent">MY WORK</h2>
+          <h3 class="mb-6 text-3xl font-bold md:text-4xl">Featured Projects</h3>
+          <p class="mx-auto max-w-2xl text-cinema-text/70">
+            Browse through my collection of work across various genres and styles, showcasing my
+            versatility and expertise in video editing and cinematography.
+          </p>
+        </div>
+
+        <PortfolioGrid
+          projects={cards}
+          categories={categories.map((category) => category.title)}
+          client:visible
+        />
+      </div>
+    </section>
+
+    <Contact />
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<Layout title="Page not found — Artem Pichak" description="That page doesn't exist." noindex>
+  <Header home={false} />
+  <main id="main" class="flex min-h-screen flex-col items-center justify-center px-4 text-center">
+    <p class="mb-4 font-heading text-6xl font-bold text-gradient">404</p>
+    <h1 class="mb-4 text-2xl font-bold">This page doesn't exist</h1>
+    <p class="mb-8 text-cinema-text/70">
+      The link may be old, or the project may have been renamed.
+    </p>
+    <div class="flex flex-col gap-3 sm:flex-row">
+      <a href="/" class="btn-primary">Back to home</a>
+      <a href="/#portfolio" class="btn-secondary">Browse the work</a>
+    </div>
+  </main>
+  <Footer home={false} />
+</Layout>

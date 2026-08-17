@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * The shadcn token layer. Only the dark values are ever used — the site has a
+ * single dark theme — but the `ui/` components read these names, so they stay.
+ */
+@layer base {
+  :root {
+    --background: 240 10% 7%;
+    --foreground: 138 39% 96%;
+
+    --card: 240 8% 13%;
+    --card-foreground: 138 39% 96%;
+
+    --popover: 240 8% 13%;
+    --popover-foreground: 138 39% 96%;
+
+    --primary: 354 68% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 8% 13%;
+    --secondary-foreground: 138 39% 96%;
+
+    --muted: 240 8% 13%;
+    --muted-foreground: 138 10% 70%;
+
+    --accent: 240 8% 18%;
+    --accent-foreground: 138 39% 96%;
+
+    --destructive: 0 62.8% 40%;
+    --destructive-foreground: 138 39% 96%;
+
+    --border: 240 8% 20%;
+    --input: 240 8% 20%;
+    --ring: 354 68% 50%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-cinema-background text-cinema-text font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+
+  /* Anchor navigation lands below the fixed header instead of under it. */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-cinema-accent ring-offset-2 ring-offset-cinema-background;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .container {
+    @apply px-4 md:px-6;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-cinema-accent to-cinema-highlight bg-clip-text text-transparent;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 md:hover:scale-[1.03];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-cinema-accent px-6 py-3
+      font-medium text-white transition-colors hover:bg-cinema-accentDark;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-cinema-text/20
+      px-6 py-3 font-medium text-cinema-text transition-colors hover:border-cinema-accent
+      hover:text-cinema-accent;
+  }
+}

@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Header from '../../components/Header.astro'
+import Footer from '../../components/Footer.astro'
+import ProjectCardStatic from '../../components/ProjectCardStatic.astro'
+import { getProjects, getCategories, coverImage } from '../../lib/content'
+import { shareImageUrl } from '../../lib/image'
+
+/**
+ * The complete archive, rendered without JavaScript. The home grid only ships
+ * six cards in its markup, so this is the page that makes all 33 project pages
+ * reachable by a crawler — and by anyone who wants the whole list at once.
+ */
+const [projects, categories] = await Promise.all([getProjects(), getCategories()])
+
+const byCategory = categories
+  .map((category) => ({
+    category,
+    projects: projects.filter((project) => project.category === category.title),
+  }))
+  .filter((group) => group.projects.length > 0)
+
+const uncategorised = projects.filter(
+  (project) => !categories.some((category) => category.title === project.category),
+)
+
+const ogSource = projects.find((project) => project.featured) ?? projects[0]
+const ogImage = shareImageUrl(coverImage(ogSource)?.asset ?? null)
+---
+
+<Layout
+  title="All work — Artem Pichak"
+  description={`Every project: ${projects.length} commercials, documentaries, music videos and reviews edited, graded and shot by Artem Pichak.`}
+  image={ogImage}
+>
+  <Header home={false} />
+
+  <main id="main" class="pt-28 md:pt-32">
+    <div class="container mx-auto">
+      <header class="mb-10 max-w-3xl">
+        <p class="mb-3 text-sm font-medium uppercase tracking-wide text-cinema-accent">ARCHIVE</p>
+        <h1 class="mb-4 text-3xl font-bold md:text-5xl">All work</h1>
+        <p class="text-lg text-cinema-text/80">
+          {projects.length} projects across {byCategory.length} categories — commercials,
+          documentaries, music videos, reviews and short films.
+        </p>
+      </header>
+
+      <nav class="mb-14 flex flex-wrap gap-2" aria-label="Categories">
+        {
+          byCategory.map(({ category, projects: grouped }) => (
+            <a
+              href={`#${category.slug}`}
+              class="rounded-full bg-cinema-muted px-4 py-2 text-sm text-cinema-text/70 transition-colors hover:bg-cinema-muted/70 hover:text-cinema-text"
+            >
+              {category.title} <span class="text-cinema-text/40">{grouped.length}</span>
+            </a>
+          ))
+        }
+      </nav>
+
+      {
+        byCategory.map(({ category, projects: grouped }, groupIndex) => (
+          <section id={category.slug} class="mb-16 scroll-mt-28">
+            <h2 class="mb-6 text-2xl font-bold">{category.title}</h2>
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {grouped.map((project, index) => (
+                <ProjectCardStatic
+                  project={project}
+                  loading={groupIndex === 0 && index < 3 ? 'eager' : 'lazy'}
+                />
+              ))}
+            </div>
+          </section>
+        ))
+      }
+
+      {
+        uncategorised.length > 0 && (
+          <section class="mb-16">
+            <h2 class="mb-6 text-2xl font-bold">Other work</h2>
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {uncategorised.map((project) => (
+                <ProjectCardStatic project={project} />
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      <section class="mb-16 rounded-lg bg-cinema-muted p-8 text-center">
+        <h2 class="mb-2 text-2xl font-bold">Have something to make?</h2>
+        <p class="mx-auto mb-6 max-w-xl text-cinema-text/70">
+          Tell me what you're working on and I'll come back with how I'd approach it.
+        </p>
+        <a href="/#contact" class="btn-primary">Get in Touch</a>
+      </section>
+    </div>
+  </main>
+
+  <Footer home={false} />
+</Layout>

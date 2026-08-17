@@ -4,10 +4,7 @@ import type { Config } from "tailwindcss";
 export default {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./src/**/*.{astro,ts,tsx,mdx}",
 	],
 	prefix: "",
 	theme: {
@@ -65,7 +62,10 @@ export default {
 				},
 				cinema: {
 					background: '#0F0F13',
-					accent: '#E63946',
+					// #E63946 gave white text 4.17:1, under the 4.5:1 AA floor, on
+					// every primary CTA. This is 4.97:1.
+					accent: '#D62839',
+					accentDark: '#B21F2E',
 					text: '#F1FAEE',
 					muted: '#1D1D25',
 					highlight: '#4CC9F0'
@@ -136,5 +136,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;

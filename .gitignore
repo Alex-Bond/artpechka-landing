@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Astro generated types and build cache
+.astro/
+
+# Claude Code scratch space (launch.json is tracked, worktrees are not)
+.claude/worktrees/
+.claude/settings.local.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -24,3 +31,6 @@ dist-ssr
 *.sw?
 .vercel
 .env*.local
+
+# migration asset cache
+scripts/.sanity-asset-manifest.json

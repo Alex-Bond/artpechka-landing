@@ -99,7 +99,7 @@ export const project = defineType({
         }),
       ],
       description:
-        'Director, DoP, Production, Agency, Sound… Your own roles come from Services. These appear on the project card and are what let the page be indexed.',
+        'Director, DoP, Production, Agency, Sound… Your own roles come from Services. These appear on the project card, where a third-party name carries more weight than anything you can say about yourself.',
     }),
 
     defineField({
@@ -168,21 +168,13 @@ export const project = defineType({
         'The first featured project supplies the share image used when the home page is posted as a link. Grid order comes from dragging projects in this list, not from this switch.',
     }),
     defineField({
-      name: 'publishedToSearch',
-      title: 'Let search engines index this page',
+      name: 'hideFromSearch',
+      title: 'Hide this page from search engines',
       type: 'boolean',
       group: 'meta',
       initialValue: false,
       description:
-        'Turn on once the project has credits filled in. Credits are what make the page worth finding — who directed it, who produced it, which agency. The full story is optional; most projects do not need one.',
-      validation: (r) =>
-        r.custom((value, context) => {
-          const credits = (context.document as { credits?: unknown[] } | undefined)?.credits
-          if (value && !credits?.length) {
-            return 'Add credits before letting search engines index this page'
-          }
-          return true
-        }),
+        'Project pages are indexed by default. Switch this on to keep one out of Google — an unreleased piece, a client who would rather not be listed, or a page you are still working on.',
     }),
     defineField({
       name: 'seo',

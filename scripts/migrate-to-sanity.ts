@@ -203,7 +203,7 @@ async function main() {
       images,
       ...(videos.length ? { videos } : {}),
       featured: FEATURED.has(item.title),
-      publishedToSearch: false, // lift per project once body + credits are filled in
+      hideFromSearch: false, // indexed by default; switch on per project to hide one
       orderRank: orderRank(i),
     })
   }

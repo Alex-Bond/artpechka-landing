@@ -35,15 +35,13 @@ Original review of the old site:
 2. **Images come straight from Sanity's CDN** — no build-time download, no self-hosted sharp
    pipeline for stills. (`sharp` *is* used, but only for the one local portrait in `src/assets`.)
 3. **Per-project pages** at `/work/[slug]`, each emitting `VideoObject` JSON-LD.
-4. **Thin-content guard:** `publishedToSearch` (default `false`) keeps a project page `noindex`.
-   **The bar is credits, not prose** — the research found this market's credibility unit is the
-   credit block (Nomad, Trim and Company 3 publish a player plus Director / Editor / Agency and
-   nothing else), so waiting on 33 written case studies was holding every page out of the index
-   for a standard nobody in the field meets. `body` is optional. The Studio blocks turning the
-   switch on with no credits, and credits print on the grid cards as well as the project page,
-   where third-party names read as verification rather than self-description.
-   All 33 are still `false` and 0 have credits, so *every project page is `noindex` today*:
-   Artem filling in Director / Production / Agency is what unblocks it.
+4. **Project pages are indexed by default.** `hideFromSearch` (default `false`) is an opt-out for
+   the exceptions — an unreleased piece, a client who would rather not be listed, a page still
+   being written. This replaced an opt-in `publishedToSearch` gate that kept all 33 pages out of
+   the index; the old field has been unset across the dataset. Note the tradeoff Alex accepted:
+   the pages currently carry a title, a two-sentence description, a video and stills, with no
+   credits on any of them, which is thinner than the original guard was designed to allow.
+   Credits still print on the cards and the project page, and are still the thing worth filling in.
 5. **Page copy (hero, about, contact details) stays in code.** No `siteSettings` singleton yet.
    The hero now leads with the role — "Video editor, colorist and filmmaker" — then 13 years,
    the YouTube/creator work (Amo Pictures, Ali Abdaal, KADDR, Hotline) and remote availability.

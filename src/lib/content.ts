@@ -35,7 +35,7 @@ export interface Project {
   description: string
   services: string[]
   featured: boolean
-  publishedToSearch: boolean
+  hideFromSearch: boolean
   body: PortableTextBlock[] | null
   credits: Credit[] | null
   images: ProjectImage[]
@@ -75,7 +75,7 @@ const IMAGE_FRAGMENT = `{
 
 const PROJECT_FRAGMENT = `{
   _id, title, "slug": slug.current, client, year, description, featured,
-  publishedToSearch, body, credits,
+  "hideFromSearch": coalesce(hideFromSearch, false), body, credits,
   "category": category->title,
   // Services are documents now; dereference to titles so the rest of the site
   // keeps seeing a plain string array. coalesce guards a deleted service.

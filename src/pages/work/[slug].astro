@@ -64,10 +64,11 @@ const description = project.seo?.metaDescription || metaDescription(project.desc
 const ogImage = shareImageUrl(project.seo?.shareImage?.asset ?? cover?.asset ?? null)
 
 /**
- * Thin-content guard: the page is live and shareable the moment it exists, but
- * stays out of the index until it has a real story and credits behind it.
+ * Indexed by default. The switch in the Studio is for the exceptions: an
+ * unreleased piece, a client who would rather not be listed, a page still
+ * being written.
  */
-const noindex = !project.publishedToSearch
+const noindex = project.hideFromSearch
 
 const videoJsonLd = videos
   .filter((video) => video.embedUrl)

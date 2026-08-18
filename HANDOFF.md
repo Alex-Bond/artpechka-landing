@@ -39,6 +39,10 @@ Original review of the old site:
    until it has real `body` and `credits`. All 33 are currently `false`, so *every project page
    is `noindex` today* — that is by design, lift it per project in the Studio.
 5. **Page copy (hero, about, contact details) stays in code.** No `siteSettings` singleton yet.
+   The hero now leads with the role — "Video editor, colorist and filmmaker" — then 13 years,
+   the YouTube/creator work (Amo Pictures, Ali Abdaal, KADDR, Hotline) and remote availability.
+   **Kyiv is deliberately not in the hero**: Alex wants location in the contact section only, so
+   it stays visible there and, invisibly, in the page title and `Person` JSON-LD for local search.
 
 ---
 

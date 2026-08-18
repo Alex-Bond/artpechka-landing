@@ -46,7 +46,7 @@ export function ProjectCard({ project }: { project: CardProject }) {
 
   return (
     <article
-      className="group relative flex h-full flex-col overflow-hidden rounded-lg bg-cinema-muted hover-scale"
+      className="group relative flex h-full flex-col overflow-hidden rounded-lg bg-cinema-muted"
       onMouseEnter={() => setRotating(true)}
       onMouseLeave={() => setRotating(false)}
     >

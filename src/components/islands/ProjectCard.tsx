@@ -15,6 +15,26 @@ export interface CardProject {
 
 const ROTATE_MS = 2000
 
+/**
+ * Warming the browser cache so a click on the arrows paints immediately
+ * instead of starting a fetch. Setting srcset and sizes before src makes the
+ * browser pick the same candidate the <img> will ask for, so the response is
+ * already there. Module-level, so the 33 cards share one record of what has
+ * been fetched.
+ */
+const warmed = new Set<string>()
+
+function warm(image: ResponsiveImage | undefined) {
+  if (!image || typeof window === 'undefined' || warmed.has(image.src)) return
+  warmed.add(image.src)
+  const loader = new Image()
+  loader.sizes = image.sizes
+  loader.srcset = image.srcset
+  // Never at the expense of what is currently rendering.
+  loader.fetchPriority = 'low'
+  loader.src = image.src
+}
+
 export function ProjectCard({ project }: { project: CardProject }) {
   const { images } = project
   const [index, setIndex] = useState(0)
@@ -22,6 +42,16 @@ export function ProjectCard({ project }: { project: CardProject }) {
   const timer = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const hasMultiple = images.length > 1
+
+  // Neighbours first, so the very next arrow press is instant.
+  useEffect(() => {
+    if (!hasMultiple) return
+    warm(images[(index + 1) % images.length])
+    warm(images[(index - 1 + images.length) % images.length])
+  }, [index, hasMultiple, images])
+
+  // Hover or first touch means this card is in play: fetch the rest quietly.
+  const warmAll = () => images.forEach(warm)
 
   useEffect(() => {
     if (!hasMultiple || !rotating) return
@@ -47,8 +77,12 @@ export function ProjectCard({ project }: { project: CardProject }) {
   return (
     <article
       className="group relative flex h-full flex-col overflow-hidden rounded-lg bg-cinema-muted"
-      onMouseEnter={() => setRotating(true)}
+      onMouseEnter={() => {
+        warmAll()
+        setRotating(true)
+      }}
       onMouseLeave={() => setRotating(false)}
+      onTouchStart={warmAll}
     >
       <div className="relative aspect-video overflow-hidden bg-cinema-background">
         {/*

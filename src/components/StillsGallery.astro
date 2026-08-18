@@ -130,6 +130,21 @@ const { images, projectTitle, flushTop = false } = Astro.props
     const shell = dialog.firstElementChild
     let current = 0
 
+    // Full-size stills are big; without this the next one starts downloading
+    // only once it is asked for, and the viewer waits on a blank frame.
+    const warmed = new Set<string>()
+    const warm = (index: number) => {
+      const trigger = triggers[(index + triggers.length) % triggers.length]
+      const src = trigger?.dataset.fullSrc
+      if (!src || warmed.has(src)) return
+      warmed.add(src)
+      const loader = new Image()
+      loader.sizes = '95vw'
+      loader.srcset = trigger.dataset.fullSrcset ?? ''
+      loader.fetchPriority = 'low'
+      loader.src = src
+    }
+
     const show = (index: number) => {
       current = (index + triggers.length) % triggers.length
       const trigger = triggers[current]
@@ -137,6 +152,8 @@ const { images, projectTitle, flushTop = false } = Astro.props
       frame.srcset = trigger.dataset.fullSrcset ?? ''
       frame.alt = trigger.dataset.alt || ''
       if (counter) counter.textContent = `${current + 1} / ${triggers.length}`
+      warm(current + 1)
+      warm(current - 1)
     }
 
     const open = (index: number) => {

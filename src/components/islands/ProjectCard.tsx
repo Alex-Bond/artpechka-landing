@@ -9,6 +9,8 @@ export interface CardProject {
   client: string | null
   year: number | null
   services: string[]
+  /** A couple of third-party credits: "Director X · Agency Y". */
+  credits: { role: string; name: string }[]
   videoCount: number
   images: ResponsiveImage[]
 }
@@ -171,7 +173,14 @@ export function ProjectCard({ project }: { project: CardProject }) {
             {project.title}
           </a>
         </h3>
-        <p className="mb-4 flex-grow text-sm text-cinema-text/70">{project.description}</p>
+        <p className="mb-3 flex-grow text-sm text-cinema-text/70">{project.description}</p>
+
+        {project.credits.length > 0 && (
+          /* Third-party names read as verification in a way client/year can't. */
+          <p className="mb-4 text-xs text-cinema-text/45">
+            {project.credits.map((credit) => `${credit.role} ${credit.name}`).join(' · ')}
+          </p>
+        )}
 
         <div>
           <h4 className="mb-2 text-xs uppercase text-cinema-text/50">Services</h4>

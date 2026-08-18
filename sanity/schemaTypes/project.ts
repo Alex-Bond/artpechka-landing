@@ -82,7 +82,7 @@ export const project = defineType({
         }),
       ],
       description:
-        'A few paragraphs: the brief, the problem, what you did. This is what makes the project page worth visiting — the card only shows the short description.',
+        'Optional, and most projects will not have one. Worth writing only where there is a real story: the brief, the problem, what you did. Credits carry the page on their own.',
     }),
     defineField({
       name: 'credits',
@@ -98,7 +98,8 @@ export const project = defineType({
           preview: { select: { title: 'name', subtitle: 'role' } },
         }),
       ],
-      description: 'Director, DoP, Production, Sound… Your own roles come from Services.',
+      description:
+        'Director, DoP, Production, Agency, Sound… Your own roles come from Services. These appear on the project card and are what let the page be indexed.',
     }),
 
     defineField({
@@ -173,7 +174,15 @@ export const project = defineType({
       group: 'meta',
       initialValue: false,
       description:
-        'Leave off until the project page has a full story and credits. A page with only a title and two sentences hurts the whole site’s ranking.',
+        'Turn on once the project has credits filled in. Credits are what make the page worth finding — who directed it, who produced it, which agency. The full story is optional; most projects do not need one.',
+      validation: (r) =>
+        r.custom((value, context) => {
+          const credits = (context.document as { credits?: unknown[] } | undefined)?.credits
+          if (value && !credits?.length) {
+            return 'Add credits before letting search engines index this page'
+          }
+          return true
+        }),
     }),
     defineField({
       name: 'seo',

@@ -28,6 +28,7 @@ const cards: CardProject[] = projects.map((project) => ({
   client: project.client,
   year: project.year,
   services: project.services ?? [],
+  credits: (project.credits ?? []).slice(0, 2),
   videoCount: project.videos?.length ?? 0,
   images: (project.images ?? [])
     .slice(0, 5)

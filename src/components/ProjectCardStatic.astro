@@ -16,6 +16,7 @@ const cover = responsiveImage(coverImage(project), {
   alt: project.title,
 })
 const meta = [project.client, project.year].filter(Boolean).join(' · ')
+const credits = (project.credits ?? []).slice(0, 2)
 ---
 
 <article
@@ -74,7 +75,14 @@ const meta = [project.client, project.year].filter(Boolean).join(' · ')
     <h3 class="mb-2 text-xl font-bold">
       <a href={`/work/${project.slug}`} class="after:absolute after:inset-0">{project.title}</a>
     </h3>
-    <p class="mb-4 flex-grow text-sm text-cinema-text/70">{project.description}</p>
+    <p class="mb-3 flex-grow text-sm text-cinema-text/70">{project.description}</p>
+    {
+      credits.length > 0 && (
+        <p class="mb-4 text-xs text-cinema-text/45">
+          {credits.map((credit) => `${credit.role} ${credit.name}`).join(' · ')}
+        </p>
+      )
+    }
     {
       project.services?.length > 0 && (
         <div class="flex flex-wrap gap-2">

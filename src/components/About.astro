@@ -45,9 +45,13 @@ const crafts = [
         <div
           class="aspect-[3/4] w-72 overflow-hidden rounded-md bg-gradient-to-br from-cinema-accent/20 to-cinema-highlight/20 sm:w-80 md:w-full"
         >
+          <!-- width caps the fallback src as well as the srcset: without it Astro
+               also emits a full 4000px derivative and points src at it, which is
+               what non-srcset clients and link scrapers download. -->
           <Image
             src={portrait}
             alt="Artem Pichak at the edit suite"
+            width={1024}
             widths={[480, 768, 1024]}
             sizes="(min-width: 768px) 40vw, 92vw"
             class="h-full w-full object-cover"

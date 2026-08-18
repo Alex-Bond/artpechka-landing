@@ -58,7 +58,8 @@ const personJsonLd = {
   email: 'mailto:hi@artpechka.com',
   telephone: '+380931422390',
   address: { '@type': 'PostalAddress', addressLocality: 'Kyiv', addressCountry: 'UA' },
-  sameAs: ['https://t.me/artpechka'],
+  // sameAs is how a search engine ties this page to the same person elsewhere.
+  sameAs: ['https://www.imdb.com/name/nm13116969/', 'https://t.me/artpechka'],
   knowsAbout: [
     'Video editing',
     'Color grading',

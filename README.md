@@ -1,88 +1,91 @@
-# Welcome to your Lovable project
+# artpechka.com
 
-## Project info
+Portfolio of Artem Pichak — video editor, colorist and filmmaker. Static [Astro](https://astro.build)
+site with content in [Sanity](https://www.sanity.io), deployed on Vercel.
 
-**URL**: https://lovable.dev/projects/9c409ca3-218f-44d1-93a4-33939dac818d
+Artem edits the site himself in the Studio; he does not write code. That constraint decides most
+of what follows.
 
-## How can I edit this code?
+## Running it
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/9c409ca3-218f-44d1-93a4-33939dac818d) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+bun install
+bun run dev          # localhost:4321
+bun run build        # static build to dist/
+bun run preview      # serve the built output
+bun run check        # astro check
 ```
 
-**Edit a file directly in GitHub**
+Use `bun`, not npm or node.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Editing `astro.config.mjs` or `package.json` makes the dev server restart itself, which
+occasionally fails to rebind the port. Restart it manually if the site stops responding.
 
-**Use GitHub Codespaces**
+## Content
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Everything except page copy lives in Sanity (project `ntn8xrgb`, dataset `production`, public).
+The Studio is embedded at `/studio`.
 
-## What technologies are used for this project?
+| Type | Notes |
+| --- | --- |
+| `project` | Title, slug, client, year, category, description, services, body, credits, stills, videos |
+| `category` | Drives the filter buttons on the home grid |
+| `service` | The craft tags on a card |
+| `client` | The logo strip in the hero |
 
-This project is built with:
+All four are drag-to-reorder, and that order is what the site renders — there is no separate
+sort field or featured-first behaviour.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Things worth knowing before changing the schema:
 
-## How can I deploy this project?
+- **The first still is the cover.** There is no thumbnail field; ordering the array chooses it.
+  When a project has a video, the cover doubles as the player poster and drops out of the stills
+  strip so it is not shown twice.
+- **Project pages are indexed by default.** `hideFromSearch` is an opt-out for the exceptions.
+  Hidden projects are excluded from the sitemap as well as serving `noindex`.
+- **`featured` only picks the site-level share image.** It does not affect ordering.
+- **The client strip is not wired to `project.client`.** The strip is a curated roster; the
+  project field is a per-project fact. Coupling them would put every tagged client on the home page.
+- **Client logos want a one-colour white SVG.** Without a logo a client is skipped entirely, since
+  a name in text among four logos reads as a broken image.
 
-Simply open [Lovable](https://lovable.dev/projects/9c409ca3-218f-44d1-93a4-33939dac818d) and click on Share -> Publish.
+Page copy (hero, about, contact details) is in the components, not the CMS. Artem changes it about
+once a year, and a settings singleton is how a small job becomes a large one.
 
-## Can I connect a custom domain to my Lovable project?
+## Adding client logos
 
-Yes, you can!
+```bash
+bun run logos:upload -- --dir=<folder>            # add
+bun run logos:upload -- --dir=<folder> --replace  # overwrite existing
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Filenames map to client documents inside the script. Needs `SANITY_WRITE_TOKEN`.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Environment
 
-## Setting up Contact Form Email Functionality
+`.env.local`, gitignored. Astro only exposes `PUBLIC_*` to the browser.
 
-The contact form uses Resend for email delivery through Vercel Edge Functions and includes Google reCAPTCHA protection. To set this up:
+| Variable | Used by |
+| --- | --- |
+| `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET` | build and Studio |
+| `SANITY_WRITE_TOKEN` | the logo upload script only |
+| `PUBLIC_RECAPTCHA_SITE_KEY` | contact form; without it the form degrades to a mailto |
+| `PUBLIC_GOOGLE_ANALYTICS_4` | analytics; absent means no tracking |
+| `RESEND_API_KEY`, `RECAPTCHA_SECRET_KEY`, `CONTACT_NOTIFICATION_EMAIL` | `api/send-email.js` |
 
-1. Create a [Resend account](https://resend.com/) and obtain an API key
-2. Create a [Google reCAPTCHA](https://www.google.com/recaptcha/admin) invisible key pair (v2 Invisible)
-3. Add the following environment variables to your Vercel project:
-   - `RESEND_API_KEY`: Your Resend API key
-   - `CONTACT_NOTIFICATION_EMAIL_FROM`: The email address to send from (must be verified in Resend)
-   - `CONTACT_NOTIFICATION_EMAIL_TO`: The email address where you want to receive contact form submissions
-   - `RECAPTCHA_SECRET_KEY`: Your reCAPTCHA secret key
-   - `VITE_RECAPTCHA_SITE_KEY`: Your reCAPTCHA site key (will be exposed to the browser)
+## Before this goes live
 
-After adding these environment variables, your contact form will be fully functional with spam protection.
+- [ ] Set `PUBLIC_RECAPTCHA_SITE_KEY` and `PUBLIC_GOOGLE_ANALYTICS_4` in Vercel — the old `VITE_*`
+      names no longer reach the browser
+- [ ] Wire a Vercel deploy hook into Sanity's webhooks so publishing rebuilds the site
+- [ ] Fix `api/send-email.js`: it reads `CONTACT_NOTIFICATION_EMAIL_FROM` / `_TO`, which are not
+      set, so mail currently goes to a fallback address instead of Artem
+- [ ] Send one real contact-form submission end to end — never yet exercised, because it emails
+- [ ] Submit the sitemap in Search Console
+- [ ] Check the Vercel plan: a portfolio soliciting paid work reads as commercial use
+
+## Rolling back
+
+The previous Vite/React SPA, its hardcoded `portfolioData.ts` and the 22 MB of local stills are on
+`main`. This branch deleted them because nothing here reads them; recover with
+`git checkout main -- public/images src/data`.

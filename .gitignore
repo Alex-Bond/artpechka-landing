@@ -31,9 +31,3 @@ dist-ssr
 *.sw?
 .vercel
 .env*.local
-
-# migration asset cache
-scripts/.sanity-asset-manifest.json
-
-# one-off services migration undo file
-scripts/.services-backup.json

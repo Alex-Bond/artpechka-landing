@@ -57,7 +57,7 @@ export default function ContactForm({ email }: { email: string }) {
       track('contact_form_submit')
       setStatus({
         kind: 'ok',
-        message: 'Thank you! Your message has been sent — I will get back to you shortly.',
+        message: 'Thank you! Your message has been sent - I will get back to you shortly.',
       })
       resetForm()
     } catch (error) {

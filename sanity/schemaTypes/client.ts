@@ -24,7 +24,7 @@ export const client = defineType({
       name: 'logo',
       type: 'image',
       description:
-        'SVG or transparent PNG, ideally a single-colour white version — the strip sits on a dark background. Without a logo the name is shown as text instead, so a client is never missing.',
+        'SVG or transparent PNG, ideally a single-color white version — the strip sits on a dark background. Without a logo the name is shown as text instead, so a client is never missing.',
     }),
     defineField({
       name: 'invertLogo',

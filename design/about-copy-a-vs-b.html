@@ -1,0 +1,242 @@
+<title>A versus B</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg: #0F0F13; --muted: #1D1D25; --text: #F1FAEE;
+    --accent: #D62839; --highlight: #4CC9F0; --rule: #2A2A34; --dim: #9AA0AA; --flagc: #E0A15A;
+    --sans: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --data: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; }
+  .page { max-width: 84rem; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+  .masthead { border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  .kicker { font-family: var(--data); font-size: .6875rem; letter-spacing: .16em; text-transform: uppercase; color: #6E7480; margin: 0 0 .75rem; }
+  .masthead h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 .5rem; letter-spacing: -.01em; }
+  .masthead p { color: var(--dim); max-width: 68ch; margin: 0; font-size: .9375rem; }
+
+  .pair { display: grid; gap: 1.25rem; }
+  @media (min-width: 62rem) { .pair { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+
+  .col { border: 1px solid var(--rule); border-radius: .5rem; overflow: hidden; display: flex; flex-direction: column; }
+  .col > header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--rule); background: #14141A; }
+  .col > header b { display: block; font-size: 1rem; }
+  .col > header span { font-family: var(--data); font-size: .625rem; letter-spacing: .1em; text-transform: uppercase; color: #6E7480; }
+  .mock { padding: 2rem 1.5rem 2.25rem; flex: 1; }
+  @media (min-width: 48rem) { .mock { padding: 2.5rem 2rem 2.75rem; } }
+
+  .eyebrow { font-size: .75rem; font-weight: 500; letter-spacing: .05em; color: var(--accent); margin: 0 0 1.25rem; }
+  .belief { font-size: 1.5rem; line-height: 1.28; font-weight: 700; letter-spacing: -.02em; margin: 0 0 1.25rem; text-wrap: balance; }
+  .belief em { font-style: normal; background: linear-gradient(to right, var(--accent), var(--highlight)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .under { color: color-mix(in srgb, var(--text) 78%, transparent); margin: 0 0 .9rem; font-size: .9375rem; }
+
+  .crafts { display: grid; gap: .9rem; margin-top: 2rem; }
+  @media (min-width: 34rem) { .crafts { grid-template-columns: 1fr 1fr; } }
+  .craft { border-top: 1px solid var(--rule); padding-top: .7rem; }
+  .craft h3 { font-size: .875rem; font-weight: 600; margin: 0 0 .25rem; }
+  .craft p { font-size: .8125rem; color: color-mix(in srgb, var(--text) 60%, transparent); margin: 0; }
+
+  .teaching { margin-top: 2rem; background: var(--muted); border-radius: .5rem; padding: 1.25rem; display: grid; gap: 1rem; }
+  @media (min-width: 40rem) { .teaching { grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center; } }
+  .figure { font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1; }
+  .figure span { display: block; font-size: .625rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: color-mix(in srgb, var(--text) 55%, transparent); margin-top: .35rem; }
+  .teaching h3 { margin: 0 0 .3rem; font-size: 1rem; font-weight: 600; }
+  .teaching p { margin: 0; color: color-mix(in srgb, var(--text) 70%, transparent); font-size: .875rem; }
+
+  mark { background: color-mix(in srgb, var(--flagc) 20%, transparent); color: inherit; border-bottom: 1px solid var(--flagc); padding: 0 .1em; }
+
+  .verdict { margin-top: 2.5rem; }
+  .verdict h2 { font-size: 1.25rem; margin: 0 0 1rem; font-weight: 700; }
+  table { border-collapse: collapse; width: 100%; font-size: .9375rem; }
+  th, td { text-align: left; padding: .7rem .8rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  thead th { font-family: var(--data); font-size: .625rem; letter-spacing: .1em; text-transform: uppercase; color: #6E7480; }
+  td:first-child { color: var(--dim); white-space: nowrap; }
+  .scroller { overflow-x: auto; }
+
+  .note { border-left: 2px solid var(--rule); padding-left: 1.25rem; margin-top: 2rem; }
+  .note h2 { font-size: 1.0625rem; font-weight: 600; margin: 0 0 .5rem; }
+  .note p, .note li { color: var(--dim); font-size: .9375rem; max-width: 66ch; }
+  .note ol { margin: 0; padding-left: 1.2rem; }
+  .note li { margin-bottom: .5rem; }
+  .flag { color: var(--flagc); }
+</style>
+
+<div class="page">
+  <div class="masthead">
+    <p class="kicker">About section · copy comparison · draft</p>
+    <h1>A versus B</h1>
+    <p>
+      Both rendered in the site's palette at the same width, so the only variable is the writing.
+      Two agreed fixes are already applied: "still" is out of A's statement, and B says "more than a
+      decade" rather than "ten years". <mark>Highlighted</mark> lines are the ones I'd argue about.
+    </p>
+  </div>
+
+  <div class="pair">
+    <!-- ------------------------------------------------ A -->
+    <section class="col">
+      <header>
+        <b>A · The part you're hiring</b>
+        <span>direct · belief first</span>
+      </header>
+      <div class="mock">
+        <p class="eyebrow">ABOUT</p>
+        <p class="belief">
+          Software can assemble a video now. It can't tell you which take holds the
+          <em>scene</em>. That part is a person. That's the part I do.
+        </p>
+        <p class="under">
+          I'm Artem Pichak. I've been editing, grading, and shooting for over a decade. Right now
+          that means vertical drama series for TikTok and Instagram, YouTube vlogs and tech reviews,
+          commercials, documentaries for Ukrainian television, music videos, automotive films. The
+          formats keep changing. The job doesn't.
+        </p>
+        <p class="under">
+          I use AI where it earns its place. Transcripts, sorting rushes, a rough first pass. It's
+          good at the tedious work, and I'm glad to hand that over. But it doesn't know when a
+          moment needs to sit a second longer, or what the story underneath the footage actually is.
+          Finding that is the work. Whether the piece runs 40 seconds or 20 minutes, my job is the
+          same: make the story land.
+        </p>
+        <p class="under">
+          I've done that for Panasonic, Sony, Sennheiser, Renault, Mojang, and
+          <mark>for small teams nobody's heard of yet</mark>. The size of the client changes the
+          schedule. It doesn't change how I cut.
+        </p>
+
+        <div class="crafts">
+          <div class="craft"><h3>Editing</h3><p>Story-first cuts for series, documentaries, and brands, in Premiere Pro. The take that holds the scene, not the prettiest one.</p></div>
+          <div class="craft"><h3>Color</h3><p>Grades in DaVinci Resolve that give a piece its temperature, from phone-screen verticals to broadcast documentary.</p></div>
+          <div class="craft"><h3>Camera</h3><p>I shoot as well as cut, so I frame with the edit already in mind.</p></div>
+          <div class="craft"><h3>Motion</h3><p>Titles and graphics in After Effects that serve the cut instead of decorating it.</p></div>
+        </div>
+
+        <div class="teaching">
+          <div class="figure">2,000+<span>students since 2017</span></div>
+          <div>
+            <h3>I teach this too.</h3>
+            <p>Since 2017 I've taught editing to adults and teenagers, at a film school, in city programs, and one-to-one. Explaining a cut is the best way I know to understand it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------ B -->
+    <section class="col">
+      <header>
+        <b>B · Ten years, every format</b>
+        <span>warmer · belief through experience</span>
+      </header>
+      <div class="mock">
+        <p class="eyebrow">ABOUT</p>
+        <p class="belief">
+          I've spent more than a decade cutting other people's footage into
+          <em>stories</em>. The tools keep changing. The reason people call me hasn't.
+        </p>
+        <p class="under">
+          These days I'm cutting vertical drama, the short scripted series made for TikTok and
+          Instagram. Before that it was YouTube shows, tech reviews, brand films, documentaries for
+          Ukrainian TV, music videos. I've worked for Samsung and Xiaomi and Caterpillar, and for a
+          two-person startup shooting on a borrowed camera. I like that range. Every format teaches
+          you something the others can't.
+        </p>
+        <p class="under">
+          Here's what a decade in the edit bay taught me. The hard part was never the software. It's
+          knowing which of nine takes is alive, when to hold a shot one beat past comfortable, and
+          what the piece is really about, which is rarely what the brief says. AI helps me get to
+          that part faster now. It handles transcripts, sorts the rushes, drafts an assembly. I'm
+          happy to let it. The decisions it hands me are still mine to make.
+        </p>
+        <p class="under">
+          <mark>If you need a video that just exists, there are cheaper ways to get one. If you need
+          it to land, that's me.</mark>
+        </p>
+
+        <div class="crafts">
+          <div class="craft"><h3>Editing</h3><p>A decade of cuts across drama, documentary, and brand work; Premiere Pro is where I live.</p></div>
+          <div class="craft"><h3>Color</h3><p>Grading in Resolve for clients who can tell the difference between corrected and considered.</p></div>
+          <div class="craft"><h3>Camera</h3><p>Directing and shooting for docs, automotive films, and brand pieces, framed for the cut.</p></div>
+          <div class="craft"><h3>Motion</h3><p>After Effects work that carries information cleanly and gets out of the story's way.</p></div>
+        </div>
+
+        <div class="teaching">
+          <div class="figure">2,000+<span>students since 2017</span></div>
+          <div>
+            <h3>Passing it on.</h3>
+            <p>I've been teaching editing since 2017, through a film school, municipal programs, and private lessons. <mark>Some of my students now send me their reels.</mark> That's the good part.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="verdict">
+    <h2>Where they actually differ</h2>
+    <div class="scroller">
+      <table>
+        <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Opening move</td>
+            <td>States the belief, then claims the job. Reads as a position.</td>
+            <td>States the career, lets the belief arrive later. Reads as a person.</td>
+          </tr>
+          <tr>
+            <td>Where AI sits</td>
+            <td>Second paragraph, conceded generously: "I'm glad to hand that over."</td>
+            <td>Third paragraph, after the craft. Lands softer because it's already earned.</td>
+          </tr>
+          <tr>
+            <td>Best line</td>
+            <td>"The size of the client changes the schedule. It doesn't change how I cut."</td>
+            <td>"Which of nine takes is alive, when to hold a shot one beat past comfortable."</td>
+          </tr>
+          <tr>
+            <td>Weakest line</td>
+            <td>"Small teams nobody's heard of yet" — faintly condescending to the small clients it's meant to welcome.</td>
+            <td>The close. "There are cheaper ways to get one" argues with a customer who hasn't objected yet.</td>
+          </tr>
+          <tr>
+            <td>Craft lines</td>
+            <td>Concrete and varied. "From phone-screen verticals to broadcast documentary" does real range work.</td>
+            <td>Softer, more abstract. "Premiere Pro is where I live" is voice, not information.</td>
+          </tr>
+          <tr>
+            <td>Teaching</td>
+            <td>"Explaining a cut is the best way I know to understand it." Reason to teach, not a boast.</td>
+            <td>"Some of my students now send me their reels" is the better human detail — <span class="flag">if it's true</span>.</td>
+          </tr>
+          <tr>
+            <td>Risk</td>
+            <td>Belief-first only works if the belief is his. If it isn't, it's the loudest wrong note on the page.</td>
+            <td>Longest of the three. Two paragraphs before it says anything a competitor couldn't.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note">
+    <h2>What I'd actually ship</h2>
+    <p>
+      A, with two transplants from B. Take B's "which of nine takes is alive, when to hold a shot
+      one beat past comfortable" into A's second paragraph, replacing the vaguer "when a moment
+      needs to sit a second longer" — it is the most editor-sounding sentence either draft produced.
+      And take B's reels detail into the teaching block if Artem confirms it.
+    </p>
+    <p>
+      Cut "small teams nobody's heard of yet" either way. "And for two-person teams" says the same
+      thing without the pat on the head.
+    </p>
+  </div>
+
+  <div class="note">
+    <h2 class="flag">Still needed from Artem</h2>
+    <ol>
+      <li>A moment where the take that looked right on paper was wrong on screen. One sentence replaces the abstract version of this argument entirely.</li>
+      <li>What he actually hands to AI, in his words. "Syncing multicam" is worth more than "sorting rushes" if that's the real answer.</li>
+      <li>Whether students really do send him their reels, and whether the 2,000 figure covers the school, the municipal programs and the private lessons together.</li>
+    </ol>
+  </div>
+</div>

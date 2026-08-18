@@ -50,7 +50,7 @@ const stills = stillSource
 
 const meta = [project.category, project.client, project.year].filter(Boolean)
 
-const title = project.seo?.metaTitle || `${project.title} — Artem Pichak`
+const title = project.seo?.metaTitle || `${project.title} - Artem Pichak`
 const description = project.seo?.metaDescription || metaDescription(project.description)
 const ogImage = shareImageUrl(project.seo?.shareImage?.asset ?? cover?.asset ?? null)
 
@@ -65,7 +65,7 @@ const videoJsonLd = videos
   .map((video) => ({
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: video.label === 'Play video' ? project.title : `${project.title} — ${video.label}`,
+    name: video.label === 'Play video' ? project.title : `${project.title} - ${video.label}`,
     description: project.description,
     ...(ogImage ? { thumbnailUrl: [ogImage] } : {}),
     embedUrl: video.embedUrl,

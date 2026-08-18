@@ -85,7 +85,7 @@ ship no JavaScript at all.
   Deliberately *not* wired to `project.client`: the row is a curated roster, the project field is
   a per-project fact. Seeded from Artem's About copy with `bun run seed:clients` (additive).
   **Three logos are live** — Xiaomi, Hotline.ua and Caterpillar (a new client, added with its
-  logo) — prepared as one-colour white SVG and uploaded with
+  logo) — prepared as one-color white SVG and uploaded with
   `bun run logos:upload -- --dir=<folder>` (`--replace` overwrites). Sizing is optical, not
   uniform: squarish marks render at 24px and wordmarks at 28px, because identical pixel
   heights make a square logo dominate a row of wordmarks. Two more logos fill the row of five.
@@ -95,6 +95,18 @@ ship no JavaScript at all.
   never had those fields, so nothing populated them and the card meta line silently falls back to
   the category. If `client` is ever wanted as a reference rather than free text, now is the free
   moment — there is no data to migrate.
+- **About was rewritten around a belief, not a CV.** It opens with a statement about what
+  automation can't do, then three short paragraphs in Artem's first person, four craft cards
+  (Editing, Color, Camera, Motion) and a teaching band led by the 2,000+ student count. Gone: the
+  client roll-call (the logo strip in the hero already names them), the six-card skills grid
+  (Post-Production was the container the other four sit in; Tutoring was a different offer to a
+  different buyer), and the section title that duplicated the hero. The section is narrower than
+  the rest of the page (`max-w-5xl`) because it is read rather than scanned, and the portrait is
+  capped on phones where a full-width 3:4 image filled the screen. Drafts, alternates and the
+  reasoning live in `design/about-option-a.html`, which is outside the build.
+  **Still invented:** "which of nine takes is alive" — ask Artem for his real version.
+- **Em dashes are hyphens in visible copy**, American spelling throughout. Code comments keep
+  em dashes; one in `content.ts` sits inside a regex character class and must stay.
 - **Studio drag order is the only thing that orders the grid.** The `featured` flag no longer
   hoists projects to the front — Alex chose strict Studio order everywhere (home grid, category
   filters, `/work`), so what Artem drags is what ships. `featured` now only picks which project's

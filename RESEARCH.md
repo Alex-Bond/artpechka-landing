@@ -22,7 +22,7 @@ Companion documents: [HANDOFF.md](HANDOFF.md) for current state, and the review 
 | [farazparsa.com](https://www.farazparsa.com/) | none | abstract tagline | six selected projects; card = title, category, year, sometimes agency | agency only, on the card | six-logo strip, labelled | availability statement, no numbers | ~150 words total |
 | [matheus.works](https://matheus.works/) | GIF mosaic | name and role in one line | ten works, thumbnail grid | none | one composite image | none | minimal |
 | [samkolder.com](https://www.samkolder.com/) | headline + click-to-play button | name, role, city, email | cards with animated preview, category, date | none | five-logo strip | FAQ block and a stats block instead | low + 6-question FAQ |
-| [dariobigi.com](https://dariobigi.com/) | — | name and two labelled doors (colour / cyber) | — | — | — | — | extreme minimal |
+| [dariobigi.com](https://dariobigi.com/) | — | name and two labeled doors (color / cyber) | — | — | — | — | extreme minimal |
 
 ### Bucket 2 — higher-end colorists, post houses, editorial rosters
 

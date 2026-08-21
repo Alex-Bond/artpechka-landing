@@ -1,6 +1,16 @@
 ---
 import { Image } from 'astro:assets'
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import portrait from '../assets/me.jpg'
+import Icon from './Icon.astro'
+
+/**
+ * /preview rather than the /edit URL the share dialog hands out: it renders the
+ * document on its own, without the editor chrome and sign-in prompts a visitor
+ * has no use for.
+ */
+const CV_URL =
+  'https://docs.google.com/document/d/1XW8ouwEj0T4LHeIMOButchBvS5prMg2vK8hW8yfeg5c/preview'
 
 /**
  * The About section: a belief, then who and what, then how, then what you get.
@@ -77,10 +87,20 @@ const crafts = [
           hold a shot one beat past comfortable, and what the piece is really about, which is rarely
           what the brief says.
         </p>
-        <p class="max-w-[56ch] text-cinema-text/80">
+        <p class="mb-6 max-w-[56ch] text-cinema-text/80">
           If you need a video that just exists, there are cheaper ways to get one. If you need it to
           land, that's me.
         </p>
+
+        <a
+          href={CV_URL}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 text-sm font-medium text-cinema-text/70 underline decoration-cinema-text/25 underline-offset-4 transition-colors hover:text-cinema-accent hover:decoration-cinema-accent/50"
+        >
+          Full CV
+          <Icon icon={faArrowUpRightFromSquare} size={12} />
+        </a>
       </div>
     </div>
 

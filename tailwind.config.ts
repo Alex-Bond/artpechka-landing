@@ -62,10 +62,15 @@ export default {
 				},
 				cinema: {
 					background: '#0F0F13',
-					// #E63946 gave white text 4.17:1, under the 4.5:1 AA floor, on
-					// every primary CTA. This is 4.97:1.
-					accent: '#D62839',
-					accentDark: '#B21F2E',
+					// Channels rather than a hex so the accent can be swapped at
+					// runtime — see the palette block in global.css. `accentOn` is
+					// whatever text sits on top of a filled accent surface: it
+					// cannot be hardcoded to white, because a bright orange needs
+					// dark text to clear the contrast floor where a deep red does
+					// not.
+					accent: 'rgb(var(--cinema-accent) / <alpha-value>)',
+					accentDark: 'rgb(var(--cinema-accent-dark) / <alpha-value>)',
+					accentOn: 'rgb(var(--cinema-accent-on) / <alpha-value>)',
 					text: '#F1FAEE',
 					muted: '#1D1D25',
 					highlight: '#4CC9F0'

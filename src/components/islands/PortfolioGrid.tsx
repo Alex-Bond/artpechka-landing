@@ -47,7 +47,7 @@ export default function PortfolioGrid({ projects, categories }: Props) {
             className={
               'rounded-full px-4 py-2 text-sm transition-colors ' +
               (activeCategory === category
-                ? 'bg-cinema-accent text-white'
+                ? 'bg-cinema-accent text-cinema-accentOn'
                 : 'bg-cinema-muted text-cinema-text/70 hover:bg-cinema-muted/70')
             }
           >

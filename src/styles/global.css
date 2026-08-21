@@ -42,6 +42,30 @@
   }
 }
 
+/*
+ * The accent, kept in one place and expressed as rgb channels so a swap is
+ * three numbers rather than a rebuild of every utility that mentions it.
+ *
+ * `--cinema-accent-on` is the text that sits on a filled accent surface. It
+ * moves with the accent rather than being assumed white, because the accent has
+ * to satisfy two readings at once and they pull apart as the color lightens:
+ * white text on a filled button, and the accent itself as text on the near
+ * black background. Anything lighter than roughly #CC5500 fails the first and
+ * has to flip to dark text instead.
+ *
+ * Contrast against white / against the #0F0F13 background:
+ *   crimson #D62839  4.97  3.84   (in use)
+ *   ember   #C75000  4.59  4.17   orange, tried and set aside
+ *   vivid   #EA580C  3.56  5.37   orange, needs --cinema-accent-on: 15 15 19
+ */
+@layer base {
+  :root {
+    --cinema-accent: 214 40 57;
+    --cinema-accent-dark: 178 31 46;
+    --cinema-accent-on: 255 255 255;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -100,7 +124,7 @@
 
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-md bg-cinema-accent px-6 py-3
-      font-medium text-white transition-colors hover:bg-cinema-accentDark;
+      font-medium text-cinema-accentOn transition-colors hover:bg-cinema-accentDark;
   }
 
   .btn-secondary {

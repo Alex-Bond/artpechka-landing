@@ -35,6 +35,17 @@ export const client = defineType({
         'Turn on if the logo is black or dark and disappears against the dark background.',
     }),
     defineField({
+      name: 'logoScale',
+      title: 'Size nudge',
+      type: 'number',
+      initialValue: 1,
+      description:
+        'Every logo in the strip is set to the same height, which is right for most of them. ' +
+        'Raise this above 1 for a logo whose lettering sits inside a lot of empty space and so ' +
+        'reads smaller than its neighbours, or below 1 for one that shouts. 1 means leave it alone.',
+      validation: (r) => r.min(0.5).max(2),
+    }),
+    defineField({
       name: 'website',
       type: 'url',
       description: 'Optional. Makes the logo a link.',

@@ -20,14 +20,42 @@ const REPLACE = process.argv.includes('--replace')
 const DIR = process.argv.find((a) => a.startsWith('--dir='))?.slice(6)
 if (!DIR) throw new Error('pass --dir=<folder containing the prepared svg files>')
 
-/** file in --dir  ->  client document, created if it does not exist yet */
+/**
+ * file in --dir  ->  client document, created if it does not exist yet.
+ *
+ * The order of this list is also the order the hero shows them in: the strip
+ * takes the first five clients that have a logo, so uploading is only half the
+ * job — the ranks below lift these above the clients that have none.
+ */
 const LOGOS = [
-  { file: 'xiaomi-mono.svg', clientId: 'client-xiaomi', name: 'Xiaomi' },
-  { file: 'hotline-mono.svg', clientId: 'client-hotline-ua', name: 'Hotline.ua' },
-  { file: 'caterpillar-mono.svg', clientId: 'client-caterpillar', name: 'Caterpillar' },
+  // `scale` is the Studio's Size nudge. The three wordmarks are left at 1: for
+  // a wordmark the box height is the letter height, so they only look level
+  // when they are level. Amo's lettering is a third of its artwork — the rest
+  // is the diagonal — and Chemonics' sits beside a mark, so both need lifting
+  // to read at the same size as their neighbours.
+  {
+    file: 'amo-pictures-mono.svg',
+    clientId: 'client-amo-pictures',
+    name: 'Amo Pictures',
+    scale: 1.25,
+  },
+  { file: 'panasonic-mono.svg', clientId: 'client-panasonic', name: 'Panasonic', scale: 1 },
+  { file: 'caterpillar-mono.svg', clientId: 'client-caterpillar', name: 'Caterpillar', scale: 1 },
+  { file: 'hotline-mono.svg', clientId: 'client-hotline-ua', name: 'Hotline.ua', scale: 1 },
+  {
+    file: 'chemonics-mono.svg',
+    clientId: 'client-chemonics-int',
+    name: 'Chemonics International',
+    scale: 1.1,
+  },
 ]
 
-const orderRank = (i: number) => `0|${((i + 1) * 1000).toString(36).padStart(6, '0')}:`
+/**
+ * LexoRank sorts as a plain string, so a short numeric tail beats every rank
+ * Sanity has generated so far ('000001' < '00000a') and lands these at the top
+ * of the Studio list without touching the ranks of anything below.
+ */
+const orderRank = (i: number) => `0|${String(i + 1).padStart(6, '0')}:`
 
 async function main() {
   const projectId = process.env.SANITY_STUDIO_PROJECT_ID
@@ -50,25 +78,21 @@ async function main() {
 
   console.log(`\nMode: ${DRY_RUN ? 'DRY RUN' : 'WRITE'}${REPLACE ? ' (replacing existing logos)' : ''}\n`)
 
-  for (const entry of LOGOS) {
+  for (const [index, entry] of LOGOS.entries()) {
     const doc = byId.get(entry.clientId)
     const file = Bun.file(path.join(DIR, entry.file))
     if (!(await file.exists())) throw new Error(`missing file: ${entry.file}`)
 
-    if (doc?.hasLogo && !REPLACE) {
-      console.log(`  ${entry.name.padEnd(14)} already has a logo — skipped`)
-      continue
-    }
-
+    const keepLogo = doc?.hasLogo && !REPLACE
     const bytes = (await file.arrayBuffer()).byteLength
+
     console.log(
-      `  ${entry.name.padEnd(14)} ${entry.file.padEnd(22)} ${String(bytes).padStart(6)} bytes` +
-        `  ${doc ? '-> existing client' : '-> NEW client'}`,
+      `  ${entry.name.padEnd(24)} ${entry.file.padEnd(24)} ${String(bytes).padStart(6)} bytes` +
+        `  rank ${index + 1}` +
+        `  ${!doc ? '-> NEW client' : keepLogo ? '-> keeping existing logo' : '-> existing client'}`,
     )
 
     if (DRY_RUN) continue
-
-    const asset = await client.assets.upload('image', file, { filename: entry.file })
 
     if (!doc) {
       await client.createIfNotExists({
@@ -76,16 +100,26 @@ async function main() {
         _type: 'client',
         name: entry.name,
         invertLogo: false,
-        orderRank: orderRank(existing.length + LOGOS.indexOf(entry)),
+        logoScale: entry.scale,
       } as never)
     }
 
-    await client
-      .patch(entry.clientId)
-      .set({ logo: { _type: 'image', asset: { _type: 'reference', _ref: asset._id } } })
-      .commit()
+    // Name and rank are patched every run, logo only when there is a new one:
+    // the position in the strip is decided here, not in the Studio, so a rerun
+    // is how the row gets put back the way this file describes it.
+    const patch: Record<string, unknown> = {
+      name: entry.name,
+      orderRank: orderRank(index),
+      logoScale: entry.scale,
+    }
 
-    console.log(`    uploaded ${asset._id}`)
+    if (!keepLogo) {
+      const asset = await client.assets.upload('image', file, { filename: entry.file })
+      patch.logo = { _type: 'image', asset: { _type: 'reference', _ref: asset._id } }
+      console.log(`    uploaded ${asset._id}`)
+    }
+
+    await client.patch(entry.clientId).set(patch).commit()
   }
 
   if (!DRY_RUN) {

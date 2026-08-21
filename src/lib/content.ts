@@ -65,6 +65,7 @@ export interface Client {
   name: string
   website: string | null
   invertLogo: boolean
+  logoScale: number
   logo: { asset: LogoAsset | null } | null
 }
 
@@ -109,13 +110,14 @@ export async function getCategories(): Promise<Category[]> {
 
 /**
  * The client strip on the home page, in Studio order. A client with no logo
- * still comes back — the component renders the name as text instead, so the
- * strip never shows a gap while Artem is still collecting assets.
+ * still comes back and is dropped by the component, so the ordering stays a
+ * single list rather than two that have to agree.
  */
 export async function getClients(): Promise<Client[]> {
   return sanityClient.fetch(
     `*[_type == "client"] | order(orderRank) {
       _id, name, website, "invertLogo": coalesce(invertLogo, false),
+      "logoScale": coalesce(logoScale, 1),
       logo { asset->{ _id, url, mimeType, metadata { dimensions } } }
     }`,
   )

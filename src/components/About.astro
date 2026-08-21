@@ -1,0 +1,136 @@
+---
+import { Image } from 'astro:assets'
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import portrait from '../assets/me.jpg'
+import Icon from './Icon.astro'
+
+/**
+ * /preview rather than the /edit URL the share dialog hands out: it renders the
+ * document on its own, without the editor chrome and sign-in prompts a visitor
+ * has no use for.
+ */
+const CV_URL =
+  'https://docs.google.com/document/d/1XW8ouwEj0T4LHeIMOButchBvS5prMg2vK8hW8yfeg5c/preview'
+
+/**
+ * The About section: a belief, then who and what, then how, then what you get.
+ * Replaces a CV-style version whose client roll-call duplicated the logo strip
+ * in the hero.
+ *
+ * Six skill cards became four: Post-Production was the container the others sit
+ * in rather than a fifth craft, and Tutoring is a different offer to a different
+ * buyer, so it has its own band with the student count.
+ */
+const crafts = [
+  {
+    title: 'Editing',
+    body: 'Commercials, documentaries, vertical drama and YouTube episodes - from rushes to picture lock.',
+  },
+  {
+    title: 'Color',
+    body: 'Grading in DaVinci Resolve. Matching mixed cameras, keeping skin honest, holding one look shot to shot.',
+  },
+  {
+    title: 'Camera',
+    body: 'I shoot as well as cut, so the edit gets planned on set instead of rescued afterwards.',
+  },
+  {
+    title: 'Motion',
+    body: 'Titles, inserts and animation in After Effects - enough to finish a piece without a second vendor.',
+  },
+]
+---
+
+<section id="about" class="section-padding bg-cinema-muted">
+  <!-- Narrower than the rest of the page on purpose: this section is read, not
+       scanned, and a shorter measure keeps the statement and the paragraphs in
+       one comfortable column instead of stretching across the full grid width. -->
+  <div class="container mx-auto max-w-5xl">
+    <p class="mb-6 text-sm font-medium text-cinema-accent">ABOUT</p>
+
+    <div class="grid gap-10 md:grid-cols-[2fr_3fr] md:gap-16">
+      <div>
+        <!-- Left-aligned and capped on phones: a full-width 3:4 portrait ate most of
+             the screen before the copy started. Full column width from md. -->
+        <div
+          class="aspect-[3/4] w-72 overflow-hidden rounded-md bg-gradient-to-br from-cinema-accent/20 to-cinema-highlight/20 sm:w-80 md:w-full"
+        >
+          <!-- width caps the fallback src as well as the srcset: without it Astro
+               also emits a full 4000px derivative and points src at it, which is
+               what non-srcset clients and link scrapers download. -->
+          <Image
+            src={portrait}
+            alt="Artem Pichak at the edit suite"
+            width={1024}
+            widths={[480, 768, 1024]}
+            sizes="(min-width: 768px) 40vw, 92vw"
+            class="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div>
+        <h2 class="mb-6 text-2xl font-bold leading-snug md:text-[2rem] md:leading-[1.25]">
+          Almost everything about making video can be automated now. The part that keeps
+          someone <span class="text-gradient">watching</span> - can't.
+        </h2>
+
+        <p class="mb-4 max-w-[56ch] text-cinema-text/80">
+          I'm Artem Pichak. I've been editing, grading, and shooting for more than a decade. Right
+          now that means vertical drama series for TikTok and Instagram, YouTube vlogs and tech
+          reviews, commercials, documentaries for Ukrainian television, music videos, automotive
+          films. The formats keep changing. The job doesn't.
+        </p>
+        <p class="mb-4 max-w-[56ch] text-cinema-text/80">
+          The hard part was never the software. It's knowing which of nine takes is alive, when to
+          hold a shot one beat past comfortable, and what the piece is really about, which is rarely
+          what the brief says.
+        </p>
+        <p class="mb-6 max-w-[56ch] text-cinema-text/80">
+          If you need a video that just exists, there are cheaper ways to get one. If you need it to
+          land, that's me.
+        </p>
+
+        <a
+          href={CV_URL}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 text-sm font-medium text-cinema-text/70 underline decoration-cinema-text/25 underline-offset-4 transition-colors hover:text-cinema-accent hover:decoration-cinema-accent/50"
+        >
+          Full CV
+          <Icon icon={faArrowUpRightFromSquare} size={12} />
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        crafts.map((craft) => (
+          <div class="border-t border-cinema-text/15 pt-4">
+            <h3 class="mb-1 font-semibold">{craft.title}</h3>
+            <p class="text-sm text-cinema-text/60">{craft.body}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-14 grid gap-6 rounded-lg bg-cinema-background p-7 md:grid-cols-[auto_1fr] md:items-center md:gap-10 md:p-8">
+      <div>
+        <div class="text-4xl font-bold leading-none text-cinema-accent">2,000+</div>
+        <div class="mt-2 text-xs font-medium uppercase tracking-[0.12em] text-cinema-text/55">
+          students taught since 2017
+        </div>
+      </div>
+      <div>
+        <h3 class="mb-1 text-lg font-semibold">Teaching</h3>
+        <p class="max-w-[56ch] text-cinema-text/70">
+          Since 2017 I've taught editing at the ProCut school, in municipal programs, and one to
+          one. Some of them edit as a hobby. Some needed it for the job they already had. Some cut
+          for major TV channels and production companies now. Explaining a cut is the best way I
+          know to understand it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

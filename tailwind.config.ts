@@ -4,10 +4,7 @@ import type { Config } from "tailwindcss";
 export default {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./src/**/*.{astro,ts,tsx,mdx}",
 	],
 	prefix: "",
 	theme: {
@@ -65,7 +62,15 @@ export default {
 				},
 				cinema: {
 					background: '#0F0F13',
-					accent: '#E63946',
+					// Channels rather than a hex so the accent can be swapped at
+					// runtime — see the palette block in global.css. `accentOn` is
+					// whatever text sits on top of a filled accent surface: it
+					// cannot be hardcoded to white, because a bright orange needs
+					// dark text to clear the contrast floor where a deep red does
+					// not.
+					accent: 'rgb(var(--cinema-accent) / <alpha-value>)',
+					accentDark: 'rgb(var(--cinema-accent-dark) / <alpha-value>)',
+					accentOn: 'rgb(var(--cinema-accent-on) / <alpha-value>)',
 					text: '#F1FAEE',
 					muted: '#1D1D25',
 					highlight: '#4CC9F0'
@@ -136,5 +141,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;

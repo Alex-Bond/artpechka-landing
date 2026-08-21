@@ -1,0 +1,90 @@
+---
+import { getClients } from '../lib/content'
+import { logoImage } from '../lib/image'
+
+interface Props {
+  /** How many logos the hero shows. Drag order in the Studio picks which. */
+  limit?: number
+}
+
+const { limit = 5 } = Astro.props
+
+/**
+ * Logos only — a name in text among four logos reads as a missing asset rather
+ * than a client, so anything without a logo is skipped and the row simply
+ * doesn't render until there are logos to show. Which five appear is the top
+ * five in the Studio's Clients list; reordering there is the whole control.
+ */
+const clients = await getClients()
+
+const entries = clients
+  .map((client) => ({
+    name: client.name,
+    invert: client.invertLogo,
+    asset: client.logo?.asset ?? null,
+    scale: client.logoScale,
+    // A logo of unknown proportions is treated as an average wordmark rather
+    // than dropped, so a stray upload still lands somewhere sensible.
+    aspect: client.logo?.asset?.metadata?.dimensions?.aspectRatio ?? 4,
+  }))
+  .filter((entry) => entry.asset !== null)
+  .slice(0, limit)
+
+/**
+ * One height for all of them. Most of these are wordmarks, and for a wordmark
+ * the box height is the letter height — set two of them to different heights
+ * and the lettering visibly steps up and down across the row, however well the
+ * areas balance. Logos built around a mark, where the lettering sits inside
+ * empty space, get their `Size nudge` in the Studio instead of a formula
+ * guessing at it from the aspect ratio.
+ *
+ * The height itself falls out of the space rather than being picked: the row
+ * has to finish on one line inside the hero's column, so it is solved for that
+ * budget. A sixth logo shrinks all six rather than wrapping one.
+ */
+const COLUMN = 768 // max-w-3xl, the hero copy column this sits under
+const GAP = 32
+const SLACK = 8 // sub-pixel rounding, so the last logo never tips over
+const MAX_HEIGHT = 32
+
+const budget = COLUMN - GAP * Math.max(entries.length - 1, 0) - SLACK
+const perPixel = entries.reduce((sum, entry) => sum + entry.aspect * entry.scale, 0)
+const base = perPixel > 0 ? Math.min(MAX_HEIGHT, budget / perPixel) : 0
+
+const logos = entries.map((entry) => {
+  const height = base * entry.scale
+  return { ...entry, height, logo: logoImage(entry.asset, Math.round(height)) }
+})
+---
+
+{
+  logos.length > 0 && (
+    <div class="mt-14">
+      <p class="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-cinema-text/40">
+        Selected clients
+      </p>
+      <ul class="flex flex-wrap items-center gap-x-8 gap-y-5">
+        {
+          logos.map((entry) => (
+            <li class="flex items-center">
+              <img
+                src={entry.logo!.src}
+                srcset={entry.logo!.srcset ?? undefined}
+                width={entry.logo!.width ?? undefined}
+                height={entry.logo!.height ?? undefined}
+                alt={entry.name}
+                loading="eager"
+                decoding="async"
+                style={`height:${entry.height.toFixed(2)}px`}
+                class:list={[
+                  'w-auto object-contain opacity-60 transition-opacity duration-200 hover:opacity-100',
+                  entry.invert && 'brightness-0 invert',
+                ]}
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  )
+}

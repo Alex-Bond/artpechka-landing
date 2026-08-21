@@ -1,0 +1,139 @@
+---
+interface Props {
+  /** On project pages the section links have to jump back to the home page. */
+  home?: boolean
+}
+
+const { home = true } = Astro.props
+const prefix = home ? '' : '/'
+
+const navItems = [
+  { label: 'Home', href: `${prefix}#home` },
+  { label: 'About', href: `${prefix}#about` },
+  { label: 'Portfolio', href: `${prefix}#portfolio` },
+  { label: 'Contact', href: `${prefix}#contact` },
+]
+---
+
+<header
+  id="site-header"
+  class="fixed left-0 top-0 z-50 w-full bg-transparent py-5 transition-all duration-300"
+>
+  <div class="container mx-auto flex items-center justify-between">
+    <a href={`${prefix}#home`} class="font-heading text-2xl font-bold text-gradient">
+      ARTEM PICHAK
+    </a>
+
+    <nav class="hidden items-center space-x-8 md:flex" aria-label="Main">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="font-medium text-cinema-text/80 transition-colors hover:text-cinema-accent"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a href={`${prefix}#contact`} class="btn-primary px-4 py-2 text-sm">Get in Touch</a>
+    </nav>
+
+    <button
+      id="menu-toggle"
+      class="text-cinema-text md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Open menu"
+    >
+      <svg
+        id="menu-icon-open"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <svg
+        id="menu-icon-close"
+        class="hidden"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-nav" class="absolute left-0 top-full hidden w-full bg-cinema-muted py-4 md:hidden">
+    <nav class="container mx-auto flex flex-col space-y-4" aria-label="Mobile">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            data-close-menu
+            class="py-2 font-medium text-cinema-text/80 transition-colors hover:text-cinema-accent"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a href={`${prefix}#contact`} data-close-menu class="btn-primary mt-2">Get in Touch</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header')!
+  const toggle = document.getElementById('menu-toggle')!
+  const nav = document.getElementById('mobile-nav')!
+  const iconOpen = document.getElementById('menu-icon-open')!
+  const iconClose = document.getElementById('menu-icon-close')!
+
+  const scrolled = ['bg-cinema-background/90', 'backdrop-blur-md', 'py-3', 'shadow-md']
+  const top = ['bg-transparent', 'py-5']
+
+  const onScroll = () => {
+    const isScrolled = window.scrollY > 50
+    header.classList.toggle('py-3', isScrolled)
+    header.classList.toggle('py-5', !isScrolled)
+    scrolled.forEach((c) => header.classList.toggle(c, isScrolled))
+    top.forEach((c) => header.classList.toggle(c, !isScrolled))
+  }
+
+  const setMenu = (open: boolean) => {
+    nav.classList.toggle('hidden', !open)
+    iconOpen.classList.toggle('hidden', open)
+    iconClose.classList.toggle('hidden', !open)
+    toggle.setAttribute('aria-expanded', String(open))
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
+  }
+
+  toggle.addEventListener('click', () =>
+    setMenu(toggle.getAttribute('aria-expanded') !== 'true'),
+  )
+  // Every mobile link closes the menu — including "Get in Touch", which in the
+  // old build closed the menu and went nowhere.
+  nav.querySelectorAll('[data-close-menu]').forEach((link) =>
+    link.addEventListener('click', () => setMenu(false)),
+  )
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setMenu(false)
+  })
+
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+</script>

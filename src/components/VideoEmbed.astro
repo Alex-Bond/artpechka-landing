@@ -1,0 +1,91 @@
+---
+import type { EmbeddableVideo } from '../lib/video'
+import type { ResponsiveImage } from '../lib/image'
+
+interface Props {
+  video: EmbeddableVideo
+  poster: ResponsiveImage | null
+  projectTitle: string
+}
+
+const { video, poster, projectTitle } = Astro.props
+---
+
+{
+  video.embedUrl ? (
+    <figure
+      class="video-embed relative overflow-hidden rounded-lg bg-black"
+      data-embed={video.embedUrl}
+      data-label={video.label}
+      data-project={projectTitle}
+    >
+      {/*
+        A poster plus a play button, not an iframe: the player's ~1 MB of JS only
+        loads if someone actually wants to watch, and the click is where the
+        play_video event belongs.
+      */}
+      <div class="relative aspect-video">
+        {poster && (
+          <img
+            src={poster.src}
+            srcset={poster.srcset}
+            sizes={poster.sizes}
+            width={poster.width}
+            height={poster.height}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            class="h-full w-full object-contain"
+          />
+        )}
+        <button
+          type="button"
+          data-play
+          class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-cinema-background/40 transition-colors hover:bg-cinema-background/20"
+          aria-label={`Play ${video.label} - ${projectTitle}`}
+        >
+          <span class="flex h-16 w-16 items-center justify-center rounded-full bg-cinema-accent text-cinema-accentOn shadow-lg">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <polygon points="6 3 21 12 6 21 6 3" />
+            </svg>
+          </span>
+          <span class="rounded-full bg-cinema-background/80 px-3 py-1 text-sm font-medium">
+            {video.label}
+          </span>
+        </button>
+      </div>
+    </figure>
+  ) : (
+    <a href={video.url} class="btn-secondary" rel="noopener">
+      {video.label}
+    </a>
+  )
+}
+
+<script>
+  document.querySelectorAll<HTMLElement>('.video-embed').forEach((figure) => {
+    const button = figure.querySelector<HTMLButtonElement>('[data-play]')
+    const embed = figure.dataset.embed
+    if (!button || !embed) return
+
+    button.addEventListener('click', () => {
+      window.gtag?.('event', 'play_video', {
+        event_category: figure.dataset.project,
+        event_label: figure.dataset.label,
+      })
+
+      const frame = document.createElement('iframe')
+      frame.src = `${embed}${embed.includes('?') ? '&' : '?'}autoplay=1`
+      frame.title = `${figure.dataset.label} - ${figure.dataset.project}`
+      frame.allow =
+        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+      frame.allowFullscreen = true
+      frame.loading = 'lazy'
+      frame.className = 'absolute inset-0 h-full w-full'
+
+      const shell = button.parentElement!
+      shell.innerHTML = ''
+      shell.appendChild(frame)
+    })
+  })
+</script>

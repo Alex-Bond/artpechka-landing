@@ -1,0 +1,30 @@
+---
+import type { IconDefinition } from '@fortawesome/fontawesome-common-types'
+
+interface Props {
+  icon: IconDefinition
+  size?: number
+  class?: string
+}
+
+/**
+ * Font Awesome as inline SVG rather than the webfont: only the handful of
+ * icons actually used ship, instead of a ~150KB font file, and there is no
+ * extra request before an icon can paint. FA paths are filled, not stroked.
+ */
+const { icon, size = 22, class: className } = Astro.props
+const [width, height, , , path] = icon.icon
+const d = Array.isArray(path) ? path.join(' ') : path
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox={`0 0 ${width} ${height}`}
+  width={size}
+  height={size}
+  fill="currentColor"
+  aria-hidden="true"
+  class={className}
+>
+  <path d={d} />
+</svg>

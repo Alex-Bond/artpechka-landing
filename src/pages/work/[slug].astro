@@ -1,0 +1,219 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { PortableText } from 'astro-portabletext'
+import Layout from '../../layouts/Layout.astro'
+import Header from '../../components/Header.astro'
+import Footer from '../../components/Footer.astro'
+import VideoEmbed from '../../components/VideoEmbed.astro'
+import StillsGallery from '../../components/StillsGallery.astro'
+import { getProjects, coverImage, metaDescription, type Project } from '../../lib/content'
+import { responsiveImage, shareImageUrl } from '../../lib/image'
+import { embeddable } from '../../lib/video'
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const projects = await getProjects()
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }))
+}
+
+const { project } = Astro.props as { project: Project }
+
+const cover = coverImage(project)
+const posterImage = responsiveImage(cover, {
+  sizes: '(min-width: 1024px) 60vw, 100vw',
+  widths: [768, 1024, 1440],
+  alt: project.title,
+})
+
+const videos = (project.videos ?? []).map((video, index) => embeddable(video, index))
+
+/**
+ * The cover frame does double duty: card cover, and poster for the video
+ * player. When there is a video it is already the biggest thing on the page,
+ * so it drops out of the Stills strip below — otherwise a project with one
+ * still shows the same frame twice, once as the poster and once as a "still".
+ */
+const stillSource = (project.images ?? []).filter(
+  (image) => image.asset && !(videos.length > 0 && image === cover),
+)
+
+const stills = stillSource
+  .map((image) => ({
+    thumb: responsiveImage(image, {
+      sizes: '(min-width: 1024px) 33vw, (min-width: 640px) 45vw, 100vw',
+      widths: [480, 768, 1024],
+      alt: project.title,
+    }),
+    full: responsiveImage(image, {
+      sizes: '95vw',
+      widths: [1024, 1440, 1920, 2560],
+      alt: project.title,
+    }),
+  }))
+  .filter(
+    (pair): pair is { thumb: NonNullable<typeof pair.thumb>; full: NonNullable<typeof pair.full> } =>
+      pair.thumb !== null && pair.full !== null,
+  )
+
+const meta = [project.category, project.client, project.year].filter(Boolean)
+
+const title = project.seo?.metaTitle || `${project.title} - Artem Pichak`
+const description = project.seo?.metaDescription || metaDescription(project.description)
+const ogImage = shareImageUrl(project.seo?.shareImage?.asset ?? cover?.asset ?? null)
+
+/**
+ * Indexed by default. The switch in the Studio is for the exceptions: an
+ * unreleased piece, a client who would rather not be listed, a page still
+ * being written.
+ */
+const noindex = project.hideFromSearch
+
+const videoJsonLd = videos
+  .filter((video) => video.embedUrl)
+  .map((video) => ({
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.label === 'Play video' ? project.title : `${project.title} - ${video.label}`,
+    description: project.description,
+    ...(ogImage ? { thumbnailUrl: [ogImage] } : {}),
+    embedUrl: video.embedUrl,
+    url: new URL(Astro.url.pathname, Astro.site).href,
+    ...(project.year ? { copyrightYear: project.year } : {}),
+    creator: { '@type': 'Person', name: 'Artem Pichak', url: Astro.site?.href },
+    ...(project.client ? { productionCompany: { '@type': 'Organization', name: project.client } } : {}),
+  }))
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Work',
+      item: new URL('/#portfolio', Astro.site).href,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: project.title,
+      item: new URL(Astro.url.pathname, Astro.site).href,
+    },
+  ],
+}
+---
+
+<Layout
+  title={title}
+  description={description}
+  image={ogImage}
+  imageAlt={project.title}
+  noindex={noindex}
+  ogType={videos.length > 0 ? 'video.other' : 'website'}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} is:inline />
+    {
+      videoJsonLd.map((json) => (
+        <script type="application/ld+json" set:html={JSON.stringify(json)} is:inline />
+      ))
+    }
+  </Fragment>
+
+  <Header home={false} />
+
+  <main id="main" class="pt-28 pb-20 md:pt-32 md:pb-28">
+    <article class="container mx-auto">
+      <nav class="mb-8 text-sm" aria-label="Breadcrumb">
+        <a href="/#portfolio" class="text-cinema-text/60 transition-colors hover:text-cinema-accent">
+          ← All work
+        </a>
+      </nav>
+
+      <header class="mb-10 max-w-3xl">
+        {
+          meta.length > 0 && (
+            <p class="mb-3 text-sm font-medium uppercase tracking-wide text-cinema-accent">
+              {meta.join(' · ')}
+            </p>
+          )
+        }
+        <h1 class="mb-4 text-3xl font-bold leading-tight md:text-5xl">{project.title}</h1>
+        <p class="text-lg text-cinema-text/80">{project.description}</p>
+
+        {
+          project.services?.length > 0 && (
+            <div class="mt-6 flex flex-wrap gap-2">
+              {project.services.map((service) => (
+                <span class="rounded-full bg-cinema-muted px-3 py-1 text-xs text-cinema-text/80">
+                  {service}
+                </span>
+              ))}
+            </div>
+          )
+        }
+      </header>
+
+      {
+        videos.length > 0 && (
+          <section class="mb-14 space-y-6" aria-label="Video">
+            {videos.map((video) => (
+              <VideoEmbed video={video} poster={posterImage} projectTitle={project.title} />
+            ))}
+          </section>
+        )
+      }
+
+      <div class="grid gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+        <div>
+          {
+            project.body && project.body.length > 0 && (
+              <div class="prose prose-invert max-w-none prose-p:text-cinema-text/80">
+                <PortableText value={project.body} />
+              </div>
+            )
+          }
+
+          <StillsGallery
+            images={stills}
+            projectTitle={project.title}
+            flushTop={!project.body || project.body.length === 0}
+          />
+
+        </div>
+
+        <aside class="space-y-8">
+          {
+            project.credits && project.credits.length > 0 && (
+              <section>
+                <h2 class="mb-4 text-sm font-medium uppercase tracking-wide text-cinema-accent">
+                  Credits
+                </h2>
+                <dl class="space-y-3 text-sm">
+                  {project.credits.map((credit) => (
+                    <div class="flex justify-between gap-4 border-b border-cinema-muted pb-2">
+                      <dt class="text-cinema-text/60">{credit.role}</dt>
+                      <dd class="text-right font-medium">{credit.name}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            )
+          }
+
+          <section class="rounded-lg bg-cinema-muted p-6">
+            <h2 class="mb-2 text-lg font-bold">Have a project like this?</h2>
+            <p class="mb-4 text-sm text-cinema-text/70">
+              Tell me what you're making and I'll come back with how I'd approach it.
+            </p>
+            <a href="/#contact" class="btn-primary w-full">Get in Touch</a>
+          </section>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <Footer home={false} />
+</Layout>

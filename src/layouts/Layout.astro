@@ -1,0 +1,96 @@
+---
+import '../styles/global.css'
+import { SANITY_CDN } from '../lib/image'
+
+interface Props {
+  title: string
+  description: string
+  /** Absolute or site-relative URL for og:image. */
+  image?: string | null
+  imageAlt?: string | null
+  /** Kept off search engines until a page has real content. */
+  noindex?: boolean
+  ogType?: 'website' | 'video.other'
+}
+
+const {
+  title,
+  description,
+  image = null,
+  imageAlt = null,
+  noindex = false,
+  ogType = 'website',
+} = Astro.props
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href
+const ogImage = image ? new URL(image, Astro.site).href : null
+const ga = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_4
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Artem Pichak" />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <!-- Every still is served cross-origin; this pays the handshake up front. -->
+    <link rel="preconnect" href={SANITY_CDN} crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta property="og:site_name" content="Artem Pichak" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:alt" content={imageAlt || title} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <meta name="theme-color" content="#0F0F13" />
+    <link type="image/png" sizes="16x16" rel="icon" href="/icons/icon-16.png" />
+    <link type="image/png" sizes="32x32" rel="icon" href="/icons/icon-32.png" />
+    <link type="image/png" sizes="96x96" rel="icon" href="/icons/icon-96.png" />
+    <link type="image/png" sizes="144x144" rel="icon" href="/icons/icon-144.png" />
+    <link type="image/png" sizes="192x192" rel="icon" href="/icons/icon-192.png" />
+    <link type="image/png" sizes="512x512" rel="icon" href="/icons/icon-512.png" />
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/icons/icon-180.png" />
+    <meta name="msapplication-TileImage" content="/icons/icon-144.png" />
+
+    <slot name="head" />
+
+    {
+      ga && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga}`}></script>
+          <script is:inline define:vars={{ ga }}>
+            window.dataLayer = window.dataLayer || []
+            function gtag() {
+              window.dataLayer.push(arguments)
+            }
+            window.gtag = gtag
+            gtag('js', new Date())
+            gtag('config', ga)
+          </script>
+        </>
+      )
+    }
+  </head>
+  <body class="min-h-screen bg-cinema-background text-cinema-text antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-cinema-accent focus:px-4 focus:py-2 focus:text-cinema-accentOn"
+    >
+      Skip to content
+    </a>
+    <slot />
+  </body>
+</html>

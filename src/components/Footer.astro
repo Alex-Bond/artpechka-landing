@@ -1,0 +1,71 @@
+---
+interface Props {
+  home?: boolean
+}
+
+const { home = true } = Astro.props
+const prefix = home ? '' : '/'
+
+const navItems = [
+  { label: 'Home', href: `${prefix}#home` },
+  { label: 'About', href: `${prefix}#about` },
+  { label: 'Portfolio', href: `${prefix}#portfolio` },
+  { label: 'All work', href: '/work' },
+  { label: 'Contact', href: `${prefix}#contact` },
+]
+---
+
+<footer class="border-t border-cinema-muted/30 bg-cinema-background py-6">
+  <div class="container mx-auto">
+    <div class="flex flex-col items-center justify-between md:flex-row">
+      <div class="mb-4 text-center md:mb-0 md:text-left">
+        <div class="mb-2 font-heading text-xl font-bold text-gradient">ARTEM PICHAK</div>
+        <p class="text-sm text-cinema-text/60">
+          © {new Date().getFullYear()} All rights reserved.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-8">
+        <nav class="hidden items-center space-x-6 md:flex" aria-label="Footer">
+          {
+            navItems.map((item) => (
+              <a
+                href={item.href}
+                class="text-sm text-cinema-text/60 transition-colors hover:text-cinema-accent"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+
+        <button
+          id="back-to-top"
+          type="button"
+          class="rounded-full bg-cinema-muted p-3 text-cinema-text/60 transition-colors hover:text-cinema-accent"
+          aria-label="Back to top"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('back-to-top')?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  })
+</script>

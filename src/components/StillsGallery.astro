@@ -1,0 +1,211 @@
+---
+import type { ResponsiveImage } from '../lib/image'
+
+interface Props {
+  /** Grid thumbnail and full-size pair for each still, in order. */
+  images: { thumb: ResponsiveImage; full: ResponsiveImage }[]
+  projectTitle: string
+  /** No body copy above means the grid should start level with the aside card. */
+  flushTop?: boolean
+}
+
+const { images, projectTitle, flushTop = false } = Astro.props
+---
+
+{
+  images.length > 0 && (
+    <section class:list={['', flushTop ? 'mt-0' : 'mt-12']} aria-label="Stills">
+      <h2 class="mb-4 text-sm font-medium uppercase tracking-wide text-cinema-accent">Stills</h2>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        {images.map((image, index) => (
+          <button
+            type="button"
+            data-still
+            data-index={index}
+            data-full-src={image.full.src}
+            data-full-srcset={image.full.srcset}
+            data-alt={image.thumb.alt}
+            class="group relative block overflow-hidden rounded-md bg-cinema-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cinema-accent focus-visible:ring-offset-2 focus-visible:ring-offset-cinema-background"
+            aria-label={`Open still ${index + 1} of ${images.length} full size`}
+          >
+            <img
+              src={image.thumb.src}
+              srcset={image.thumb.srcset}
+              sizes={image.thumb.sizes}
+              width={image.thumb.width}
+              height={image.thumb.height}
+              alt={image.thumb.alt}
+              loading={index < 2 ? 'eager' : 'lazy'}
+              decoding="async"
+              class="w-full transition-transform duration-500 md:group-hover:scale-[1.03]"
+              style={`background-image:url(${image.thumb.lqip});background-size:cover`}
+            />
+            <span
+              class="pointer-events-none absolute bottom-2 right-2 rounded-full bg-cinema-background/85 p-1.5 text-cinema-text opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100"
+              aria-hidden="true"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <polyline points="15 3 21 3 21 9" />
+                <polyline points="9 21 3 21 3 15" />
+                <line x1="21" y1="3" x2="14" y2="10" />
+                <line x1="3" y1="21" x2="10" y2="14" />
+              </svg>
+            </span>
+          </button>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+{
+  images.length > 0 && (
+    <dialog
+      id="stills-lightbox"
+      class="max-h-none max-w-none bg-transparent p-0 text-cinema-text backdrop:bg-black/90"
+      aria-label={`Stills from ${projectTitle}`}
+    >
+      <div class="relative flex h-[100dvh] w-screen items-center justify-center p-4 sm:p-8">
+        <img
+          data-lightbox-image
+          src=""
+          alt=""
+          class="max-h-full max-w-full object-contain"
+          decoding="async"
+        />
+
+        <button
+          type="button"
+          data-lightbox-close
+          class="absolute right-3 top-3 rounded-full bg-cinema-background/80 p-2.5 text-cinema-text transition-colors hover:bg-cinema-muted"
+          aria-label="Close"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+
+        {images.length > 1 && (
+          <>
+            <button
+              type="button"
+              data-lightbox-prev
+              class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-cinema-background/80 p-2.5 text-cinema-text transition-colors hover:bg-cinema-muted"
+              aria-label="Previous still"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              data-lightbox-next
+              class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-cinema-background/80 p-2.5 text-cinema-text transition-colors hover:bg-cinema-muted"
+              aria-label="Next still"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+            <p
+              data-lightbox-counter
+              class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-cinema-background/85 px-3 py-1 text-sm tabular-nums"
+              aria-live="polite"
+            />
+          </>
+        )}
+      </div>
+    </dialog>
+  )
+}
+
+<script>
+  const dialog = document.getElementById('stills-lightbox') as HTMLDialogElement | null
+  const triggers = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-still]'))
+  if (dialog && triggers.length) {
+    const frame = dialog.querySelector<HTMLImageElement>('[data-lightbox-image]')!
+    const counter = dialog.querySelector<HTMLElement>('[data-lightbox-counter]')
+    const shell = dialog.firstElementChild
+    let current = 0
+
+    // Full-size stills are big; without this the next one starts downloading
+    // only once it is asked for, and the viewer waits on a blank frame.
+    const warmed = new Set<string>()
+    const warm = (index: number) => {
+      const trigger = triggers[(index + triggers.length) % triggers.length]
+      const src = trigger?.dataset.fullSrc
+      if (!src || warmed.has(src)) return
+      warmed.add(src)
+      const loader = new Image()
+      loader.sizes = '95vw'
+      loader.srcset = trigger.dataset.fullSrcset ?? ''
+      loader.fetchPriority = 'low'
+      loader.src = src
+    }
+
+    const show = (index: number) => {
+      current = (index + triggers.length) % triggers.length
+      const trigger = triggers[current]
+      frame.src = trigger.dataset.fullSrc ?? ''
+      frame.srcset = trigger.dataset.fullSrcset ?? ''
+      frame.alt = trigger.dataset.alt || ''
+      if (counter) counter.textContent = `${current + 1} / ${triggers.length}`
+      warm(current + 1)
+      warm(current - 1)
+    }
+
+    const open = (index: number) => {
+      show(index)
+      dialog.showModal()
+      // showModal alone still lets the page behind scroll on some browsers
+      document.documentElement.style.overflow = 'hidden'
+    }
+
+    /**
+     * Idempotent, and deliberately not reliant on the dialog's `close` event:
+     * that event is the tidy way to do this, but it does not fire in every
+     * embedded browser, which would strand the page with scroll locked.
+     */
+    const restore = () => {
+      if (document.documentElement.style.overflow !== 'hidden' && !frame.getAttribute('src')) return
+      document.documentElement.style.overflow = ''
+      frame.removeAttribute('src')
+      frame.removeAttribute('srcset')
+      triggers[current]?.focus()
+    }
+
+    const close = () => {
+      dialog.close()
+      restore()
+    }
+
+    triggers.forEach((trigger, index) => trigger.addEventListener('click', () => open(index)))
+
+    // Covers the Escape key in browsers that do dispatch these.
+    dialog.addEventListener('close', restore)
+    dialog.addEventListener('cancel', restore)
+
+    // Clicking the padding around the image closes; clicking the image itself doesn't.
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog || event.target === shell) close()
+    })
+    dialog.querySelector('[data-lightbox-close]')?.addEventListener('click', close)
+    dialog.querySelector('[data-lightbox-prev]')?.addEventListener('click', () => show(current - 1))
+    dialog.querySelector('[data-lightbox-next]')?.addEventListener('click', () => show(current + 1))
+
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        close()
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault()
+        show(current + 1)
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault()
+        show(current - 1)
+      }
+    })
+  }
+</script>

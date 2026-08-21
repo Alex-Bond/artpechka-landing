@@ -1,0 +1,96 @@
+---
+import { faImdb, faTelegram, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import ContactForm from './islands/ContactForm'
+import Icon from './Icon.astro'
+
+const EMAIL = 'hi@artpechka.com'
+const MAILTO =
+  'mailto:hi@artpechka.com?subject=Inquiry%20from%20the%20website&body=Hi%20Arty!%0A%0AI%20have%20a%20project%20for%20you%20-%20'
+
+/**
+ * One row of icon links instead of a stacked list of labelled rows: the same
+ * five ways to reach him in roughly a fifth of the height. Every icon has a
+ * visible-on-hover title and an aria-label, so the meaning is not carried by
+ * the glyph alone.
+ *
+ * No tel: link — WhatsApp reaches the same number, and a phone icon invites a
+ * call to Kyiv from whatever timezone the reader is in.
+ *
+ * wa.me takes the number, not the @artpechka handle: the username form answers
+ * over HTTP but does not resolve to the account in the app, so it opens to
+ * nothing for the person who clicks it.
+ */
+const channels = [
+  {
+    label: 'Email',
+    detail: EMAIL,
+    href: MAILTO,
+    icon: faEnvelope,
+  },
+  {
+    label: 'WhatsApp',
+    detail: '+380 93 142 2390',
+    href: 'https://wa.me/380931422390',
+    external: true,
+    icon: faWhatsapp,
+  },
+  {
+    label: 'Telegram',
+    detail: '@artpechka',
+    href: 'https://t.me/artpechka',
+    external: true,
+    icon: faTelegram,
+  },
+  {
+    label: 'IMDb',
+    detail: 'Credits',
+    href: 'https://www.imdb.com/name/nm13116969/',
+    external: true,
+    icon: faImdb,
+  },
+]
+---
+
+<section id="contact" class="section-padding bg-cinema-muted">
+  <div class="container mx-auto">
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+      <div>
+        <h2 class="mb-2 text-sm font-medium text-cinema-accent">GET IN TOUCH</h2>
+        <h3 class="mb-6 text-3xl font-bold md:text-4xl">Let's Work Together</h3>
+        <p class="mb-8 text-cinema-text/70">
+          Whether you have a project in mind or just want to say hello, I'd love to hear from you.
+          Fill out the form or use my contact details below to get in touch.
+        </p>
+
+        <!-- Negative margin so the first icon lines up with the copy above,
+             despite the padding that keeps the tap target at 44px. -->
+        <ul class="mb-6 -ml-2 flex flex-wrap gap-1">
+          {
+            channels.map((channel) => (
+              <li>
+                <a
+                  href={channel.href}
+                  title={`${channel.label} — ${channel.detail}`}
+                  aria-label={`${channel.label}: ${channel.detail}`}
+                  rel={channel.external ? 'noopener noreferrer' : undefined}
+                  target={channel.external ? '_blank' : undefined}
+                  class="flex h-11 w-11 items-center justify-center rounded-md text-cinema-text/60 transition-colors hover:text-cinema-accent"
+                >
+                  <Icon icon={channel.icon} size={24} />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <p class="mb-8 flex items-center gap-2 text-sm text-cinema-text/60">
+          <Icon icon={faLocationDot} size={14} />
+          Kyiv, Ukraine
+        </p>
+      </div>
+
+      <ContactForm email={EMAIL} client:visible />
+    </div>
+  </div>
+</section>
